@@ -47,11 +47,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Database.cs" />
 =======
     <Compile Include="Account.cs" />
     <Compile Include="EnumMedewerkerRol.cs" />
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 886c6bd... Kleine dingetjes aangepast
 =======
 >>>>>>> parent of 886c6bd... Kleine dingetjes aangepast
 =======
