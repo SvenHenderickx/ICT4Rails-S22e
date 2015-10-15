@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace RemiseHavestraat
 {
-    class Database
+    public class Database
     {
+        #region Fields
+        #endregion
+
+        #region Initialisatie
+        #endregion
     }
 }
