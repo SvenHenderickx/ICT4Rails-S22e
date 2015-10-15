@@ -87,13 +87,45 @@ namespace RemiseHavestraat
             return false;
         }
 
-        public bool SegmentUpdate()
+        public bool SegmentUpdate(Tram tram, Segment segment)
         {
-            //invoeren tram, segment
             return false;
         }
 
-        public bool
+        public bool VoegLijnToe(Tram tram, List<Medewerker> medewerkers, DateTime vertrek, DateTime aankomst)
+        {
+            return false;
+        }
+
+        public bool VoegReserveringToe(Tram tram, Spoor spoor)
+        {
+            return false;
+        }
+
+        public bool VoegSchoonmaakBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
+        {
+            return false;
+        }
+
+        public bool VoegServiceBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
+        {
+            return false;
+        }
+
+        public bool SchoonmaakBeurtAftekenen(DateTime datumTijdEind)
+        {
+            //invoeren schoonmaakbeurt
+            return false;
+        }
+
+        public bool ServiceBeurtAftekenen(DateTime datumTijdEind)
+        {
+            //invoeren servicebeurt
+            return false;
+        }
+
+
+
 
         #endregion
     }
