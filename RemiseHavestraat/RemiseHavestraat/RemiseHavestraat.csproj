@@ -44,96 +44,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticatieForm.cs">
+    <Compile Include="GUI%27s\AuthenticatieForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthenticatieForm.Designer.cs">
+    <Compile Include="GUI%27s\AuthenticatieForm.Designer.cs">
       <DependentUpon>AuthenticatieForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BeheerForm.cs">
+    <Compile Include="GUI%27s\BeheerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BeheerForm.Designer.cs">
+    <Compile Include="GUI%27s\BeheerForm.Designer.cs">
       <DependentUpon>BeheerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Beurt.cs" />
-    <Compile Include="Database.cs" />
-    <Compile Include="Account.cs" />
-    <Compile Include="EnumMedewerkerRol.cs" />
-    <Compile Include="EnumPrioriteitBeurt.cs" />
-    <Compile Include="EnumTypeSchoonmaakBeurt.cs" />
+    <Compile Include="Klassen\Beurt.cs" />
+    <Compile Include="Klassen\Database.cs" />
+    <Compile Include="Klassen\Account.cs" />
+    <Compile Include="Klassen\EnumMedewerkerRol.cs" />
+    <Compile Include="Klassen\EnumPrioriteitBeurt.cs" />
+    <Compile Include="Klassen\EnumTypeSchoonmaakBeurt.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medewerker.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Klassen\Medewerker.cs" />
+    <Compile Include="Klassen\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Remise.cs" />
-    <Compile Include="Reservering.cs" />
-    <Compile Include="Segment.cs" />
-    <Compile Include="Spoor.cs" />
-    <Compile Include="SpoorBlokkadeForm.cs">
+    <Compile Include="Klassen\Remise.cs" />
+    <Compile Include="Klassen\Reservering.cs" />
+    <Compile Include="Klassen\Segment.cs" />
+    <Compile Include="Klassen\Spoor.cs" />
+    <Compile Include="GUI%27s\SpoorBlokkadeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpoorBlokkadeForm.Designer.cs">
+    <Compile Include="GUI%27s\SpoorBlokkadeForm.Designer.cs">
       <DependentUpon>SpoorBlokkadeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpoorInfoForm.cs">
+    <Compile Include="GUI%27s\SpoorInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpoorInfoForm.Designer.cs">
+    <Compile Include="GUI%27s\SpoorInfoForm.Designer.cs">
       <DependentUpon>SpoorInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpoorUpdateForm.cs">
+    <Compile Include="GUI%27s\SpoorUpdateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpoorUpdateForm.Designer.cs">
+    <Compile Include="GUI%27s\SpoorUpdateForm.Designer.cs">
       <DependentUpon>SpoorUpdateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TouchscreenForm.cs">
+    <Compile Include="GUI%27s\TouchscreenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TouchscreenForm.Designer.cs">
+    <Compile Include="GUI%27s\TouchscreenForm.Designer.cs">
       <DependentUpon>TouchscreenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tram.cs" />
-    <Compile Include="TramInfoForm.cs">
+    <Compile Include="Klassen\Tram.cs" />
+    <Compile Include="GUI%27s\TramInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TramInfoForm.Designer.cs">
+    <Compile Include="GUI%27s\TramInfoForm.Designer.cs">
       <DependentUpon>TramInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TramPlaatsenForm.cs">
+    <Compile Include="GUI%27s\TramPlaatsenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TramPlaatsenForm.Designer.cs">
+    <Compile Include="GUI%27s\TramPlaatsenForm.Designer.cs">
       <DependentUpon>TramPlaatsenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TramReserveringForm.cs">
+    <Compile Include="GUI%27s\TramReserveringForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TramReserveringForm.Designer.cs">
+    <Compile Include="GUI%27s\TramReserveringForm.Designer.cs">
       <DependentUpon>TramReserveringForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TramStatusForm.cs">
+    <Compile Include="GUI%27s\TramStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TramStatusForm.Designer.cs">
+    <Compile Include="GUI%27s\TramStatusForm.Designer.cs">
       <DependentUpon>TramStatusForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TramVerwijderenForm.cs">
+    <Compile Include="GUI%27s\TramVerwijderenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TramVerwijderenForm.Designer.cs">
+    <Compile Include="GUI%27s\TramVerwijderenForm.Designer.cs">
       <DependentUpon>TramVerwijderenForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AuthenticatieForm.resx">
+    <EmbeddedResource Include="GUI%27s\AuthenticatieForm.resx">
       <DependentUpon>AuthenticatieForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BeheerForm.resx">
+    <EmbeddedResource Include="GUI%27s\BeheerForm.resx">
       <DependentUpon>BeheerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -145,31 +145,31 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SpoorBlokkadeForm.resx">
+    <EmbeddedResource Include="GUI%27s\SpoorBlokkadeForm.resx">
       <DependentUpon>SpoorBlokkadeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SpoorInfoForm.resx">
+    <EmbeddedResource Include="GUI%27s\SpoorInfoForm.resx">
       <DependentUpon>SpoorInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SpoorUpdateForm.resx">
+    <EmbeddedResource Include="GUI%27s\SpoorUpdateForm.resx">
       <DependentUpon>SpoorUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TouchscreenForm.resx">
+    <EmbeddedResource Include="GUI%27s\TouchscreenForm.resx">
       <DependentUpon>TouchscreenForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TramInfoForm.resx">
+    <EmbeddedResource Include="GUI%27s\TramInfoForm.resx">
       <DependentUpon>TramInfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TramPlaatsenForm.resx">
+    <EmbeddedResource Include="GUI%27s\TramPlaatsenForm.resx">
       <DependentUpon>TramPlaatsenForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TramReserveringForm.resx">
+    <EmbeddedResource Include="GUI%27s\TramReserveringForm.resx">
       <DependentUpon>TramReserveringForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TramStatusForm.resx">
+    <EmbeddedResource Include="GUI%27s\TramStatusForm.resx">
       <DependentUpon>TramStatusForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TramVerwijderenForm.resx">
+    <EmbeddedResource Include="GUI%27s\TramVerwijderenForm.resx">
       <DependentUpon>TramVerwijderenForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -185,10 +185,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI%27s\" />
-    <Folder Include="Klassen\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
