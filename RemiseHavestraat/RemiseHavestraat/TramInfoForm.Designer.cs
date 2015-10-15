@@ -1,6 +1,6 @@
 ﻿namespace UI_forms
 {
-    partial class TramInfoFrom
+    partial class TramInfoForm
     {
         /// <summary>
         /// Required designer variable.

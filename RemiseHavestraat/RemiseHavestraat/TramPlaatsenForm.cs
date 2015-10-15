@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace UI_forms
 {
-    public partial class TramInfoFrom : Form
+    public partial class TramPlaatsenForm : Form
     {
-        public TramInfoFrom()
+        public TramPlaatsenForm()
         {
             InitializeComponent();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

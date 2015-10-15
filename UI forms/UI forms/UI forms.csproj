@@ -87,11 +87,11 @@
     <Compile Include="TramStatusForm.Designer.cs">
       <DependentUpon>TramStatusForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TramInfoFrom.cs">
+    <Compile Include="TramInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TramInfoFrom.Designer.cs">
-      <DependentUpon>TramInfoFrom.cs</DependentUpon>
+    <Compile Include="TramInfoForm.Designer.cs">
+      <DependentUpon>TramInfoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SpoorBlokkadeForm.cs">
       <SubType>Form</SubType>
@@ -134,8 +134,8 @@
     <EmbeddedResource Include="TramStatusForm.resx">
       <DependentUpon>TramStatusForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TramInfoFrom.resx">
-      <DependentUpon>TramInfoFrom.cs</DependentUpon>
+    <EmbeddedResource Include="TramInfoForm.resx">
+      <DependentUpon>TramInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SpoorBlokkadeForm.resx">
       <DependentUpon>SpoorBlokkadeForm.cs</DependentUpon>
