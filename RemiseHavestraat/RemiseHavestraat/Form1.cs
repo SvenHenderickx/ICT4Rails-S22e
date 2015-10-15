@@ -19,7 +19,9 @@ namespace RemiseHavestraat
             bool check = Remise.Instance.RemiseNaam(naam);
             if (check == true)
             {
-                MessageBox.Show(Remise.Instance.Naam);
+                Console.WriteLine(Remise.Instance.Naam);
+                Database database = new Database();
+                database.OpenVerbinding();
             }
         }
         
