@@ -45,6 +45,56 @@ namespace RemiseHavestraat
         }
         #endregion
 
+        #region methodes
 
+        public bool InlogControle(string inlogNaam)
+        {
+            return false;
+        }
+
+        public bool MedewerkersOphalen()
+        {
+            return false;
+        }
+
+        public bool TramsOphalen()
+        {
+            return false;
+        }
+
+        public bool SporenOphalen()
+        {
+            return false;
+        }
+
+        public bool SegmentenOphalen()
+        {
+            return false;
+        }
+
+        public bool SchoonmaakBeurtenOphalen()
+        {
+            return false;
+        }
+
+        public bool ServiceBeurtenOphalen()
+        {
+            return false;
+        }
+
+        public bool LijnenOphalen()
+        {
+            return false;
+        }
+
+        public bool SegmentUpdate()
+        {
+            //invoeren tram, segment
+            return false;
+        }
+
+        public bool
+
+        #endregion
     }
 }
