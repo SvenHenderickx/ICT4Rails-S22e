@@ -124,9 +124,6 @@ namespace RemiseHavestraat
             return false;
         }
 
-
-
-
         #endregion
     }
 }
