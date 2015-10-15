@@ -11,9 +11,12 @@ namespace RemiseHavestraat
         public string MedewerkerNaam { get; private set; }
         bool MedewerkerBeschikbaar = false;
 
-        public Medewerker(string medewerkerNaam)
+        public EnumMedewerkerRol MedewerkerRol { get; private set; }
+
+        public Medewerker(string medewerkerNaam, int rol)
         {
             this.MedewerkerNaam = medewerkerNaam;
+            this.MedewerkerRol = (EnumMedewerkerRol)rol;
         }
     }
 }
