@@ -65,7 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Database.cs" />
+=======
+    <Compile Include="Account.cs" />
+    <Compile Include="EnumMedewerkerRol.cs" />
+>>>>>>> origin/master
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
