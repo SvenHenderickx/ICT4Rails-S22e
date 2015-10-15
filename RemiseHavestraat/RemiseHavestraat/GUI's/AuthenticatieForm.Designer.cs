@@ -1,4 +1,4 @@
-﻿namespace UI_forms
+﻿namespace RemiseHavestraat
 {
     partial class AuthenticatieForm
     {
