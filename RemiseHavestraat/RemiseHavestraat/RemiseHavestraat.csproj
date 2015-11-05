@@ -56,6 +56,18 @@
     <Compile Include="GUI%27s\BeheerForm.Designer.cs">
       <DependentUpon>BeheerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI%27s\ReparatieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI%27s\ReparatieForm.Designer.cs">
+      <DependentUpon>ReparatieForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI%27s\SchoonmaakForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI%27s\SchoonmaakForm.Designer.cs">
+      <DependentUpon>SchoonmaakForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Klassen\Beurt.cs" />
     <Compile Include="Klassen\Database.cs" />
     <Compile Include="Klassen\Account.cs" />
@@ -124,13 +136,19 @@
     <Compile Include="GUI%27s\TramVerwijderenForm.Designer.cs">
       <DependentUpon>TramVerwijderenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Schoonmaakbeurt.cs" />
-    <Compile Include="ServiceBeurt.cs" />
+    <Compile Include="Klassen\Schoonmaakbeurt.cs" />
+    <Compile Include="Klassen\ServiceBeurt.cs" />
     <EmbeddedResource Include="GUI%27s\AuthenticatieForm.resx">
       <DependentUpon>AuthenticatieForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI%27s\BeheerForm.resx">
       <DependentUpon>BeheerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI%27s\ReparatieForm.resx">
+      <DependentUpon>ReparatieForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI%27s\SchoonmaakForm.resx">
+      <DependentUpon>SchoonmaakForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
