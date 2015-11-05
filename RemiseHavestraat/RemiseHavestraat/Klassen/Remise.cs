@@ -8,10 +8,29 @@ namespace RemiseHavestraat
 {
     public class Remise
     {
+        #region Fields
+        private Account account;
+        private List<Medewerker> medewerkers;
+        private List<Segment> segmenten;
+        private List<Spoor> sporen;
+        private List<Tram> trams;
+        private List<Reservering> reserveringen;
+
+        #endregion
+
         #region RemiseSpecs
         private static Remise instance;
+        private Database db;
 
-        private Remise() {}
+        private Remise() 
+        {
+            db = new Database();
+            medewerkers = new List<Medewerker>();
+            segmenten = new List<Segment>();
+            sporen = new List<Spoor>();
+            trams = new List<Tram>();
+            reserveringen = new List<Reservering>();
+        }
 
         public static Remise Instance
         {
@@ -39,19 +58,17 @@ namespace RemiseHavestraat
         #endregion
 
         #region Initialisation
-        public bool InlogControle(string inlognaam, string wachtwoord)
+        public bool InlogControle(string gebruikersNaam, string wachtWoord)
         {
+            if (db.LogIn(gebruikersNaam, wachtWoord) != null)
+            {
+                return true;
+            }
             return false;
         }
         #endregion
 
         #region methodes
-
-        public bool InlogControle(string inlogNaam)
-        {
-            return false;
-        }
-
         public bool MedewerkersOphalen()
         {
             return false;
