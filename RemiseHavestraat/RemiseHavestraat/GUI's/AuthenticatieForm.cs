@@ -27,12 +27,38 @@ namespace RemiseHavestraat
             }
             else
             {
-                Remise.Instance.InlogControle(inlognaam, wachtwoord);
-
                 // Kijk of het inloggen is gelukt
                 if (!Remise.Instance.InlogControle(inlognaam, wachtwoord))
                 {
                     MessageBox.Show("Voer een geldige inlognaam en/of wachtwoord in.");
+                }
+                else
+                {
+                    tbUsername.Text = "";
+                    tbPassword.Text = "";
+                    Hide();
+                    if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.Beheerder)
+                    {
+                        using(BeheerForm bf = new BeheerForm())
+                        {
+                            bf.ShowDialog();
+                        }
+                        Show();
+                        
+                        
+                    }
+                    else if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.WagenparkBeheerder)
+                    {
+
+                    }
+                    else if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.Technicus)
+                    {
+
+                    }
+                    else if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.Schoonmaker)
+                    {
+
+                    }
                 }
             }
         }

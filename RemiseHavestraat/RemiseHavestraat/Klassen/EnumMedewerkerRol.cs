@@ -8,7 +8,6 @@ namespace RemiseHavestraat
 {
     public enum EnumMedewerkerRol
     {
-        Bestuurder,
         Schoonmaker,
         Technicus,
         WagenparkBeheerder,

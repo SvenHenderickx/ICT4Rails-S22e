@@ -9,7 +9,7 @@ namespace RemiseHavestraat
     public class Remise
     {
         #region Fields
-        private Account account;
+        public Account account;
         private List<Medewerker> medewerkers;
         private List<Segment> segmenten;
         private List<Spoor> sporen;
@@ -60,8 +60,9 @@ namespace RemiseHavestraat
         #region Initialisation
         public bool InlogControle(string gebruikersNaam, string wachtWoord)
         {
-            if (db.LogIn(gebruikersNaam, wachtWoord) != null)
+            if ((db.LogIn(gebruikersNaam, wachtWoord)) != null)
             {
+                account = db.account;
                 return true;
             }
             return false;

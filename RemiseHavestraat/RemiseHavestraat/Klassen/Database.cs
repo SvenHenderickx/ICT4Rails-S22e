@@ -11,9 +11,10 @@ namespace RemiseHavestraat
     public class Database
     {
         #region Fields
-        string connString = "User Id=PTS10;Password=PTS10;Data Source= //localhost:1521/XE;"; 
+        string connString = "User Id=dbi311092;Password=DAhEQlt6nE;Data Source= //192.168.15.50:1521/fhictora;"; 
         OracleConnection conn;
         OracleCommand cmd;
+        public Account account;
         #endregion
 
         #region Initialisatie
@@ -48,7 +49,7 @@ namespace RemiseHavestraat
             {
                 OpenVerbinding();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT Wachtwoord, Rol FROM Account WHERE Inlognaam = " + gebruikersNaam + ";";
+                cmd.CommandText = "SELECT \"Wachtwoord\", \"Rol\" FROM \"Account\" WHERE \"Inlognaam\" = '" + gebruikersNaam + "'";
                 OracleDataReader reader = cmd.ExecuteReader();
                 string wachtwoord;
                 string rol;
@@ -56,19 +57,20 @@ namespace RemiseHavestraat
                 while (reader.Read())
                 {
                     wachtwoord = (string)reader["Wachtwoord"];
-                    rol = (string)reader["rol"];
+                    rol = (string)reader["Rol"];
 
                     if (wachtWoord == wachtwoord)
                     {
                         Console.WriteLine("Welkom: " + gebruikersNaam);
-                        return new Account(gebruikersNaam, EnumMedewerkerRol.Beheerder);
+                        return account = new Account(gebruikersNaam, EnumMedewerkerRol.Beheerder);
                     }
                 }
                 
                 return null;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
             finally
