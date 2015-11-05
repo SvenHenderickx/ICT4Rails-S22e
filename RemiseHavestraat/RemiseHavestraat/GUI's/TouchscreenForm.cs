@@ -12,12 +12,12 @@ namespace RemiseHavestraat
 {
     public partial class TouchscreenForm : Form
     {
-        private string _invoer ;
+        private string invoer ;
 
         public TouchscreenForm()
         {
             InitializeComponent();
-            _invoer = "";
+            invoer = "";
 
         }
 
@@ -30,75 +30,103 @@ namespace RemiseHavestraat
 
         private void btnNum1_Click(object sender, EventArgs e)
         {
-            _invoer += 1;
-            tbTramnummer.Text = _invoer;
+            invoer += 1;
+            tbTramnummer.Text = invoer;
 
         }
 
         private void btnNum2_Click(object sender, EventArgs e)
         {
-            _invoer += 2;
-            tbTramnummer.Text = _invoer;
+            invoer += 2;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum3_Click(object sender, EventArgs e)
         {
-            _invoer += 3;
-            tbTramnummer.Text = _invoer;
+            invoer += 3;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum4_Click(object sender, EventArgs e)
         {
-            _invoer += 4;
-            tbTramnummer.Text = _invoer;
+            invoer += 4;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum5_Click(object sender, EventArgs e)
         {
-            _invoer += 5;
-            tbTramnummer.Text = _invoer;
+            invoer += 5;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum6_Click(object sender, EventArgs e)
         {
-            _invoer += 6;
-            tbTramnummer.Text = _invoer;
+            invoer += 6;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum7_Click(object sender, EventArgs e)
         {
-            _invoer += 7;
-            tbTramnummer.Text = _invoer;
+            invoer += 7;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum8_Click(object sender, EventArgs e)
         {
-            _invoer += 8;
-            tbTramnummer.Text = _invoer;
+            invoer += 8;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum9_Click(object sender, EventArgs e)
         {
-            _invoer += 9;
-            tbTramnummer.Text = _invoer;
+            invoer += 9;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnHerstel_Click(object sender, EventArgs e)
         {
-            if (_invoer.Count() < 1) return;
+            if (invoer.Count() < 1) return;
 
-            _invoer = _invoer.Substring(0, _invoer.Length - 1);
-            tbTramnummer.Text = _invoer;
+            invoer = invoer.Substring(0, invoer.Length - 1);
+            tbTramnummer.Text = invoer;
         }
 
         private void btnNum0_Click(object sender, EventArgs e)
         {
-            _invoer += 0;
-            tbTramnummer.Text = _invoer;
+            invoer += 0;
+            tbTramnummer.Text = invoer;
         }
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
+            bool serviceNodig = (cbDefectNodig.Checked == true) ? true : false;
+            bool schoonmaakNodig = (cbSchoonmaaknodig.Checked == true) ? true : false;
+            string tramnr = tbTramnummer.Text;
+
+            string omschrijvingDefect = tbDefect.Text;
+            string omschrijvingSchoonmaak = tbSchoonmaak.Text;
+
+            int tramID = 100;
+
+            if (serviceNodig)
+            {
+                //nieuwe service aanmaken
+                ServiceBeurt serviceBeurt = new ServiceBeurt(tramID, new DateTime(1, 1, 1, 1, 1, 1), new DateTime(1, 1, 1, 1, 1, 1), omschrijvingSchoonmaak, TypeBeurt.KleineSchoonmaak);
+
+                // schoonmaak toevoegen
+
+                // nog implementeren
+            }
+
+            if (schoonmaakNodig)
+            {
+                //nieuwe service aanmaken
+                ServiceBeurt serviceBeurt = new ServiceBeurt(tramID, new DateTime(1, 1, 1, 1, 1, 1), new DateTime(1, 1, 1, 1, 1, 1), omschrijvingDefect, TypeBeurt.KleineServicebeurt);
+
+                // onderhoudsbeurt toevoegen
+
+                // nog implementeren
+            }
 
         }
          #endregion

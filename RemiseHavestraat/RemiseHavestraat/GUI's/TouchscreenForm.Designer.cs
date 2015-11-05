@@ -30,14 +30,8 @@
         {
             this.tbGanaarspoor = new System.Windows.Forms.TextBox();
             this.tbTramnummer = new System.Windows.Forms.TextBox();
-            this.tbTramalaanwezig = new System.Windows.Forms.TextBox();
-            this.pnlTechnischeassistentie = new System.Windows.Forms.Panel();
-            this.lblTechnischeassistentienodig = new System.Windows.Forms.Label();
-            this.rbNee = new System.Windows.Forms.RadioButton();
-            this.rbJa = new System.Windows.Forms.RadioButton();
+            this.tbSchoonmaak = new System.Windows.Forms.TextBox();
             this.cbSchoonmaaknodig = new System.Windows.Forms.CheckBox();
-            this.lbHistorie = new System.Windows.Forms.ListBox();
-            this.lblHistorie = new System.Windows.Forms.Label();
             this.lblGanaarspoor = new System.Windows.Forms.Label();
             this.lblTramnummer = new System.Windows.Forms.Label();
             this.btnNum1 = new System.Windows.Forms.Button();
@@ -52,7 +46,8 @@
             this.btnHerstel = new System.Windows.Forms.Button();
             this.btnNum0 = new System.Windows.Forms.Button();
             this.btnBevestig = new System.Windows.Forms.Button();
-            this.pnlTechnischeassistentie.SuspendLayout();
+            this.cbDefectNodig = new System.Windows.Forms.CheckBox();
+            this.tbDefect = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbGanaarspoor
@@ -68,91 +63,29 @@
             this.tbTramnummer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.tbTramnummer.Location = new System.Drawing.Point(365, 49);
             this.tbTramnummer.Name = "tbTramnummer";
+            this.tbTramnummer.ReadOnly = true;
             this.tbTramnummer.Size = new System.Drawing.Size(138, 38);
             this.tbTramnummer.TabIndex = 1;
             // 
-            // tbTramalaanwezig
+            // tbSchoonmaak
             // 
-            this.tbTramalaanwezig.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.tbTramalaanwezig.Location = new System.Drawing.Point(28, 128);
-            this.tbTramalaanwezig.Name = "tbTramalaanwezig";
-            this.tbTramalaanwezig.Size = new System.Drawing.Size(218, 29);
-            this.tbTramalaanwezig.TabIndex = 2;
-            // 
-            // pnlTechnischeassistentie
-            // 
-            this.pnlTechnischeassistentie.Controls.Add(this.lblTechnischeassistentienodig);
-            this.pnlTechnischeassistentie.Controls.Add(this.rbNee);
-            this.pnlTechnischeassistentie.Controls.Add(this.rbJa);
-            this.pnlTechnischeassistentie.Location = new System.Drawing.Point(28, 167);
-            this.pnlTechnischeassistentie.Name = "pnlTechnischeassistentie";
-            this.pnlTechnischeassistentie.Size = new System.Drawing.Size(218, 100);
-            this.pnlTechnischeassistentie.TabIndex = 3;
-            // 
-            // lblTechnischeassistentienodig
-            // 
-            this.lblTechnischeassistentienodig.AutoSize = true;
-            this.lblTechnischeassistentienodig.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblTechnischeassistentienodig.Location = new System.Drawing.Point(2, 9);
-            this.lblTechnischeassistentienodig.Name = "lblTechnischeassistentienodig";
-            this.lblTechnischeassistentienodig.Size = new System.Drawing.Size(213, 20);
-            this.lblTechnischeassistentienodig.TabIndex = 2;
-            this.lblTechnischeassistentienodig.Text = "Technische assistentie nodig";
-            // 
-            // rbNee
-            // 
-            this.rbNee.AutoSize = true;
-            this.rbNee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.rbNee.Location = new System.Drawing.Point(41, 66);
-            this.rbNee.Name = "rbNee";
-            this.rbNee.Size = new System.Drawing.Size(53, 22);
-            this.rbNee.TabIndex = 1;
-            this.rbNee.TabStop = true;
-            this.rbNee.Text = "Nee";
-            this.rbNee.UseVisualStyleBackColor = true;
-            // 
-            // rbJa
-            // 
-            this.rbJa.AutoSize = true;
-            this.rbJa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.rbJa.Location = new System.Drawing.Point(41, 38);
-            this.rbJa.Name = "rbJa";
-            this.rbJa.Size = new System.Drawing.Size(42, 22);
-            this.rbJa.TabIndex = 0;
-            this.rbJa.TabStop = true;
-            this.rbJa.Text = "Ja";
-            this.rbJa.UseVisualStyleBackColor = true;
+            this.tbSchoonmaak.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.tbSchoonmaak.Location = new System.Drawing.Point(28, 128);
+            this.tbSchoonmaak.Multiline = true;
+            this.tbSchoonmaak.Name = "tbSchoonmaak";
+            this.tbSchoonmaak.Size = new System.Drawing.Size(165, 59);
+            this.tbSchoonmaak.TabIndex = 2;
             // 
             // cbSchoonmaaknodig
             // 
             this.cbSchoonmaaknodig.AutoSize = true;
             this.cbSchoonmaaknodig.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cbSchoonmaaknodig.Location = new System.Drawing.Point(28, 273);
+            this.cbSchoonmaaknodig.Location = new System.Drawing.Point(28, 93);
             this.cbSchoonmaaknodig.Name = "cbSchoonmaaknodig";
             this.cbSchoonmaaknodig.Size = new System.Drawing.Size(165, 24);
             this.cbSchoonmaaknodig.TabIndex = 4;
             this.cbSchoonmaaknodig.Text = "Schoonmaak nodig";
             this.cbSchoonmaaknodig.UseVisualStyleBackColor = true;
-            // 
-            // lbHistorie
-            // 
-            this.lbHistorie.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lbHistorie.FormattingEnabled = true;
-            this.lbHistorie.ItemHeight = 16;
-            this.lbHistorie.Location = new System.Drawing.Point(606, 49);
-            this.lbHistorie.Name = "lbHistorie";
-            this.lbHistorie.Size = new System.Drawing.Size(131, 180);
-            this.lbHistorie.TabIndex = 5;
-            // 
-            // lblHistorie
-            // 
-            this.lblHistorie.AutoSize = true;
-            this.lblHistorie.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.lblHistorie.Location = new System.Drawing.Point(601, 21);
-            this.lblHistorie.Name = "lblHistorie";
-            this.lblHistorie.Size = new System.Drawing.Size(86, 26);
-            this.lblHistorie.TabIndex = 6;
-            this.lblHistorie.Text = "Historie";
             // 
             // lblGanaarspoor
             // 
@@ -320,11 +253,33 @@
             this.btnBevestig.UseVisualStyleBackColor = true;
             this.btnBevestig.Click += new System.EventHandler(this.btnBevestig_Click);
             // 
+            // cbDefectNodig
+            // 
+            this.cbDefectNodig.AutoSize = true;
+            this.cbDefectNodig.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbDefectNodig.Location = new System.Drawing.Point(28, 217);
+            this.cbDefectNodig.Name = "cbDefectNodig";
+            this.cbDefectNodig.Size = new System.Drawing.Size(232, 24);
+            this.cbDefectNodig.TabIndex = 21;
+            this.cbDefectNodig.Text = "Technische assistentie nodig";
+            this.cbDefectNodig.UseVisualStyleBackColor = true;
+            // 
+            // tbDefect
+            // 
+            this.tbDefect.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.tbDefect.Location = new System.Drawing.Point(28, 254);
+            this.tbDefect.Multiline = true;
+            this.tbDefect.Name = "tbDefect";
+            this.tbDefect.Size = new System.Drawing.Size(165, 59);
+            this.tbDefect.TabIndex = 22;
+            // 
             // TouchscreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 336);
+            this.ClientSize = new System.Drawing.Size(592, 336);
+            this.Controls.Add(this.tbDefect);
+            this.Controls.Add(this.cbDefectNodig);
             this.Controls.Add(this.btnBevestig);
             this.Controls.Add(this.btnNum0);
             this.Controls.Add(this.btnHerstel);
@@ -339,17 +294,12 @@
             this.Controls.Add(this.btnNum1);
             this.Controls.Add(this.lblTramnummer);
             this.Controls.Add(this.lblGanaarspoor);
-            this.Controls.Add(this.lblHistorie);
-            this.Controls.Add(this.lbHistorie);
             this.Controls.Add(this.cbSchoonmaaknodig);
-            this.Controls.Add(this.pnlTechnischeassistentie);
-            this.Controls.Add(this.tbTramalaanwezig);
+            this.Controls.Add(this.tbSchoonmaak);
             this.Controls.Add(this.tbTramnummer);
             this.Controls.Add(this.tbGanaarspoor);
             this.Name = "TouchscreenForm";
             this.Text = "Touchscreen Tram Invoer";
-            this.pnlTechnischeassistentie.ResumeLayout(false);
-            this.pnlTechnischeassistentie.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,14 +309,8 @@
 
         private System.Windows.Forms.TextBox tbGanaarspoor;
         private System.Windows.Forms.TextBox tbTramnummer;
-        private System.Windows.Forms.TextBox tbTramalaanwezig;
-        private System.Windows.Forms.Panel pnlTechnischeassistentie;
-        private System.Windows.Forms.Label lblTechnischeassistentienodig;
-        private System.Windows.Forms.RadioButton rbNee;
-        private System.Windows.Forms.RadioButton rbJa;
+        private System.Windows.Forms.TextBox tbSchoonmaak;
         private System.Windows.Forms.CheckBox cbSchoonmaaknodig;
-        private System.Windows.Forms.ListBox lbHistorie;
-        private System.Windows.Forms.Label lblHistorie;
         private System.Windows.Forms.Label lblGanaarspoor;
         private System.Windows.Forms.Label lblTramnummer;
         private System.Windows.Forms.Button btnNum1;
@@ -381,5 +325,7 @@
         private System.Windows.Forms.Button btnHerstel;
         private System.Windows.Forms.Button btnNum0;
         private System.Windows.Forms.Button btnBevestig;
+        private System.Windows.Forms.CheckBox cbDefectNodig;
+        private System.Windows.Forms.TextBox tbDefect;
     }
 }
