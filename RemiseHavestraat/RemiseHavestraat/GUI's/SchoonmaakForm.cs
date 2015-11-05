@@ -37,6 +37,11 @@ namespace RemiseHavestraat.GUI_s
             DateTime datumbegin = Convert.ToDateTime(dtpBegin);
             DateTime datumeind = Convert.ToDateTime(dtpEind);
 
+            if (string.IsNullOrEmpty(tbTreinNummerSchoonmaak.Text) || string.IsNullOrEmpty(tbMedewerkerS.Text) || string.IsNullOrEmpty(tbType.Text)
+                || string.IsNullOrEmpty(tbBeschrijving.Text) || string.IsNullOrEmpty(tbPrioriteitS.Text))
+            {
+
+            }
             /*Nog niet klaar
             bool resultaat = dk.VoegToe(tramnummer, medewerkerid, type, beschrijving, prioriteit, datumbegin, datumeind);
             if (resultaat == false)
