@@ -15,14 +15,16 @@ namespace RemiseHavestraat
         public string Beschrijving { get; private set; }
         public Soort BeurtSoort { get; private set; }
         public EnumPrioriteitBeurt PrioriteitBeurt { get; private set; }
+        public List<Medewerker> Medewerkers { get; set; }
 
-        public Beurt(DateTime datumtijdbegin, DateTime datumtijdeind, string beschrijving, int soort, int prioriteitbeurt)
+        public Beurt(DateTime datumtijdbegin, DateTime datumtijdeind, string beschrijving, int soort, int prioriteitbeurt, string tramnummer, List<Medewerker> medewerkers)
         {
             this.DatumTijdBegin = datumtijdbegin;
             this.DatumTijdEind = datumtijdeind;
             this.Beschrijving = beschrijving;
             this.BeurtSoort = (Soort)soort;
             this.PrioriteitBeurt = (EnumPrioriteitBeurt)prioriteitbeurt;
+            this.Medewerkers = medewerkers;
         }
     }
 }

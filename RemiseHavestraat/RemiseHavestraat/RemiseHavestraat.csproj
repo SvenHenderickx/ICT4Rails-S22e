@@ -124,6 +124,8 @@
     <Compile Include="GUI%27s\TramVerwijderenForm.Designer.cs">
       <DependentUpon>TramVerwijderenForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Schoonmaakbeurt.cs" />
+    <Compile Include="ServiceBeurt.cs" />
     <EmbeddedResource Include="GUI%27s\AuthenticatieForm.resx">
       <DependentUpon>AuthenticatieForm.cs</DependentUpon>
     </EmbeddedResource>
