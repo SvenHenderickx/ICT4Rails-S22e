@@ -76,6 +76,7 @@
             this.btnAfsluiten.TabIndex = 4;
             this.btnAfsluiten.Text = "Afsluiten";
             this.btnAfsluiten.UseVisualStyleBackColor = true;
+            this.btnAfsluiten.Click += new System.EventHandler(this.btnAfsluiten_Click);
             // 
             // btnLogin
             // 
@@ -85,6 +86,7 @@
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // AuthenticatieForm
             // 

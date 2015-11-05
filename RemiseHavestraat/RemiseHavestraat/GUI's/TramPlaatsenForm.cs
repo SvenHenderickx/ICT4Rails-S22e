@@ -16,5 +16,14 @@ namespace RemiseHavestraat
         {
             InitializeComponent();
         }
+
+        private void btnBevestig_Click(object sender, EventArgs e)
+        {
+            string tramnummer = tbTramnummer.Text;
+            int spoornummer = Convert.ToInt32(tbSpoornummer.Text);
+            int segmentnummer = Convert.ToInt32(tbSegmentnummer.Text);
+
+
+        }
     }
 }

@@ -42,6 +42,7 @@
             this.btnBevestig.TabIndex = 0;
             this.btnBevestig.Text = "bevestig";
             this.btnBevestig.UseVisualStyleBackColor = true;
+            this.btnBevestig.Click += new System.EventHandler(this.btnBevestig_Click);
             // 
             // lblSpoornummer
             // 

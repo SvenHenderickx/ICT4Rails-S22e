@@ -16,5 +16,10 @@ namespace RemiseHavestraat
         {
             InitializeComponent();
         }
+
+        private void btnBevestig_Click(object sender, EventArgs e)
+        {
+            string spoornummer = tbSpoornummer.Text;
+        }
     }
 }

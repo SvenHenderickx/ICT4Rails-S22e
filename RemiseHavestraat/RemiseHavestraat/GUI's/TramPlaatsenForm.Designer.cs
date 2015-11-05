@@ -94,6 +94,7 @@
             this.btnBevestig.TabIndex = 6;
             this.btnBevestig.Text = "Bevestig";
             this.btnBevestig.UseVisualStyleBackColor = true;
+            this.btnBevestig.Click += new System.EventHandler(this.btnBevestig_Click);
             // 
             // btnTerug
             // 

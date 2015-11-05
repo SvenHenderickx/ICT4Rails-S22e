@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RemiseHavestraat
 {
-    class Remise
+    public class Remise
     {
         #region RemiseSpecs
         private static Remise instance;
