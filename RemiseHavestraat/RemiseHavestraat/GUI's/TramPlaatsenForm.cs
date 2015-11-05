@@ -19,11 +19,28 @@ namespace RemiseHavestraat
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
-            string tramnummer = tbTramnummer.Text;
-            int spoornummer = Convert.ToInt32(tbSpoornummer.Text);
-            int segmentnummer = Convert.ToInt32(tbSegmentnummer.Text);
+            string tramnummer;
+            int spoornummer;
+            int segmentnummer;
+
+            try
+            {
+                 tramnummer = tbTramnummer.Text;
+                 spoornummer = Convert.ToInt32(tbSpoornummer.Text);
+                 segmentnummer = Convert.ToInt32(tbSegmentnummer.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ongeldige invoer");
+            }
+           
 
 
+        }
+
+        private void btnTerug_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

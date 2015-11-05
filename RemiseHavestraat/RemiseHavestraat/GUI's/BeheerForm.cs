@@ -24,7 +24,10 @@ namespace RemiseHavestraat
 
         private void tramPlaatsenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (var f = new TramPlaatsenForm())
+            {
+                f.ShowDialog();
+            }
         }
 
         private void textBox55_TextChanged(object sender, EventArgs e)
