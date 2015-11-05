@@ -57,9 +57,11 @@ namespace RemiseHavestraat
                 {
                     wachtwoord = (string)reader["Wachtwoord"];
                     rol = (string)reader["rol"];
+
                     if (wachtWoord == wachtwoord)
                     {
-                        return new Account(gebruikersNaam, );
+                        Console.WriteLine("Welkom: " + gebruikersNaam);
+                        return new Account(gebruikersNaam, EnumMedewerkerRol.Beheerder);
                     }
                 }
                 

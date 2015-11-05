@@ -13,10 +13,10 @@ namespace RemiseHavestraat
         public EnumMedewerkerRol MedewerkerRol{ get; private set; }
 
         //Constructors
-        public Account(string inlogNaam, int medewerkerRol)
+        public Account(string inlogNaam, EnumMedewerkerRol medewerkerRol)
         {
-            InlogNaam = inlogNaam;
-            MedewerkerRol = (EnumMedewerkerRol)medewerkerRol;
+            this.InlogNaam = inlogNaam;
+            this.MedewerkerRol = medewerkerRol;
         }
     }
 }
