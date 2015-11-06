@@ -19,28 +19,29 @@ namespace RemiseHavestraat
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
+            string tramstatus = "";
             int tramnummer = Convert.ToInt32(tbTramnummer.Text);
             if (cbbTramStatus.SelectedItem.Equals("Defect"))
             {
-
+                tramstatus = "DEFECT";
             }
             else if (cbbTramStatus.SelectedItem.Equals("Schoonmaak"))
             {
-
+                tramstatus = "SCHOONMAAK";
             }
             else if (cbbTramStatus.SelectedItem.Equals("Dienst"))
             {
-
+                tramstatus = "DIESNT";
             }
-            else if (cbbTramStatus.SelectedItem.Equals("Dienst"))
+            else if (cbbTramStatus.SelectedItem.Equals("Remise"))
             {
-
+                tramstatus = "REMISE";
             }
         }
 
         private void btnTerug_Click(object sender, EventArgs e)
         {
-            
+            this.Close();
         }
     }
 }

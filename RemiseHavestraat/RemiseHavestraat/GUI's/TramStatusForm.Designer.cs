@@ -47,7 +47,7 @@
             this.cbbTramStatus.Name = "cbbTramStatus";
             this.cbbTramStatus.Size = new System.Drawing.Size(162, 21);
             this.cbbTramStatus.TabIndex = 0;
-            this.cbbTramStatus.Text = "voer status tram in";
+            this.cbbTramStatus.Text = "Voer status tram in";
             // 
             // lblTramnummer
             // 
@@ -71,7 +71,7 @@
             this.btnBevestig.Name = "btnBevestig";
             this.btnBevestig.Size = new System.Drawing.Size(75, 23);
             this.btnBevestig.TabIndex = 3;
-            this.btnBevestig.Text = "bevestig";
+            this.btnBevestig.Text = "Bevestig";
             this.btnBevestig.UseVisualStyleBackColor = true;
             this.btnBevestig.Click += new System.EventHandler(this.btnBevestig_Click);
             // 
@@ -81,7 +81,7 @@
             this.btnTerug.Name = "btnTerug";
             this.btnTerug.Size = new System.Drawing.Size(75, 23);
             this.btnTerug.TabIndex = 4;
-            this.btnTerug.Text = "terug";
+            this.btnTerug.Text = "Terug";
             this.btnTerug.UseVisualStyleBackColor = true;
             this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
@@ -96,7 +96,7 @@
             this.Controls.Add(this.lblTramnummer);
             this.Controls.Add(this.cbbTramStatus);
             this.Name = "TramStatusForm";
-            this.Text = "status";
+            this.Text = "Status";
             this.ResumeLayout(false);
             this.PerformLayout();
 
