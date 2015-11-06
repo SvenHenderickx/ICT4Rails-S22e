@@ -233,6 +233,15 @@ namespace RemiseHavestraat
             }
             return false;
         }
+
+        public bool SpoorUpdate(int spoornummer)
+        {
+            if (db.UpdateSpoor(spoornummer))
+            {
+                return true;
+            }
+            return false;
+        }
         #endregion
     }
 }

@@ -21,29 +21,33 @@ namespace RemiseHavestraat
         {
             string tramstatus = "";
             int tramnummer = Convert.ToInt32(tbTramnummer.Text);
-            if (string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Defect"))
+            if (!string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Defect"))
             {
                 tramstatus = "DEFECT";
                 Remise.Instance.StatusUpdate(tramnummer, tramstatus);
                 Remise.Instance.TramsOphalen();
+                tbTramnummer.Clear();
             }
-            else if (string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Schoonmaak"))
+            else if (!string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Schoonmaak"))
             {
                 tramstatus = "SCHOONMAAK";
                 Remise.Instance.StatusUpdate(tramnummer, tramstatus);
                 Remise.Instance.TramsOphalen();
+                tbTramnummer.Clear();
             }
-            else if (string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Dienst"))
+            else if (!string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Dienst"))
             {
                 tramstatus = "DIENST";
                 Remise.Instance.StatusUpdate(tramnummer, tramstatus);
                 Remise.Instance.TramsOphalen();
+                tbTramnummer.Clear();
             }
-            else if (string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Remise"))
+            else if (!string.IsNullOrEmpty(tbTramnummer.Text) && cbbTramStatus.SelectedItem.Equals("Remise"))
             {
                 tramstatus = "REMISE";
                 Remise.Instance.StatusUpdate(tramnummer, tramstatus);
                 Remise.Instance.TramsOphalen();
+                tbTramnummer.Clear();
             }
         }
 

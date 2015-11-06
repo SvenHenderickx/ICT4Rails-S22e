@@ -19,7 +19,18 @@ namespace RemiseHavestraat
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
-            string spoornummer = tbSpoornummer.Text;
+            int spoornummer = Convert.ToInt32(tbSpoornummer.Text);
+            if(!string.IsNullOrEmpty(tbSpoornummer.Text))
+            {
+                Remise.Instance.SpoorUpdate(spoornummer);
+                Remise.Instance.SporenOphalen();
+                tbSpoornummer.Clear();
+            }
+        }
+
+        private void btnTerug_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -20,11 +20,17 @@ namespace RemiseHavestraat
         private void btnBevestig_Click(object sender, EventArgs e)
         {
             int tramnummer = Convert.ToInt32(tbTramnummer.Text);
-            if (string.IsNullOrEmpty(tbTramnummer.Text))
+            if (!string.IsNullOrEmpty(tbTramnummer.Text))
             {
                 Remise.Instance.TramVerwijderenSegment(tramnummer);
                 Remise.Instance.SegmentenOphalen();
+                tbTramnummer.Clear();
             }
+        }
+
+        private void btnTerug_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

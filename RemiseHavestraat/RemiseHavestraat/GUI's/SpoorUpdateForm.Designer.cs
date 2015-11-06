@@ -40,7 +40,7 @@
             this.btnBevestig.Name = "btnBevestig";
             this.btnBevestig.Size = new System.Drawing.Size(75, 23);
             this.btnBevestig.TabIndex = 0;
-            this.btnBevestig.Text = "bevestig";
+            this.btnBevestig.Text = "Bevestig";
             this.btnBevestig.UseVisualStyleBackColor = true;
             this.btnBevestig.Click += new System.EventHandler(this.btnBevestig_Click);
             // 
@@ -49,9 +49,9 @@
             this.lblSpoornummer.AutoSize = true;
             this.lblSpoornummer.Location = new System.Drawing.Point(13, 13);
             this.lblSpoornummer.Name = "lblSpoornummer";
-            this.lblSpoornummer.Size = new System.Drawing.Size(70, 13);
+            this.lblSpoornummer.Size = new System.Drawing.Size(72, 13);
             this.lblSpoornummer.TabIndex = 1;
-            this.lblSpoornummer.Text = "spoornummer";
+            this.lblSpoornummer.Text = "Spoornummer";
             // 
             // tbSpoornummer
             // 
@@ -66,8 +66,9 @@
             this.btnTerug.Name = "btnTerug";
             this.btnTerug.Size = new System.Drawing.Size(75, 23);
             this.btnTerug.TabIndex = 3;
-            this.btnTerug.Text = "terug";
+            this.btnTerug.Text = "Terug";
             this.btnTerug.UseVisualStyleBackColor = true;
+            this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
             // SpoorUpdateForm
             // 
@@ -79,7 +80,7 @@
             this.Controls.Add(this.lblSpoornummer);
             this.Controls.Add(this.btnBevestig);
             this.Name = "SpoorUpdateForm";
-            this.Text = "update";
+            this.Text = "Update";
             this.ResumeLayout(false);
             this.PerformLayout();
 

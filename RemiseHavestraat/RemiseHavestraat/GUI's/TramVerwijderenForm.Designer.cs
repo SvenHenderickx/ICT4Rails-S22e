@@ -42,6 +42,7 @@
             this.btnTerug.TabIndex = 0;
             this.btnTerug.Text = "Terug";
             this.btnTerug.UseVisualStyleBackColor = true;
+            this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
             // btnBevestig
             // 
