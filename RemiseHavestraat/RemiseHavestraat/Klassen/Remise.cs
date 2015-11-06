@@ -133,7 +133,16 @@ namespace RemiseHavestraat
 
         public bool SporenOphalen()
         {
-            return false;
+            List<Spoor> tempSporen = db.HaalOpSporen();
+            if (tempSporen == null)
+            {
+                return false;
+            }
+            else
+            {
+                sporen = tempSporen;
+                return true;
+            }
         }
 
         public bool SegmentenOphalen()
