@@ -24,21 +24,26 @@ namespace RemiseHavestraat
             if (cbbTramStatus.SelectedItem.Equals("Defect"))
             {
                 tramstatus = "DEFECT";
-                //update status
-
-                //haal nieuwe status op
+                Remise.Instance.StatusUpdate(tramnummer, tramstatus);
+                Remise.Instance.TramsOphalen();
             }
             else if (cbbTramStatus.SelectedItem.Equals("Schoonmaak"))
             {
                 tramstatus = "SCHOONMAAK";
+                Remise.Instance.StatusUpdate(tramnummer, tramstatus);
+                Remise.Instance.TramsOphalen();
             }
             else if (cbbTramStatus.SelectedItem.Equals("Dienst"))
             {
                 tramstatus = "DIESNT";
+                Remise.Instance.StatusUpdate(tramnummer, tramstatus);
+                Remise.Instance.TramsOphalen();
             }
             else if (cbbTramStatus.SelectedItem.Equals("Remise"))
             {
                 tramstatus = "REMISE";
+                Remise.Instance.StatusUpdate(tramnummer, tramstatus);
+                Remise.Instance.TramsOphalen();
             }
         }
 

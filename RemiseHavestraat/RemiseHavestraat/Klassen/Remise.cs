@@ -216,6 +216,14 @@ namespace RemiseHavestraat
             return false;
         }
 
+        public bool StatusUpdate(int tramnummer, string tramstatus)
+        {
+            if (db.UpdateTramStatus(tramnummer, tramstatus))
+            {
+                return true;
+            }
+            return false;
+        }
         #endregion
     }
 }

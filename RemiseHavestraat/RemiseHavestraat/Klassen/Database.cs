@@ -273,6 +273,30 @@ namespace RemiseHavestraat
                 conn.Close();
             }
         }
+
+        public bool UpdateTramStatus(int tramnummer, string tramstatus)
+        {
+            try
+                {
+                    OpenVerbinding();
+                    cmd.Connection = conn;
+                    cmd.CommandText  = "UPDATE \"Tram\" SET \"Status\" = '" + tramstatus + "' WHERE \"ID\" = '" + tramnummer + "'";
+                    OracleDataReader reader = cmd.ExecuteReader();
+                }
+                    
+            
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return true;
+        }
+            
         #endregion
     }
 }
