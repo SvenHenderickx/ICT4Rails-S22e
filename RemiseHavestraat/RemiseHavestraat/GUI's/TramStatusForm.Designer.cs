@@ -38,6 +38,11 @@
             // cbbTramStatus
             // 
             this.cbbTramStatus.FormattingEnabled = true;
+            this.cbbTramStatus.Items.AddRange(new object[] {
+            "Defect",
+            "Schoonmaak",
+            "Dienst",
+            "Remise"});
             this.cbbTramStatus.Location = new System.Drawing.Point(12, 12);
             this.cbbTramStatus.Name = "cbbTramStatus";
             this.cbbTramStatus.Size = new System.Drawing.Size(162, 21);
@@ -68,6 +73,7 @@
             this.btnBevestig.TabIndex = 3;
             this.btnBevestig.Text = "bevestig";
             this.btnBevestig.UseVisualStyleBackColor = true;
+            this.btnBevestig.Click += new System.EventHandler(this.btnBevestig_Click);
             // 
             // btnTerug
             // 
@@ -77,6 +83,7 @@
             this.btnTerug.TabIndex = 4;
             this.btnTerug.Text = "terug";
             this.btnTerug.UseVisualStyleBackColor = true;
+            this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
             // TramStatusForm
             // 
