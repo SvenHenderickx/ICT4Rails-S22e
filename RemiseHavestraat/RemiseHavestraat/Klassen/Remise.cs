@@ -16,6 +16,31 @@ namespace RemiseHavestraat
         private List<Tram> trams;
         private List<Reservering> reserveringen;
 
+        public List<Medewerker> Medewerkers
+        {
+            get;
+        }
+
+        public List<Segment> Segmenten
+        {
+            get;
+        }
+
+        public List<Spoor> Sporen
+        {
+            get;
+        }
+
+        public List<Tram> Trams
+        {
+            get;
+        }
+
+        public List<Reservering> Reserveringen
+        {
+            get;
+        }
+
         #endregion
 
         #region RemiseSpecs
