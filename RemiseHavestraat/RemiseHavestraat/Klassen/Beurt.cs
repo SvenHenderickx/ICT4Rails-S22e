@@ -16,8 +16,9 @@ namespace RemiseHavestraat
         public Soort BeurtSoort { get; private set; }
         public EnumPrioriteitBeurt PrioriteitBeurt { get; private set; }
         public List<Medewerker> Medewerkers { get; set; }
+        public Tram Tram { get; private set; }
 
-        public Beurt(DateTime datumtijdbegin, DateTime datumtijdeind, string beschrijving, int soort, int prioriteitbeurt, string tramnummer, List<Medewerker> medewerkers)
+        public Beurt(DateTime datumtijdbegin, DateTime datumtijdeind, string beschrijving, int soort, int prioriteitbeurt, Tram tram, List<Medewerker> medewerkers)
         {
             this.DatumTijdBegin = datumtijdbegin;
             this.DatumTijdEind = datumtijdeind;
@@ -25,6 +26,7 @@ namespace RemiseHavestraat
             this.BeurtSoort = (Soort)soort;
             this.PrioriteitBeurt = (EnumPrioriteitBeurt)prioriteitbeurt;
             this.Medewerkers = medewerkers;
+            this.Tram = tram;
         }
 
         public override string ToString()

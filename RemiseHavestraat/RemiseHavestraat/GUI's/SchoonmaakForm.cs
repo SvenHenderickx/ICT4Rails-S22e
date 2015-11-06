@@ -20,7 +20,7 @@ namespace RemiseHavestraat
         private void btnSchoonmaakLijstOpvragen_Click(object sender, EventArgs e)
         {
             Remise.Instance.SchoonmaakBeurtenOphalen();
-            foreach (SchoonmaakBeurt beurt in Remise.Instance.Beurten)
+            foreach (Beurt beurt in Remise.Instance.Beurten)
             {
                 lbSchoonmaak.Items.Add(beurt.ToString());
             }
@@ -40,7 +40,7 @@ namespace RemiseHavestraat
 
         private void btnTakenToevoegen_Click(object sender, EventArgs e)
         {
-            string tramnummer = tbTreinNummerSchoonmaak.Text;
+            int tramnummer = Convert.ToInt32(tbTreinNummerSchoonmaak.Text);
             int medewerkerid = Convert.ToInt32(tbMedewerkerS1.Text);
             string type = tbType.Text;
             string beschrijving = tbBeschrijving.Text;
@@ -53,12 +53,14 @@ namespace RemiseHavestraat
             {
 
             }
-            /*Nog niet klaar
-            bool resultaat = dk.VoegToe(tramnummer, medewerkerid, type, beschrijving, prioriteit, datumbegin, datumeind);
-            if (resultaat == false)
+            else
             {
-                MessageBox.Show("Er ging iets mis, er is geen nieuwe taak toegevoegd.");
-            }*/
+                bool resultaat = Remise.Instance.VoegSchoonmaakBeurtToe();
+                if (resultaat == false)
+                {
+                    MessageBox.Show("Er ging iets mis, er is geen nieuwe taak toegevoegd.");
+                }
+            }
         }
     }
 }
