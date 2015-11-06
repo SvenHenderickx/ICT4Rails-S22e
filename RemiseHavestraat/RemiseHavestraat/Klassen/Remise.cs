@@ -224,6 +224,15 @@ namespace RemiseHavestraat
             }
             return false;
         }
+
+        public bool TramVerwijderenSegment(int tramnummer)
+        {
+            if (db.VerwijderTramSegment(tramnummer))
+            {
+                return true;
+            }
+            return false;
+        }
         #endregion
     }
 }

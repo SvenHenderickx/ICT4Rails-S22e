@@ -40,7 +40,7 @@
             this.btnTerug.Name = "btnTerug";
             this.btnTerug.Size = new System.Drawing.Size(75, 23);
             this.btnTerug.TabIndex = 0;
-            this.btnTerug.Text = "terug";
+            this.btnTerug.Text = "Terug";
             this.btnTerug.UseVisualStyleBackColor = true;
             // 
             // btnBevestig
@@ -51,6 +51,7 @@
             this.btnBevestig.TabIndex = 1;
             this.btnBevestig.Text = "Bevestig";
             this.btnBevestig.UseVisualStyleBackColor = true;
+            this.btnBevestig.Click += new System.EventHandler(this.btnBevestig_Click);
             // 
             // tbTramnummer
             // 
@@ -64,9 +65,9 @@
             this.lblTramnummer.AutoSize = true;
             this.lblTramnummer.Location = new System.Drawing.Point(12, 32);
             this.lblTramnummer.Name = "lblTramnummer";
-            this.lblTramnummer.Size = new System.Drawing.Size(64, 13);
+            this.lblTramnummer.Size = new System.Drawing.Size(68, 13);
             this.lblTramnummer.TabIndex = 3;
-            this.lblTramnummer.Text = "tramnummer";
+            this.lblTramnummer.Text = "Tramnummer";
             // 
             // TramVerwijderenForm
             // 

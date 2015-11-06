@@ -240,7 +240,7 @@ namespace RemiseHavestraat
             }
         }
 
-        public List<SchoonmaakBeurt> HaalOpSchoonmaakBeurten()
+        public List<Beurt> HaalOpSchoonmaakBeurten()
         {
             try
             {
@@ -252,7 +252,7 @@ namespace RemiseHavestraat
                 int remiseid;
                 int nummer;
 
-                List<SchoonmaakBeurt> alleSchoonmaakBeurten = new List<SchoonmaakBeurt>();
+                List<Beurt> alleSchoonmaakBeurten = new List<Beurt>();
 
                 while (reader.Read())
                 {
@@ -285,6 +285,29 @@ namespace RemiseHavestraat
                 }
                     
             
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return true;
+        }
+
+        public bool VerwijderTramSegment(int tramnummer)
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "DELETE FROM \"Segment\" WHERE \"Tram_ID\" = '" + tramnummer + "'";
+                OracleDataReader reader = cmd.ExecuteReader();
+            }
+
+
             catch (Exception e)
             {
                 Console.WriteLine(e);
