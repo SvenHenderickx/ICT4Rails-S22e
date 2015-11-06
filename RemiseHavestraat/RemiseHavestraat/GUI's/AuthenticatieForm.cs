@@ -37,27 +37,29 @@ namespace RemiseHavestraat
                     tbUsername.Text = "";
                     tbPassword.Text = "";
                     Hide();
-                    if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.Beheerder)
+                    if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.Beheerder || Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.WagenparkBeheerder)
                     {
                         using(BeheerForm bf = new BeheerForm())
                         {
                             bf.ShowDialog();
                         }
-                        Show();
-                        
-                        
-                    }
-                    else if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.WagenparkBeheerder)
-                    {
-
+                        Show();                        
                     }
                     else if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.Technicus)
                     {
-
+                        using (ReparatieForm rf = new ReparatieForm())
+                        {
+                            rf.ShowDialog();
+                        }
+                        Show(); 
                     }
                     else if (Remise.Instance.account.MedewerkerRol == EnumMedewerkerRol.Schoonmaker)
                     {
-
+                        using (SchoonmaakForm sf = new SchoonmaakForm())
+                        {
+                            sf.ShowDialog();
+                        }
+                        Show(); 
                     }
                 }
             }

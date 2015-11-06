@@ -1,4 +1,4 @@
-﻿namespace RemiseHavestraat.GUI_s
+﻿namespace RemiseHavestraat
 {
     partial class ReparatieForm
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RemiseHavestraat.GUI_s
+namespace RemiseHavestraat
 {
     public partial class SchoonmaakForm : Form
     {
