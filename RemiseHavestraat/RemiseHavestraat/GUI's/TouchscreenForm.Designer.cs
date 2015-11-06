@@ -55,6 +55,7 @@
             this.tbGanaarspoor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.tbGanaarspoor.Location = new System.Drawing.Point(62, 49);
             this.tbGanaarspoor.Name = "tbGanaarspoor";
+            this.tbGanaarspoor.ReadOnly = true;
             this.tbGanaarspoor.Size = new System.Drawing.Size(145, 38);
             this.tbGanaarspoor.TabIndex = 0;
             // 

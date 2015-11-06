@@ -15,6 +15,7 @@ namespace RemiseHavestraat
         public SchoonmaakForm()
         {
             InitializeComponent();
+            Remise.Instance.MedewerkersOphalen("Schoonmaker");
         }
 
         private void btnSchoonmaakLijstOpvragen_Click(object sender, EventArgs e)
@@ -28,13 +29,20 @@ namespace RemiseHavestraat
 
         private void btnAftekenen_Click(object sender, EventArgs e)
         {
-            DateTime eind = dtpEind.Value;
-            foreach (Beurt beurt in Remise.Instance.Beurten)
+            if (lbSchoonmaak.SelectedItem != null)
             {
-                if (beurt.ToString() == lbSchoonmaak.SelectedItem.ToString())
+                DateTime eind = dtpEind.Value;
+                foreach (Beurt beurt in Remise.Instance.Beurten)
                 {
-                    Remise.Instance.SchoonmaakBeurtAftekenen(beurt, eind);
+                    if (beurt.ToString() == lbSchoonmaak.SelectedItem.ToString())
+                    {
+                        Remise.Instance.SchoonmaakBeurtAftekenen(beurt, eind);
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Selecteer een schoonmaakbeurt om af te tekenen.");
             }
         }
 

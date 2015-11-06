@@ -74,8 +74,9 @@
             this.btnToggle.Name = "btnToggle";
             this.btnToggle.Size = new System.Drawing.Size(75, 23);
             this.btnToggle.TabIndex = 4;
-            this.btnToggle.Text = "toggle";
+            this.btnToggle.Text = "Toggle";
             this.btnToggle.UseVisualStyleBackColor = true;
+            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
             // btnTerug
             // 
@@ -83,8 +84,9 @@
             this.btnTerug.Name = "btnTerug";
             this.btnTerug.Size = new System.Drawing.Size(75, 23);
             this.btnTerug.TabIndex = 5;
-            this.btnTerug.Text = "terug";
+            this.btnTerug.Text = "Terug";
             this.btnTerug.UseVisualStyleBackColor = true;
+            this.btnTerug.Click += new System.EventHandler(this.btnTerug_Click);
             // 
             // SpoorBlokkadeForm
             // 
@@ -98,7 +100,7 @@
             this.Controls.Add(this.tbSegmentnummer);
             this.Controls.Add(this.tbSpoornummer);
             this.Name = "SpoorBlokkadeForm";
-            this.Text = "spoorblokkade";
+            this.Text = "Spoorblokkade";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -17,10 +17,8 @@ namespace RemiseHavestraat
         public BeheerForm()
         {
             InitializeComponent();
-            bool test = Remise.Instance.MedewerkersOphalen();
-            MessageBox.Show("Medewerkers Ophalen:" + test.ToString());
-            test = Remise.Instance.TramsOphalen();
-            MessageBox.Show(test.ToString());
+            Remise.Instance.MedewerkersOphalen();
+            Remise.Instance.TramsOphalen();
         }
 
 
@@ -90,7 +88,18 @@ namespace RemiseHavestraat
 
         private void reparatieToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (var f = new ReparatieForm())
+            {
+                f.ShowDialog();
+            }
+        }
 
+        private void schoonmaakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var f = new SchoonmaakForm())
+            {
+                f.ShowDialog();
+            }
         }
 
         private void touchscreenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,7 +120,7 @@ namespace RemiseHavestraat
 
         private void testdataSimulatieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Helaas, dit komt in de volgende update.");
         }
 
         #endregion;
@@ -155,9 +164,5 @@ namespace RemiseHavestraat
 
       
         #endregion
-
-
-        
-
     }
 }

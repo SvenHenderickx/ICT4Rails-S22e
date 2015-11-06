@@ -116,7 +116,22 @@ namespace RemiseHavestraat
             }
         }
 
-        //Deze methode haalt alle medewerkers op van de database en zet ze in de lijst
+        //Deze methode haalt specifieke medewerkers op van de database en zet ze in de lijst
+        public bool MedewerkersOphalen(string functie)
+        {
+            List<Medewerker> tempMedewerkers = db.HaalOpMedewerkers(functie);
+            if (tempMedewerkers == null)
+            {
+                return false;
+            }
+            else
+            {
+                medewerkers = tempMedewerkers;
+                return true;
+            }
+        }
+
+        //Deze methode haalt specifieke medewerkers op van de database en zet ze in de lijst
         public List<Medewerker> MedewerkersZoeken(List<int> medewerkerids)
         {
             List<Medewerker> tempMedewerkers = db.ZoekMedewerkers(medewerkerids);
@@ -246,6 +261,16 @@ namespace RemiseHavestraat
             {
                 return true;
             }
+            return false;
+        }
+        public List<Tram> SpoorInfo(int spoor)
+        {
+            List<Tram> temptram = db.InfoSpoor(spoor);
+            return temptram;
+        }
+
+        public bool SpoorBlokkeren(int spoor, int segment)
+        {
             return false;
         }
         #endregion

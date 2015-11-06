@@ -17,9 +17,18 @@ namespace RemiseHavestraat
             InitializeComponent();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void tbSpoornummer_TextChanged(object sender, EventArgs e)
         {
+            int spoor = 0;
 
+            if (Int32.TryParse(tbSpoornummer.Text, out spoor))
+            {
+                List<Tram> trams = Remise.Instance.SpoorInfo(spoor);
+                foreach (Tram tram in trams)
+                {
+                    lbTramlijst.Items.Add(tram.ToString());
+                }
+            }
         }
     }
 }

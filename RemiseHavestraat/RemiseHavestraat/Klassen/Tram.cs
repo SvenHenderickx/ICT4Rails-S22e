@@ -28,5 +28,10 @@ namespace RemiseHavestraat
             this.Lengte = lengte;
             this.StatusEnum = (Status)status;
         }
+
+        public override string ToString()
+        {
+            return TramNr + " - " + TypeEnum + " - " + StatusEnum;
+        }
     }
 }

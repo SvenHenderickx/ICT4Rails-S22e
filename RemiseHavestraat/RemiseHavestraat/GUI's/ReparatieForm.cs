@@ -15,6 +15,7 @@ namespace RemiseHavestraat
         public ReparatieForm()
         {
             InitializeComponent();
+            Remise.Instance.MedewerkersOphalen("Technicus");
         }
 
         private void btnReparatieLijstOpvragen_Click(object sender, EventArgs e)
@@ -28,13 +29,21 @@ namespace RemiseHavestraat
 
         private void btnAftekenenReparatie_Click(object sender, EventArgs e)
         {
-            DateTime eind = dtpEindR.Value;
-            foreach (Beurt beurt in Remise.Instance.Beurten)
+            if (lbReparatie.SelectedItem != null)
             {
-                if (beurt.ToString() == lbReparatie.SelectedItem.ToString())
+                DateTime eind = dtpEindR.Value;
+                foreach (Beurt beurt in Remise.Instance.Beurten)
                 {
-                    Remise.Instance.SchoonmaakBeurtAftekenen(beurt, eind);
+                    if (beurt.ToString() == lbReparatie.SelectedItem.ToString())
+                    {
+                        Remise.Instance.SchoonmaakBeurtAftekenen(beurt, eind);
+                    }
+
                 }
+            }
+            else
+            {
+                MessageBox.Show("Selecteer een servicebeurt om af te tekenen.");
             }
         }
 

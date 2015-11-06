@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTramlijst = new System.Windows.Forms.ListBox();
+            this.lbTramlijst = new System.Windows.Forms.ListBox();
             this.tbSpoornummer = new System.Windows.Forms.TextBox();
             this.lblSpoornummer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblTramlijst
+            // lbTramlijst
             // 
-            this.lblTramlijst.FormattingEnabled = true;
-            this.lblTramlijst.Location = new System.Drawing.Point(12, 55);
-            this.lblTramlijst.Name = "lblTramlijst";
-            this.lblTramlijst.Size = new System.Drawing.Size(243, 173);
-            this.lblTramlijst.TabIndex = 0;
-            this.lblTramlijst.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.lbTramlijst.FormattingEnabled = true;
+            this.lbTramlijst.Location = new System.Drawing.Point(12, 55);
+            this.lbTramlijst.Name = "lbTramlijst";
+            this.lbTramlijst.Size = new System.Drawing.Size(243, 173);
+            this.lbTramlijst.TabIndex = 0;
             // 
             // tbSpoornummer
             // 
@@ -48,15 +47,16 @@
             this.tbSpoornummer.Name = "tbSpoornummer";
             this.tbSpoornummer.Size = new System.Drawing.Size(100, 20);
             this.tbSpoornummer.TabIndex = 1;
+            this.tbSpoornummer.TextChanged += new System.EventHandler(this.tbSpoornummer_TextChanged);
             // 
             // lblSpoornummer
             // 
             this.lblSpoornummer.AutoSize = true;
             this.lblSpoornummer.Location = new System.Drawing.Point(13, 13);
             this.lblSpoornummer.Name = "lblSpoornummer";
-            this.lblSpoornummer.Size = new System.Drawing.Size(70, 13);
+            this.lblSpoornummer.Size = new System.Drawing.Size(72, 13);
             this.lblSpoornummer.TabIndex = 2;
-            this.lblSpoornummer.Text = "spoornummer";
+            this.lblSpoornummer.Text = "Spoornummer";
             // 
             // SpoorInfoForm
             // 
@@ -65,9 +65,9 @@
             this.ClientSize = new System.Drawing.Size(264, 243);
             this.Controls.Add(this.lblSpoornummer);
             this.Controls.Add(this.tbSpoornummer);
-            this.Controls.Add(this.lblTramlijst);
+            this.Controls.Add(this.lbTramlijst);
             this.Name = "SpoorInfoForm";
-            this.Text = "info";
+            this.Text = "Spoorinfo";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -75,7 +75,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lblTramlijst;
+        private System.Windows.Forms.ListBox lbTramlijst;
         private System.Windows.Forms.TextBox tbSpoornummer;
         private System.Windows.Forms.Label lblSpoornummer;
     }

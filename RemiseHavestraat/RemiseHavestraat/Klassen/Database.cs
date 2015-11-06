@@ -20,6 +20,7 @@ namespace RemiseHavestraat
         #region Initialisatie
         public Database()
         {
+            conn = new OracleConnection();
             conn.ConnectionString = connString;
             cmd = conn.CreateCommand();
         }
@@ -60,11 +61,25 @@ namespace RemiseHavestraat
 
                     if (wachtWoord == wachtwoord)
                     {
-                        Console.WriteLine("Welkom: " + gebruikersNaam);
-                        return account = new Account(gebruikersNaam, EnumMedewerkerRol.Beheerder);
+                        if (rol.ToLower() == "beheerder")
+                        {
+                            return account = new Account(gebruikersNaam, EnumMedewerkerRol.Beheerder);
+                        }
+                        else if (rol.ToLower() == "wagenparkbeheerder")
+                        {
+                            return account = new Account(gebruikersNaam, EnumMedewerkerRol.WagenparkBeheerder);
+                        }
+                        else if (rol.ToLower() == "schoonmaker")
+                        {
+                            return account = new Account(gebruikersNaam, EnumMedewerkerRol.Schoonmaker);
+                        }
+                        else if (rol.ToLower() == "technicus")
+                        {
+                            return account = new Account(gebruikersNaam, EnumMedewerkerRol.Technicus);
+                        }
                     }
                 }
-                
+
                 return null;
             }
             catch (Exception e)
@@ -92,6 +107,57 @@ namespace RemiseHavestraat
                 string functie;
                 List<Medewerker> alleMedewerkers = new List<Medewerker>();
                 
+                while (reader.Read())
+                {
+                    naam = (string)reader["Naam"];
+                    functie = (string)reader["Functie"];
+                    if (functie == "Schoonmaker")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 0));
+                    }
+                    if (functie == "Technicus")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 1));
+                    }
+                    if (functie == "Beheerder")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 3));
+                    }
+                    if (functie == "Bestuurder")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 4));
+                    }
+                    if (functie == "WagenparkBeheerder")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 2));
+                    }
+                }
+                return alleMedewerkers;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public List<Medewerker> HaalOpMedewerkers(string medewerkerfunctie)
+        {
+
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT \"Naam\", \"Functie\" FROM \"Medewerker\" WHERE \"Functie\" = '" + medewerkerfunctie + "'";
+                OracleDataReader reader = cmd.ExecuteReader();
+                string naam;
+                string functie;
+                List<Medewerker> alleMedewerkers = new List<Medewerker>();
+
                 while (reader.Read())
                 {
                     naam = (string)reader["Naam"];
@@ -258,6 +324,82 @@ namespace RemiseHavestraat
                 conn.Close();
             }
         }
+
+        public List<Tram> InfoSpoor(int spoor)
+        {
+
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT \"ID\", \"Nummer\", \"Lijn_ID\", \"Type\", \"Lengte\", \"Status\" FROM \"Tram\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int nummer;
+                int lijnId;
+                string type;
+                int lengte;
+                string status;
+
+                List<Tram> alleTrams = new List<Tram>();
+
+                while (reader.Read())
+                {
+                    id = (int)reader["ID"];
+                    nummer = (int)reader["Nummer"];
+                    lijnId = (int)reader["Lijn_ID"];
+                    type = (string)reader["Type"];
+                    lengte = (int)reader["Lengte"];
+                    status = (string)reader["Status"];
+                    int typeInt;
+                    switch (type)
+                    {
+                        case "Dubbelkop":
+                            typeInt = 1;
+                            break;
+                        case "Opleidingstrams":
+                            typeInt = 2;
+                            break;
+                        case "ElfG":
+                            typeInt = 3;
+                            break;
+                        case "TwaalG":
+                            typeInt = 4;
+                            break;
+                        default:
+                            typeInt = 0;
+                            break;
+                    }
+                    if (status == "Defect")
+                    {
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 0));
+                    }
+                    if (status == "Schoonmaak")
+                    {
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 1));
+                    }
+                    if (status == "Dienst")
+                    {
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 2));
+                    }
+                    if (status == "Remise")
+                    {
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 3));
+                    }
+                }
+                return alleTrams;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public List<Spoor> HaalOpSporen()
         {
 
