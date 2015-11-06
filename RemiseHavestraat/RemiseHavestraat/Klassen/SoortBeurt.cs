@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RemiseHavestraat
 {
-    public enum EnumTypeSchoonmaakBeurt
+    public enum SoortBeurt
     {
-        klein,
-        groot
+        Schoonmaakbeurt,
+        Servicebeurt
     }
 }

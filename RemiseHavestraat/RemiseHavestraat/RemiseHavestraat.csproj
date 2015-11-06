@@ -95,7 +95,7 @@
     <Compile Include="Klassen\Account.cs" />
     <Compile Include="Klassen\EnumMedewerkerRol.cs" />
     <Compile Include="Klassen\EnumPrioriteitBeurt.cs" />
-    <Compile Include="Klassen\EnumTypeSchoonmaakBeurt.cs" />
+    <Compile Include="Klassen\EnumTypeBeurt.cs" />
     <Compile Include="Klassen\Medewerker.cs" />
     <Compile Include="Klassen\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,6 +158,7 @@
     <Compile Include="GUI%27s\TramVerwijderenForm.Designer.cs">
       <DependentUpon>TramVerwijderenForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Klassen\SoortBeurt.cs" />
     <EmbeddedResource Include="GUI%27s\AuthenticatieForm.resx">
       <DependentUpon>AuthenticatieForm.cs</DependentUpon>
     </EmbeddedResource>

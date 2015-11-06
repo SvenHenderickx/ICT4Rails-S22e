@@ -106,12 +106,12 @@ namespace RemiseHavestraat
             string omschrijvingDefect = tbDefect.Text;
             string omschrijvingSchoonmaak = tbSchoonmaak.Text;
 
-            int tramID = 100;
-
+            int tramNr = 100;
+            Tram tram = Remise.Instance.GeefTram(tramNr);
             if (serviceNodig)
             {
                 //nieuwe service aanmaken
-                ServiceBeurt serviceBeurt = new ServiceBeurt(tramID, new DateTime(1, 1, 1, 1, 1, 1), new DateTime(1, 1, 1, 1, 1, 1), omschrijvingSchoonmaak, TypeBeurt.KleineSchoonmaak);
+                Beurt serviceBeurt = new Beurt(new DateTime(1, 1, 1, 1, 1, 1), omschrijvingSchoonmaak, tram, SoortBeurt.Servicebeurt);
 
                 // schoonmaak toevoegen
 
@@ -121,7 +121,7 @@ namespace RemiseHavestraat
             if (schoonmaakNodig)
             {
                 //nieuwe service aanmaken
-                ServiceBeurt serviceBeurt = new ServiceBeurt(tramID, new DateTime(1, 1, 1, 1, 1, 1), new DateTime(1, 1, 1, 1, 1, 1), omschrijvingDefect, TypeBeurt.KleineServicebeurt);
+                Beurt schoonmaakBeurt = new Beurt(new DateTime(1, 1, 1, 1, 1, 1), omschrijvingDefect, tram, SoortBeurt.Schoonmaakbeurt);
 
                 // onderhoudsbeurt toevoegen
 
