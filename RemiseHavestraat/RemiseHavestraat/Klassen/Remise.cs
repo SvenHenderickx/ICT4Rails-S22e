@@ -116,6 +116,7 @@ namespace RemiseHavestraat
             }
         }
 
+        //Deze methode haalt alle trams op van de database en zet ze in de lijst
         public bool TramsOphalen()
         {
             List<Tram> tempTrams = db.HaalOpTrams();
