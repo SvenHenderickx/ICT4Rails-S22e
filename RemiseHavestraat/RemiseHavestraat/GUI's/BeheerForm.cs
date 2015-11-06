@@ -117,15 +117,41 @@ namespace RemiseHavestraat
 
         #region De methodes
 
+        /// <summary>
+        /// Methode update het remise overzicht. Plaatst tramnummer in de textboxen
+        /// </summary>
         private void UpdateRemiseOverzicht()
-        {/*
-            foreach (var v in)
+        {
+            foreach (var v in Remise.Instance.Segmenten)
             {
-                
+
+                Tram tram = Remise.Instance.Trams.Find(x => x.TramID == v.Tram_ID);
+                Spoor spoor = Remise.Instance.Sporen.Find(x => x.ID == v.SpoorID);
+
+                int tramNr = tram.TramNr;
+                int spoorNr = spoor.Nummer;
+                int segmentNr = v.Nummer;
+
+                TextBox tb = GeefRemiseTB(spoorNr, segmentNr);
+                tb.Text = tramNr.ToString();
             }
-          * */
         }
 
+
+        /// <summary>
+        /// Methode geeft een 'Remise' textbox terug.
+        /// </summary>
+        /// <param name="spoorNR">Spoornummer van de textbox</param>
+        /// <param name="segmentNR">Segmentnummer van de textox</param>
+        /// <returns></returns>
+        private TextBox GeefRemiseTB(int spoorNR, int segmentNR)
+        {
+            string textBoxNaam = "tb" + spoorNR + "segment" + segmentNR;
+            TextBox tbx = Controls.Find(textBoxNaam, true).FirstOrDefault() as TextBox;
+            return tbx;
+        }
+
+      
         #endregion
 
 
