@@ -20,12 +20,22 @@ namespace RemiseHavestraat
         private void btnSchoonmaakLijstOpvragen_Click(object sender, EventArgs e)
         {
             Remise.Instance.SchoonmaakBeurtenOphalen();
-            foreach (SchoonmaakBeurt beurt in Remise.Instance);
+            foreach (SchoonmaakBeurt beurt in Remise.Instance.Beurten)
+            {
+                lbSchoonmaak.Items.Add(beurt.ToString());
+            }
         }
 
         private void btnAftekenen_Click(object sender, EventArgs e)
         {
-
+            DateTime eind = dtpEind.Value;
+            foreach (Beurt beurt in Remise.Instance.Beurten)
+            {
+                if (beurt.ToString() == lbSchoonmaak.SelectedItem.ToString())
+                {
+                    Remise.Instance.SchoonmaakBeurtAftekenen(beurt, eind);
+                }
+            }
         }
 
         private void btnTakenToevoegen_Click(object sender, EventArgs e)

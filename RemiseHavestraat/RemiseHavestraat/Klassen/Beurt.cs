@@ -26,5 +26,10 @@ namespace RemiseHavestraat
             this.PrioriteitBeurt = (EnumPrioriteitBeurt)prioriteitbeurt;
             this.Medewerkers = medewerkers;
         }
+
+        public override string ToString()
+        {
+            return DatumTijdBegin.ToString() + " - " + PrioriteitBeurt + " - " + BeurtSoort + ": " + Beschrijving;
+        }
     }
 }
