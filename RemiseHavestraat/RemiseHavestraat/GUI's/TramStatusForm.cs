@@ -24,6 +24,9 @@ namespace RemiseHavestraat
             if (cbbTramStatus.SelectedItem.Equals("Defect"))
             {
                 tramstatus = "DEFECT";
+                //update status
+
+                //haal nieuwe status op
             }
             else if (cbbTramStatus.SelectedItem.Equals("Schoonmaak"))
             {
