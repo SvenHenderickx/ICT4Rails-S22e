@@ -131,6 +131,60 @@ namespace RemiseHavestraat
             }
         }
 
+        public List<Medewerker> ZoekMedewerkers(List<int> medewerkersids)
+        {
+
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                List<Medewerker> alleMedewerkers = new List<Medewerker>();
+                foreach (int i in medewerkersids)
+                {
+                    cmd.CommandText = "SELECT \"Naam\", \"Functie\" FROM \"Medewerker\" WHERE \"ID\" = '" + i + "'";
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    string naam;
+                    string functie;
+
+                    while (reader.Read())
+                    {
+                        naam = (string)reader["Naam"];
+                        functie = (string)reader["Functie"];
+                        if (functie == "Schoonmaker")
+                        {
+                            alleMedewerkers.Add(new Medewerker(naam, 0));
+                        }
+                        if (functie == "Technicus")
+                        {
+                            alleMedewerkers.Add(new Medewerker(naam, 1));
+                        }
+                        if (functie == "Beheerder")
+                        {
+                            alleMedewerkers.Add(new Medewerker(naam, 3));
+                        }
+                        if (functie == "Bestuurder")
+                        {
+                            alleMedewerkers.Add(new Medewerker(naam, 4));
+                        }
+                        if (functie == "WagenparkBeheerder")
+                        {
+                            alleMedewerkers.Add(new Medewerker(naam, 2));
+                        }
+                    }
+                }
+                return alleMedewerkers;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public List<Tram> HaalOpTrams()
         {
 

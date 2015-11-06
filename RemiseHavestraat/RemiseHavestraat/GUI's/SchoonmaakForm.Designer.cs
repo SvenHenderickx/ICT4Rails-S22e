@@ -38,6 +38,10 @@
             this.tbMedewerkerS1 = new System.Windows.Forms.TextBox();
             this.lblBeschrijving = new System.Windows.Forms.Label();
             this.gbTaak = new System.Windows.Forms.GroupBox();
+            this.tbMedewerkerS5 = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS4 = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS3 = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS2 = new System.Windows.Forms.TextBox();
             this.lblDatumEind = new System.Windows.Forms.Label();
             this.dtpEind = new System.Windows.Forms.DateTimePicker();
             this.lblDatumBegin = new System.Windows.Forms.Label();
@@ -47,10 +51,11 @@
             this.lblPrioriteit = new System.Windows.Forms.Label();
             this.tbPrioriteitS = new System.Windows.Forms.TextBox();
             this.tbBeschrijving = new System.Windows.Forms.TextBox();
-            this.tbMedewerkerS2 = new System.Windows.Forms.TextBox();
-            this.tbMedewerkerS3 = new System.Windows.Forms.TextBox();
-            this.tbMedewerkerS4 = new System.Windows.Forms.TextBox();
-            this.tbMedewerkerS5 = new System.Windows.Forms.TextBox();
+            this.lblPrioriteit1 = new System.Windows.Forms.Label();
+            this.lblPrioriteit2 = new System.Windows.Forms.Label();
+            this.lblPrioriteit3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.gbTaak.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,7 +133,7 @@
             // lblBeschrijving
             // 
             this.lblBeschrijving.AutoSize = true;
-            this.lblBeschrijving.Location = new System.Drawing.Point(10, 75);
+            this.lblBeschrijving.Location = new System.Drawing.Point(10, 62);
             this.lblBeschrijving.Name = "lblBeschrijving";
             this.lblBeschrijving.Size = new System.Drawing.Size(67, 13);
             this.lblBeschrijving.TabIndex = 18;
@@ -136,6 +141,11 @@
             // 
             // gbTaak
             // 
+            this.gbTaak.Controls.Add(this.label5);
+            this.gbTaak.Controls.Add(this.label6);
+            this.gbTaak.Controls.Add(this.lblPrioriteit3);
+            this.gbTaak.Controls.Add(this.lblPrioriteit2);
+            this.gbTaak.Controls.Add(this.lblPrioriteit1);
             this.gbTaak.Controls.Add(this.tbMedewerkerS5);
             this.gbTaak.Controls.Add(this.tbMedewerkerS4);
             this.gbTaak.Controls.Add(this.tbMedewerkerS3);
@@ -164,10 +174,38 @@
             this.gbTaak.TabStop = false;
             this.gbTaak.Text = "Schoonmaak";
             // 
+            // tbMedewerkerS5
+            // 
+            this.tbMedewerkerS5.Location = new System.Drawing.Point(9, 291);
+            this.tbMedewerkerS5.Name = "tbMedewerkerS5";
+            this.tbMedewerkerS5.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS5.TabIndex = 31;
+            // 
+            // tbMedewerkerS4
+            // 
+            this.tbMedewerkerS4.Location = new System.Drawing.Point(9, 265);
+            this.tbMedewerkerS4.Name = "tbMedewerkerS4";
+            this.tbMedewerkerS4.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS4.TabIndex = 30;
+            // 
+            // tbMedewerkerS3
+            // 
+            this.tbMedewerkerS3.Location = new System.Drawing.Point(9, 239);
+            this.tbMedewerkerS3.Name = "tbMedewerkerS3";
+            this.tbMedewerkerS3.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS3.TabIndex = 29;
+            // 
+            // tbMedewerkerS2
+            // 
+            this.tbMedewerkerS2.Location = new System.Drawing.Point(9, 213);
+            this.tbMedewerkerS2.Name = "tbMedewerkerS2";
+            this.tbMedewerkerS2.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS2.TabIndex = 28;
+            // 
             // lblDatumEind
             // 
             this.lblDatumEind.AutoSize = true;
-            this.lblDatumEind.Location = new System.Drawing.Point(141, 75);
+            this.lblDatumEind.Location = new System.Drawing.Point(141, 62);
             this.lblDatumEind.Name = "lblDatumEind";
             this.lblDatumEind.Size = new System.Drawing.Size(64, 13);
             this.lblDatumEind.TabIndex = 27;
@@ -175,7 +213,7 @@
             // 
             // dtpEind
             // 
-            this.dtpEind.Location = new System.Drawing.Point(139, 91);
+            this.dtpEind.Location = new System.Drawing.Point(139, 78);
             this.dtpEind.Name = "dtpEind";
             this.dtpEind.Size = new System.Drawing.Size(121, 20);
             this.dtpEind.TabIndex = 26;
@@ -199,7 +237,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(141, 125);
+            this.lblType.Location = new System.Drawing.Point(141, 107);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 13);
             this.lblType.TabIndex = 23;
@@ -207,15 +245,15 @@
             // 
             // tbType
             // 
-            this.tbType.Location = new System.Drawing.Point(139, 141);
+            this.tbType.Location = new System.Drawing.Point(139, 126);
             this.tbType.Name = "tbType";
-            this.tbType.Size = new System.Drawing.Size(121, 20);
+            this.tbType.Size = new System.Drawing.Size(36, 20);
             this.tbType.TabIndex = 22;
             // 
             // lblPrioriteit
             // 
             this.lblPrioriteit.AutoSize = true;
-            this.lblPrioriteit.Location = new System.Drawing.Point(9, 122);
+            this.lblPrioriteit.Location = new System.Drawing.Point(9, 107);
             this.lblPrioriteit.Name = "lblPrioriteit";
             this.lblPrioriteit.Size = new System.Drawing.Size(47, 13);
             this.lblPrioriteit.TabIndex = 21;
@@ -223,45 +261,62 @@
             // 
             // tbPrioriteitS
             // 
-            this.tbPrioriteitS.Location = new System.Drawing.Point(9, 141);
+            this.tbPrioriteitS.Location = new System.Drawing.Point(9, 126);
             this.tbPrioriteitS.Name = "tbPrioriteitS";
-            this.tbPrioriteitS.Size = new System.Drawing.Size(122, 20);
+            this.tbPrioriteitS.Size = new System.Drawing.Size(47, 20);
             this.tbPrioriteitS.TabIndex = 20;
             // 
             // tbBeschrijving
             // 
-            this.tbBeschrijving.Location = new System.Drawing.Point(9, 91);
+            this.tbBeschrijving.Location = new System.Drawing.Point(9, 78);
             this.tbBeschrijving.Name = "tbBeschrijving";
             this.tbBeschrijving.Size = new System.Drawing.Size(122, 20);
             this.tbBeschrijving.TabIndex = 19;
             // 
-            // tbMedewerkerS2
+            // lblPrioriteit1
             // 
-            this.tbMedewerkerS2.Location = new System.Drawing.Point(9, 213);
-            this.tbMedewerkerS2.Name = "tbMedewerkerS2";
-            this.tbMedewerkerS2.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS2.TabIndex = 28;
+            this.lblPrioriteit1.AutoSize = true;
+            this.lblPrioriteit1.Location = new System.Drawing.Point(62, 107);
+            this.lblPrioriteit1.Name = "lblPrioriteit1";
+            this.lblPrioriteit1.Size = new System.Drawing.Size(78, 13);
+            this.lblPrioriteit1.TabIndex = 32;
+            this.lblPrioriteit1.Text = "1: Onbelangrijk";
             // 
-            // tbMedewerkerS3
+            // lblPrioriteit2
             // 
-            this.tbMedewerkerS3.Location = new System.Drawing.Point(9, 239);
-            this.tbMedewerkerS3.Name = "tbMedewerkerS3";
-            this.tbMedewerkerS3.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS3.TabIndex = 29;
+            this.lblPrioriteit2.AutoSize = true;
+            this.lblPrioriteit2.Location = new System.Drawing.Point(62, 126);
+            this.lblPrioriteit2.Name = "lblPrioriteit2";
+            this.lblPrioriteit2.Size = new System.Drawing.Size(43, 13);
+            this.lblPrioriteit2.TabIndex = 33;
+            this.lblPrioriteit2.Text = "2: Laag";
             // 
-            // tbMedewerkerS4
+            // lblPrioriteit3
             // 
-            this.tbMedewerkerS4.Location = new System.Drawing.Point(9, 265);
-            this.tbMedewerkerS4.Name = "tbMedewerkerS4";
-            this.tbMedewerkerS4.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS4.TabIndex = 30;
+            this.lblPrioriteit3.AutoSize = true;
+            this.lblPrioriteit3.Location = new System.Drawing.Point(62, 145);
+            this.lblPrioriteit3.Name = "lblPrioriteit3";
+            this.lblPrioriteit3.Size = new System.Drawing.Size(45, 13);
+            this.lblPrioriteit3.TabIndex = 34;
+            this.lblPrioriteit3.Text = "3: Hoog";
             // 
-            // tbMedewerkerS5
+            // label5
             // 
-            this.tbMedewerkerS5.Location = new System.Drawing.Point(9, 291);
-            this.tbMedewerkerS5.Name = "tbMedewerkerS5";
-            this.tbMedewerkerS5.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS5.TabIndex = 31;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(181, 126);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "2: Groot";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(181, 107);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "1: Klein";
             // 
             // SchoonmaakForm
             // 
@@ -303,5 +358,10 @@
         private System.Windows.Forms.TextBox tbMedewerkerS4;
         private System.Windows.Forms.TextBox tbMedewerkerS3;
         private System.Windows.Forms.TextBox tbMedewerkerS2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblPrioriteit3;
+        private System.Windows.Forms.Label lblPrioriteit2;
+        private System.Windows.Forms.Label lblPrioriteit1;
     }
 }

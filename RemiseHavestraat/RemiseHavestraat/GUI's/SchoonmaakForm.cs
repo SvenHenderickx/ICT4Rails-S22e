@@ -40,25 +40,54 @@ namespace RemiseHavestraat
 
         private void btnTakenToevoegen_Click(object sender, EventArgs e)
         {
-            int tramnummer = Convert.ToInt32(tbTreinNummerSchoonmaak.Text);
-            int medewerkerid = Convert.ToInt32(tbMedewerkerS1.Text);
-            string type = tbType.Text;
+            Tram tram = null;
+            List<int> medewerkersid = new List<int>();
+            int tramnummer;
+            int medewerkerid1 = 0;
+            int medewerkerid2 = 0;
+            int medewerkerid3 = 0;
+            int medewerkerid4 = 0;
+            int medewerkerid5 = 0;
+            int type = 0;
+            int prioriteit = 0;
             string beschrijving = tbBeschrijving.Text;
-            string prioriteit = tbPrioriteitS.Text;
-            DateTime datumbegin = Convert.ToDateTime(dtpBegin);
-            DateTime datumeind = Convert.ToDateTime(dtpEind);
-
-            if (string.IsNullOrEmpty(tbTreinNummerSchoonmaak.Text) || string.IsNullOrEmpty(tbMedewerkerS1.Text) || string.IsNullOrEmpty(tbType.Text)
-                || string.IsNullOrEmpty(tbBeschrijving.Text) || string.IsNullOrEmpty(tbPrioriteitS.Text))
+            DateTime datumbegin = dtpBegin.Value;
+            if (string.IsNullOrEmpty(tbTreinNummerSchoonmaak.Text) || string.IsNullOrEmpty(tbMedewerkerS1.Text) || string.IsNullOrEmpty(tbType.Text) || string.IsNullOrEmpty(tbBeschrijving.Text) || string.IsNullOrEmpty(tbPrioriteitS.Text))
             {
-
+                MessageBox.Show("Voer AUB alle benodigde data in.");
             }
             else
             {
-                bool resultaat = Remise.Instance.VoegSchoonmaakBeurtToe();
-                if (resultaat == false)
+                if (Int32.TryParse(tbTreinNummerSchoonmaak.Text, out tramnummer) || Int32.TryParse(tbMedewerkerS1.Text, out medewerkerid1) || Int32.TryParse(tbType.Text, out type) || Int32.TryParse(tbPrioriteitS.Text, out prioriteit))
                 {
-                    MessageBox.Show("Er ging iets mis, er is geen nieuwe taak toegevoegd.");
+                    medewerkersid.Add(medewerkerid1);
+                    if (Int32.TryParse(tbMedewerkerS2.Text, out medewerkerid2))
+                    {
+                        medewerkersid.Add(medewerkerid2);
+                        if (Int32.TryParse(tbMedewerkerS3.Text, out medewerkerid3))
+                        {
+                            medewerkersid.Add(medewerkerid3);
+                            if (Int32.TryParse(tbMedewerkerS4.Text, out medewerkerid4))
+                            {
+                                medewerkersid.Add(medewerkerid4);
+                                if (Int32.TryParse(tbMedewerkerS5.Text, out medewerkerid5))
+                                {
+                                    medewerkersid.Add(medewerkerid5);
+                                }
+                            }
+                        }
+                    }
+                    tram = Remise.Instance.GeefTram(tramnummer);
+                    List<Medewerker> medewerkers = Remise.Instance.MedewerkersZoeken(medewerkersid);
+                    bool resultaat = Remise.Instance.VoegSchoonmaakBeurtToe(tram, medewerkers, type, prioriteit, beschrijving, datumbegin);
+                    if (resultaat == false)
+                    {
+                        MessageBox.Show("Er ging iets mis, er is geen nieuwe taak toegevoegd.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Voer AUB nummers in, waar om nummer word gevraagd.");
                 }
             }
         }

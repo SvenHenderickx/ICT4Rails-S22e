@@ -116,6 +116,13 @@ namespace RemiseHavestraat
             }
         }
 
+        //Deze methode haalt alle medewerkers op van de database en zet ze in de lijst
+        public List<Medewerker> MedewerkersZoeken(List<int> medewerkerids)
+        {
+            List<Medewerker> tempMedewerkers = db.ZoekMedewerkers(medewerkerids);
+            return tempMedewerkers;
+        }
+
         //Deze methode haalt alle trams op van de database en zet ze in de lijst
         public bool TramsOphalen()
         {
