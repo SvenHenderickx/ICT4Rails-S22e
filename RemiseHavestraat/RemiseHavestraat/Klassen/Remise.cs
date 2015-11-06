@@ -104,8 +104,16 @@ namespace RemiseHavestraat
         //Deze methode haalt alle medewerkers op van de database en zet ze in de lijst
         public bool MedewerkersOphalen()
         {
-
-            return false;
+            List<Medewerker> tempMedewerkers = db.HaalOpMedewerkers();
+            if (tempMedewerkers == null)
+            {
+                return false;
+            }
+            else
+            {
+                medewerkers = tempMedewerkers;
+                return true;
+            }
         }
 
         public bool TramsOphalen()
@@ -163,13 +171,13 @@ namespace RemiseHavestraat
             return false;
         }
 
-        public bool SchoonmaakBeurtAftekenen(DateTime datumTijdEind)
+        public bool SchoonmaakBeurtAftekenen(Beurt beurt, DateTime datumTijdEind)
         {
             //invoeren schoonmaakbeurt
             return false;
         }
 
-        public bool ServiceBeurtAftekenen(DateTime datumTijdEind)
+        public bool ServiceBeurtAftekenen(Beurt beurt, DateTime datumTijdEind)
         {
             //invoeren servicebeurt
             return false;

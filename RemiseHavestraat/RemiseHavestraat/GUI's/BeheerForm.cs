@@ -13,11 +13,12 @@ namespace RemiseHavestraat
     public partial class BeheerForm : Form
     {
 
-        private Remise remise;
-
+        
         public BeheerForm()
         {
             InitializeComponent();
+            bool test = Remise.Instance.MedewerkersOphalen();
+            MessageBox.Show("Medewerkers Ophalen:" + test.ToString());
         }
 
 

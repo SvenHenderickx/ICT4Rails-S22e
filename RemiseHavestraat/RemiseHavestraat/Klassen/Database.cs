@@ -82,7 +82,7 @@ namespace RemiseHavestraat
 
         public List<Medewerker> HaalOpMedewerkers()
         {
-            List<Medewerker> alleMedewerkers = null;
+            
             try
             {
                 OpenVerbinding();
@@ -91,6 +91,7 @@ namespace RemiseHavestraat
                 OracleDataReader reader = cmd.ExecuteReader();
                 string naam;
                 string functie;
+                List<Medewerker> alleMedewerkers = new List<Medewerker>();
                 
                 while (reader.Read())
                 {
