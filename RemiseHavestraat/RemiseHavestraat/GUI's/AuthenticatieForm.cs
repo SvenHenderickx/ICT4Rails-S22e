@@ -15,6 +15,9 @@ namespace RemiseHavestraat
         public AuthenticatieForm()
         {
             InitializeComponent();
+            tbUsername.TabIndex = 0;
+            tbPassword.TabIndex = 1;
+            btnLogin.TabIndex = 2;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
