@@ -20,7 +20,6 @@ namespace RemiseHavestraat
         #region Initialisatie
         public Database()
         {
-            conn = new OracleConnection();
             conn.ConnectionString = connString;
             cmd = conn.CreateCommand();
         }

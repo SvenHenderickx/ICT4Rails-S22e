@@ -172,7 +172,6 @@ namespace RemiseHavestraat
 
         public bool SchoonmaakBeurtenOphalen()
         {
-
             return false;
         }
 
