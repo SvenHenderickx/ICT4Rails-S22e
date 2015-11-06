@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RemiseHavestraat
 {
-    class Reservering
+    public class Reservering
     {
         public int ID { get; private set; }
         public Tram tram { get; private set; }

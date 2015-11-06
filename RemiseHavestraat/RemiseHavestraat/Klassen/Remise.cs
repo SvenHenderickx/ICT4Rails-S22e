@@ -18,27 +18,27 @@ namespace RemiseHavestraat
 
         public List<Medewerker> Medewerkers
         {
-            get;
+            get { return medewerkers; }
         }
 
         public List<Segment> Segmenten
         {
-            get;
+            get { return segmenten; }
         }
 
         public List<Spoor> Sporen
         {
-            get;
+            get { return sporen; }
         }
 
         public List<Tram> Trams
         {
-            get;
+            get { return trams; }
         }
 
         public List<Reservering> Reserveringen
         {
-            get;
+            get { return reserveringen; }
         }
 
         #endregion
