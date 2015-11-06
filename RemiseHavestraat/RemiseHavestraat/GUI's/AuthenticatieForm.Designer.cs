@@ -43,6 +43,7 @@
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
             this.tbPassword.TabIndex = 0;
+            this.tbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PressEnterLogin);
             // 
             // lblPassword
             // 

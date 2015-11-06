@@ -72,5 +72,10 @@ namespace RemiseHavestraat
         {
             this.Close();
         }
+
+        private void PressEnterLogin(object sender, KeyPressEventArgs e)
+        {
+            
+        }
     }
 }
