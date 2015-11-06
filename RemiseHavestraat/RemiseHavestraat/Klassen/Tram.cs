@@ -11,18 +11,22 @@ namespace RemiseHavestraat
         public enum Type { Combino, Dubbelkop, Opleidingstrams, ElfG, TwaalfG };
         public enum Status { Defect, Schoonmaak, Dienst, Remise };
 
-        public int Lengte { get; private set; }
-        public int TramNummer { get; private set; }
-        public Type TreinType { get; private set; }
-        public Status TreinStatus { get; private set; }
 
-        public Tram(int tramNummer, int lengte, int type, int status)
+        public int TramID { get; private set; }
+        public int TramNr { get; private set; }
+        public int LijnID { get; private set; }
+        public Type TypeEnum { get; private set; }
+        public int Lengte { get; private set; }
+        public Status StatusEnum { get; set; }
+
+        public Tram(int tramID, int tramNr, int lijnID, Type type, int lengte, Status status)
         {
-            this.TramNummer = tramNummer;
+            this.TramID = tramID;
+            this.TramNr = tramNr;
+            this.LijnID = lijnID;
+            this.TypeEnum = type;
             this.Lengte = lengte;
-            this.TreinType = (Type)type;
-            this.TreinStatus = (Status)status;
-            // enums initialiseren       
+            this.StatusEnum = status;
         }
     }
 }

@@ -7,13 +7,15 @@ namespace RemiseHavestraat
 {
     public class Spoor
     {
-        public int SpoorNummer { get; private set; }
-        public List<Segment> Segmenten { get; private set; }
+        public int ID { get; private set; }
+        public int RemiseID { get; private set; }
+        public int Nummer { get; private set; }
 
-        public Spoor(int spoorNummer, List<Segment> segmenten)
+        public Spoor(int id, int remiseID, int nummer)
         {
-            this.SpoorNummer = spoorNummer;
-            this.Segmenten = segmenten;
+            this.ID = id;
+            this.RemiseID = remiseID;
+            this.Nummer = nummer;
         }
     }
 }

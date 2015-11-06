@@ -7,15 +7,15 @@ namespace RemiseHavestraat
 {
     public class Segment
     {
-        public int SegmentID { get; private set; }
-        public int SegmentNummer { get; private set; }
-        public int Lengte { get; private set; }
+        public int SpoorID { get; private set; }
+        public int Nummer { get; private set; }
+        public int Tram_ID { get; set; }
 
-        public Segment(int segmentID, int segmentNummer, int lengte)
+        public Segment(int spoorID, int nummer, int tram_ID)
         {
-            this.SegmentID = segmentID;
-            this.SegmentNummer = segmentNummer;
-            this.Lengte = lengte;
+            this.SpoorID = spoorID;
+            this.Nummer = nummer;
+            this.Tram_ID = tram_ID;
         }
     }
 }
