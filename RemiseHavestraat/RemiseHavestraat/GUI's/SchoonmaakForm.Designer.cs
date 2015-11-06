@@ -35,7 +35,7 @@
             this.lblTramNummerSchoonmaak = new System.Windows.Forms.Label();
             this.tbTreinNummerSchoonmaak = new System.Windows.Forms.TextBox();
             this.lblMedewerkersS = new System.Windows.Forms.Label();
-            this.tbMedewerkerS = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS1 = new System.Windows.Forms.TextBox();
             this.lblBeschrijving = new System.Windows.Forms.Label();
             this.gbTaak = new System.Windows.Forms.GroupBox();
             this.lblDatumEind = new System.Windows.Forms.Label();
@@ -47,6 +47,10 @@
             this.lblPrioriteit = new System.Windows.Forms.Label();
             this.tbPrioriteitS = new System.Windows.Forms.TextBox();
             this.tbBeschrijving = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS2 = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS3 = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS4 = new System.Windows.Forms.TextBox();
+            this.tbMedewerkerS5 = new System.Windows.Forms.TextBox();
             this.gbTaak.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,9 +64,9 @@
             // 
             // btnSchoonmaakLijstOpvragen
             // 
-            this.btnSchoonmaakLijstOpvragen.Location = new System.Drawing.Point(141, 245);
+            this.btnSchoonmaakLijstOpvragen.Location = new System.Drawing.Point(137, 187);
             this.btnSchoonmaakLijstOpvragen.Name = "btnSchoonmaakLijstOpvragen";
-            this.btnSchoonmaakLijstOpvragen.Size = new System.Drawing.Size(122, 35);
+            this.btnSchoonmaakLijstOpvragen.Size = new System.Drawing.Size(123, 35);
             this.btnSchoonmaakLijstOpvragen.TabIndex = 1;
             this.btnSchoonmaakLijstOpvragen.Text = "Schoonmaaklijst opvragen";
             this.btnSchoonmaakLijstOpvragen.UseVisualStyleBackColor = true;
@@ -70,9 +74,9 @@
             // 
             // btnAftekenen
             // 
-            this.btnAftekenen.Location = new System.Drawing.Point(141, 287);
+            this.btnAftekenen.Location = new System.Drawing.Point(137, 231);
             this.btnAftekenen.Name = "btnAftekenen";
-            this.btnAftekenen.Size = new System.Drawing.Size(122, 35);
+            this.btnAftekenen.Size = new System.Drawing.Size(123, 35);
             this.btnAftekenen.TabIndex = 2;
             this.btnAftekenen.Text = "Aftekenen";
             this.btnAftekenen.UseVisualStyleBackColor = true;
@@ -80,9 +84,9 @@
             // 
             // btnTakenToevoegen
             // 
-            this.btnTakenToevoegen.Location = new System.Drawing.Point(6, 287);
+            this.btnTakenToevoegen.Location = new System.Drawing.Point(137, 276);
             this.btnTakenToevoegen.Name = "btnTakenToevoegen";
-            this.btnTakenToevoegen.Size = new System.Drawing.Size(122, 35);
+            this.btnTakenToevoegen.Size = new System.Drawing.Size(123, 35);
             this.btnTakenToevoegen.TabIndex = 4;
             this.btnTakenToevoegen.Text = "Taak toevoegen";
             this.btnTakenToevoegen.UseVisualStyleBackColor = true;
@@ -91,7 +95,7 @@
             // lblTramNummerSchoonmaak
             // 
             this.lblTramNummerSchoonmaak.AutoSize = true;
-            this.lblTramNummerSchoonmaak.Location = new System.Drawing.Point(6, 23);
+            this.lblTramNummerSchoonmaak.Location = new System.Drawing.Point(13, 23);
             this.lblTramNummerSchoonmaak.Name = "lblTramNummerSchoonmaak";
             this.lblTramNummerSchoonmaak.Size = new System.Drawing.Size(71, 13);
             this.lblTramNummerSchoonmaak.TabIndex = 13;
@@ -108,23 +112,23 @@
             // lblMedewerkersS
             // 
             this.lblMedewerkersS.AutoSize = true;
-            this.lblMedewerkersS.Location = new System.Drawing.Point(6, 77);
+            this.lblMedewerkersS.Location = new System.Drawing.Point(10, 171);
             this.lblMedewerkersS.Name = "lblMedewerkersS";
-            this.lblMedewerkersS.Size = new System.Drawing.Size(69, 13);
+            this.lblMedewerkersS.Size = new System.Drawing.Size(74, 13);
             this.lblMedewerkersS.TabIndex = 14;
-            this.lblMedewerkersS.Text = "Medewerker:";
+            this.lblMedewerkersS.Text = "Medewerkers:";
             // 
-            // tbMedewerkerS
+            // tbMedewerkerS1
             // 
-            this.tbMedewerkerS.Location = new System.Drawing.Point(9, 93);
-            this.tbMedewerkerS.Name = "tbMedewerkerS";
-            this.tbMedewerkerS.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS.TabIndex = 15;
+            this.tbMedewerkerS1.Location = new System.Drawing.Point(9, 187);
+            this.tbMedewerkerS1.Name = "tbMedewerkerS1";
+            this.tbMedewerkerS1.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS1.TabIndex = 15;
             // 
             // lblBeschrijving
             // 
             this.lblBeschrijving.AutoSize = true;
-            this.lblBeschrijving.Location = new System.Drawing.Point(10, 179);
+            this.lblBeschrijving.Location = new System.Drawing.Point(10, 75);
             this.lblBeschrijving.Name = "lblBeschrijving";
             this.lblBeschrijving.Size = new System.Drawing.Size(67, 13);
             this.lblBeschrijving.TabIndex = 18;
@@ -132,6 +136,10 @@
             // 
             // gbTaak
             // 
+            this.gbTaak.Controls.Add(this.tbMedewerkerS5);
+            this.gbTaak.Controls.Add(this.tbMedewerkerS4);
+            this.gbTaak.Controls.Add(this.tbMedewerkerS3);
+            this.gbTaak.Controls.Add(this.tbMedewerkerS2);
             this.gbTaak.Controls.Add(this.lblDatumEind);
             this.gbTaak.Controls.Add(this.btnAftekenen);
             this.gbTaak.Controls.Add(this.dtpEind);
@@ -148,10 +156,10 @@
             this.gbTaak.Controls.Add(this.lblTramNummerSchoonmaak);
             this.gbTaak.Controls.Add(this.tbTreinNummerSchoonmaak);
             this.gbTaak.Controls.Add(this.lblMedewerkersS);
-            this.gbTaak.Controls.Add(this.tbMedewerkerS);
+            this.gbTaak.Controls.Add(this.tbMedewerkerS1);
             this.gbTaak.Location = new System.Drawing.Point(332, 12);
             this.gbTaak.Name = "gbTaak";
-            this.gbTaak.Size = new System.Drawing.Size(272, 331);
+            this.gbTaak.Size = new System.Drawing.Size(272, 322);
             this.gbTaak.TabIndex = 19;
             this.gbTaak.TabStop = false;
             this.gbTaak.Text = "Schoonmaak";
@@ -159,7 +167,7 @@
             // lblDatumEind
             // 
             this.lblDatumEind.AutoSize = true;
-            this.lblDatumEind.Location = new System.Drawing.Point(138, 75);
+            this.lblDatumEind.Location = new System.Drawing.Point(141, 75);
             this.lblDatumEind.Name = "lblDatumEind";
             this.lblDatumEind.Size = new System.Drawing.Size(64, 13);
             this.lblDatumEind.TabIndex = 27;
@@ -175,7 +183,7 @@
             // lblDatumBegin
             // 
             this.lblDatumBegin.AutoSize = true;
-            this.lblDatumBegin.Location = new System.Drawing.Point(138, 23);
+            this.lblDatumBegin.Location = new System.Drawing.Point(141, 23);
             this.lblDatumBegin.Name = "lblDatumBegin";
             this.lblDatumBegin.Size = new System.Drawing.Size(70, 13);
             this.lblDatumBegin.TabIndex = 25;
@@ -191,7 +199,7 @@
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(6, 129);
+            this.lblType.Location = new System.Drawing.Point(141, 125);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(34, 13);
             this.lblType.TabIndex = 23;
@@ -199,15 +207,15 @@
             // 
             // tbType
             // 
-            this.tbType.Location = new System.Drawing.Point(9, 145);
+            this.tbType.Location = new System.Drawing.Point(139, 141);
             this.tbType.Name = "tbType";
-            this.tbType.Size = new System.Drawing.Size(122, 20);
+            this.tbType.Size = new System.Drawing.Size(121, 20);
             this.tbType.TabIndex = 22;
             // 
             // lblPrioriteit
             // 
             this.lblPrioriteit.AutoSize = true;
-            this.lblPrioriteit.Location = new System.Drawing.Point(9, 226);
+            this.lblPrioriteit.Location = new System.Drawing.Point(9, 122);
             this.lblPrioriteit.Name = "lblPrioriteit";
             this.lblPrioriteit.Size = new System.Drawing.Size(47, 13);
             this.lblPrioriteit.TabIndex = 21;
@@ -215,17 +223,45 @@
             // 
             // tbPrioriteitS
             // 
-            this.tbPrioriteitS.Location = new System.Drawing.Point(9, 245);
+            this.tbPrioriteitS.Location = new System.Drawing.Point(9, 141);
             this.tbPrioriteitS.Name = "tbPrioriteitS";
             this.tbPrioriteitS.Size = new System.Drawing.Size(122, 20);
             this.tbPrioriteitS.TabIndex = 20;
             // 
             // tbBeschrijving
             // 
-            this.tbBeschrijving.Location = new System.Drawing.Point(9, 195);
+            this.tbBeschrijving.Location = new System.Drawing.Point(9, 91);
             this.tbBeschrijving.Name = "tbBeschrijving";
             this.tbBeschrijving.Size = new System.Drawing.Size(122, 20);
             this.tbBeschrijving.TabIndex = 19;
+            // 
+            // tbMedewerkerS2
+            // 
+            this.tbMedewerkerS2.Location = new System.Drawing.Point(9, 213);
+            this.tbMedewerkerS2.Name = "tbMedewerkerS2";
+            this.tbMedewerkerS2.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS2.TabIndex = 28;
+            // 
+            // tbMedewerkerS3
+            // 
+            this.tbMedewerkerS3.Location = new System.Drawing.Point(9, 239);
+            this.tbMedewerkerS3.Name = "tbMedewerkerS3";
+            this.tbMedewerkerS3.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS3.TabIndex = 29;
+            // 
+            // tbMedewerkerS4
+            // 
+            this.tbMedewerkerS4.Location = new System.Drawing.Point(9, 265);
+            this.tbMedewerkerS4.Name = "tbMedewerkerS4";
+            this.tbMedewerkerS4.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS4.TabIndex = 30;
+            // 
+            // tbMedewerkerS5
+            // 
+            this.tbMedewerkerS5.Location = new System.Drawing.Point(9, 291);
+            this.tbMedewerkerS5.Name = "tbMedewerkerS5";
+            this.tbMedewerkerS5.Size = new System.Drawing.Size(122, 20);
+            this.tbMedewerkerS5.TabIndex = 31;
             // 
             // SchoonmaakForm
             // 
@@ -251,7 +287,7 @@
         private System.Windows.Forms.Label lblTramNummerSchoonmaak;
         private System.Windows.Forms.TextBox tbTreinNummerSchoonmaak;
         private System.Windows.Forms.Label lblMedewerkersS;
-        private System.Windows.Forms.TextBox tbMedewerkerS;
+        private System.Windows.Forms.TextBox tbMedewerkerS1;
         private System.Windows.Forms.Label lblBeschrijving;
         private System.Windows.Forms.GroupBox gbTaak;
         private System.Windows.Forms.Label lblType;
@@ -263,5 +299,9 @@
         private System.Windows.Forms.Label lblDatumEind;
         private System.Windows.Forms.DateTimePicker dtpEind;
         private System.Windows.Forms.Label lblDatumBegin;
+        private System.Windows.Forms.TextBox tbMedewerkerS5;
+        private System.Windows.Forms.TextBox tbMedewerkerS4;
+        private System.Windows.Forms.TextBox tbMedewerkerS3;
+        private System.Windows.Forms.TextBox tbMedewerkerS2;
     }
 }

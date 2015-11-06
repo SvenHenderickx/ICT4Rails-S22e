@@ -41,14 +41,14 @@ namespace RemiseHavestraat
         private void btnTakenToevoegen_Click(object sender, EventArgs e)
         {
             string tramnummer = tbTreinNummerSchoonmaak.Text;
-            int medewerkerid = Convert.ToInt32(tbMedewerkerS.Text);
+            int medewerkerid = Convert.ToInt32(tbMedewerkerS1.Text);
             string type = tbType.Text;
             string beschrijving = tbBeschrijving.Text;
             string prioriteit = tbPrioriteitS.Text;
             DateTime datumbegin = Convert.ToDateTime(dtpBegin);
             DateTime datumeind = Convert.ToDateTime(dtpEind);
 
-            if (string.IsNullOrEmpty(tbTreinNummerSchoonmaak.Text) || string.IsNullOrEmpty(tbMedewerkerS.Text) || string.IsNullOrEmpty(tbType.Text)
+            if (string.IsNullOrEmpty(tbTreinNummerSchoonmaak.Text) || string.IsNullOrEmpty(tbMedewerkerS1.Text) || string.IsNullOrEmpty(tbType.Text)
                 || string.IsNullOrEmpty(tbBeschrijving.Text) || string.IsNullOrEmpty(tbPrioriteitS.Text))
             {
 
