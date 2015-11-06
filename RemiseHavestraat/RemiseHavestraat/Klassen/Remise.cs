@@ -15,6 +15,7 @@ namespace RemiseHavestraat
         private List<Spoor> sporen;
         private List<Tram> trams;
         private List<Reservering> reserveringen;
+        private List<Beurt> beurten;
 
         public List<Medewerker> Medewerkers
         {
@@ -34,6 +35,11 @@ namespace RemiseHavestraat
         public List<Tram> Trams
         {
             get { return trams; }
+        }
+
+        public List<Beurt> Beurten
+        {
+            get { return beurten; }
         }
 
         public List<Reservering> Reserveringen
@@ -95,8 +101,10 @@ namespace RemiseHavestraat
         #endregion
 
         #region methodes
+        //Deze methode haalt alle medewerkers op van de database en zet ze in de lijst
         public bool MedewerkersOphalen()
         {
+
             return false;
         }
 

@@ -79,6 +79,42 @@ namespace RemiseHavestraat
             }
             
         }
+
+        public List<Medewerker> HaalOpMedewerkers()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT \"Naam\", \"Functie\" FROM \"Medewerker\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+                string wachtwoord;
+                string rol;
+
+                while (reader.Read())
+                {
+                    wachtwoord = (string)reader["Wachtwoord"];
+                    rol = (string)reader["Rol"];
+
+                    if (wachtWoord == wachtwoord)
+                    {
+                        Console.WriteLine("Welkom: " + gebruikersNaam);
+                        return account = new Account(gebruikersNaam, EnumMedewerkerRol.Beheerder);
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         #endregion
     }
 }

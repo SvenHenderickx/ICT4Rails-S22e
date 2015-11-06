@@ -9,7 +9,6 @@ namespace RemiseHavestraat
     public class Medewerker
     {
         public string MedewerkerNaam { get; private set; }
-        bool MedewerkerBeschikbaar = false;
 
         public EnumMedewerkerRol MedewerkerRol { get; private set; }
 
