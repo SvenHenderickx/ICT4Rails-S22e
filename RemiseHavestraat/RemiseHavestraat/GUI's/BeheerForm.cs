@@ -19,6 +19,8 @@ namespace RemiseHavestraat
             InitializeComponent();
             bool test = Remise.Instance.MedewerkersOphalen();
             MessageBox.Show("Medewerkers Ophalen:" + test.ToString());
+            test = Remise.Instance.TramsOphalen();
+            MessageBox.Show(test.ToString());
         }
 
 

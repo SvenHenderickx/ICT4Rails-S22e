@@ -130,6 +130,77 @@ namespace RemiseHavestraat
                 conn.Close();
             }
         }
+
+        public List<Tram> HaalOpTrams()
+        {
+
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT \"Nummer\", \"Type\", \"Lengte\", \"Status\" FROM \"Tram\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int nummer;
+                string type;
+                int lengte;
+                string status;
+
+                List<Tram> alleTrams = new List<Tram>();
+
+                while (reader.Read())
+                {
+                    nummer = (int)reader["Nummer"];
+                    type = (string)reader["Type"];
+                    lengte = (int)reader["Lengte"];
+                    status = (string)reader["Status"];
+                    int typeInt;
+                    switch (type)
+                    {
+                        case "Dubbelkop":
+                            typeInt = 1;
+                            break;
+                        case "Opleidingstrams":
+                            typeInt = 2;
+                            break;
+                        case "ElfG":
+                            typeInt = 3;
+                            break;
+                        case "TwaalG":
+                            typeInt = 4;
+                            break;
+                        default:
+                            typeInt = 0;
+                            break;
+                    }
+                    if (status == "Defect")
+                    {
+                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 0));
+                    }
+                    if (status == "Schoonmaak")
+                    {
+                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 1));
+                    }
+                    if (status == "Dienst")
+                    {
+                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 2));
+                    }
+                    if (status == "Remise")
+                    {
+                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 3));
+                    }
+                }
+                return alleTrams;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         #endregion
     }
 }

@@ -118,7 +118,17 @@ namespace RemiseHavestraat
 
         public bool TramsOphalen()
         {
-            return false;
+            List<Tram> tempTrams = db.HaalOpTrams();
+            if (tempTrams == null)
+            {
+                return false;
+            }
+            else
+            {
+                trams = tempTrams;
+                return true;
+            }
+            
         }
 
         public bool SporenOphalen()
