@@ -65,7 +65,7 @@ namespace RemiseHavestraat
 
         private void btnAfsluiten_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }
