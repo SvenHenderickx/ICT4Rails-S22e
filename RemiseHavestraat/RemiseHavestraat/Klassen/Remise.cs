@@ -132,6 +132,18 @@ namespace RemiseHavestraat
             
         }
 
+        public Tram GeefTram(int tramNr)
+        {
+            foreach (Tram tram in trams)
+            {
+                if (tram.TramNr == tramNr)
+                {
+                    return tram;
+                }
+            }
+            return null;
+        }
+
         public bool SporenOphalen()
         {
             List<Spoor> tempSporen = db.HaalOpSporen();
@@ -153,6 +165,7 @@ namespace RemiseHavestraat
 
         public bool SchoonmaakBeurtenOphalen()
         {
+
             return false;
         }
 

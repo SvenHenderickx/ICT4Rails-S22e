@@ -239,6 +239,40 @@ namespace RemiseHavestraat
                 conn.Close();
             }
         }
+
+        public List<SchoonmaakBeurt> HaalOpSchoonmaakBeurten()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT \"ID\", \"Remise_ID\", \"Nummer\" FROM \"Spoor\" WHERE Type = 'KLEINE SCHOONMAAK' OR TYPE = 'GROTE SCHOONMAAK'";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int remiseid;
+                int nummer;
+
+                List<SchoonmaakBeurt> alleSchoonmaakBeurten = new List<SchoonmaakBeurt>();
+
+                while (reader.Read())
+                {
+                    id = (int)reader["ID"];
+                    remiseid = (int)reader["Remise_ID"];
+                    nummer = (int)reader["Nummer"];
+                    
+                }
+                return alleSchoonmaakBeurten;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         #endregion
     }
 }
