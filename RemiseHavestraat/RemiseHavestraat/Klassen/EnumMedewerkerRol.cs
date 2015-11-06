@@ -11,6 +11,7 @@ namespace RemiseHavestraat
         Schoonmaker,
         Technicus,
         WagenparkBeheerder,
-        Beheerder
+        Beheerder,
+        Bestuurder
     }
 }

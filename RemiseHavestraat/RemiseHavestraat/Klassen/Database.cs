@@ -82,28 +82,42 @@ namespace RemiseHavestraat
 
         public List<Medewerker> HaalOpMedewerkers()
         {
+            List<Medewerker> alleMedewerkers = null;
             try
             {
                 OpenVerbinding();
                 cmd.Connection = conn;
                 cmd.CommandText = "SELECT \"Naam\", \"Functie\" FROM \"Medewerker\"";
                 OracleDataReader reader = cmd.ExecuteReader();
-                string wachtwoord;
-                string rol;
-
+                string naam;
+                string functie;
+                
                 while (reader.Read())
                 {
-                    wachtwoord = (string)reader["Wachtwoord"];
-                    rol = (string)reader["Rol"];
-
-                    if (wachtWoord == wachtwoord)
+                    naam = (string)reader["Naam"];
+                    functie = (string)reader["Functie"];
+                    if (functie == "Schoonmaker")
                     {
-                        Console.WriteLine("Welkom: " + gebruikersNaam);
-                        return account = new Account(gebruikersNaam, EnumMedewerkerRol.Beheerder);
+                        alleMedewerkers.Add(new Medewerker(naam, 0));
+                    }
+                    if (functie == "Technicus")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 1));
+                    }
+                    if (functie == "Beheerder")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 3));
+                    }
+                    if (functie == "Bestuurder")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 4));
+                    }
+                    if (functie == "WagenparkBeheerder")
+                    {
+                        alleMedewerkers.Add(new Medewerker(naam, 2));
                     }
                 }
-
-                return null;
+                return alleMedewerkers;
             }
             catch (Exception e)
             {
