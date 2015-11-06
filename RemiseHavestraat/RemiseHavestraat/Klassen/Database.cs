@@ -205,6 +205,40 @@ namespace RemiseHavestraat
                 conn.Close();
             }
         }
+        public List<Spoor> HaalOpSporen()
+        {
+
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT \"ID\", \"Remise_ID\", \"Nummer\" FROM \"Spoor\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int remiseid;
+                int nummer;
+
+                List<Spoor> alleSporen = new List<Spoor>();
+
+                while (reader.Read())
+                {
+                    id = (int)reader["ID"];
+                    remiseid = (int)reader["Remise_ID"];
+                    nummer = (int)reader["Nummer"];
+                    alleSporen.Add(new Spoor(id, remiseid, nummer));
+                }            
+                return alleSporen;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
         #endregion
     }
 }
