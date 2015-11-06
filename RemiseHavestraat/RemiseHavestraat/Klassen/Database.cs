@@ -138,9 +138,11 @@ namespace RemiseHavestraat
             {
                 OpenVerbinding();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT \"Nummer\", \"Type\", \"Lengte\", \"Status\" FROM \"Tram\"";
+                cmd.CommandText = "SELECT \"ID\", \"Nummer\", \"Lijn_ID\", \"Type\", \"Lengte\", \"Status\" FROM \"Tram\"";
                 OracleDataReader reader = cmd.ExecuteReader();
+                int id;
                 int nummer;
+                int lijnId;
                 string type;
                 int lengte;
                 string status;
@@ -149,7 +151,9 @@ namespace RemiseHavestraat
 
                 while (reader.Read())
                 {
+                    id = (int)reader["ID"];
                     nummer = (int)reader["Nummer"];
+                    lijnId = (int)reader["Lijn_ID"];
                     type = (string)reader["Type"];
                     lengte = (int)reader["Lengte"];
                     status = (string)reader["Status"];
@@ -174,19 +178,19 @@ namespace RemiseHavestraat
                     }
                     if (status == "Defect")
                     {
-                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 0));
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 0));
                     }
                     if (status == "Schoonmaak")
                     {
-                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 1));
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 1));
                     }
                     if (status == "Dienst")
                     {
-                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 2));
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 2));
                     }
                     if (status == "Remise")
                     {
-                        alleTrams.Add(new Tram(nummer, lengte, typeInt, 3));
+                        alleTrams.Add(new Tram(id, nummer, lijnId, typeInt, lengte, 3));
                     }
                 }
                 return alleTrams;

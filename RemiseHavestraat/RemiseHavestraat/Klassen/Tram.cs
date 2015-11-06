@@ -19,14 +19,14 @@ namespace RemiseHavestraat
         public int Lengte { get; private set; }
         public Status StatusEnum { get; set; }
 
-        public Tram(int tramID, int tramNr, int lijnID, Type type, int lengte, Status status)
+        public Tram(int tramID, int tramNr, int lijnID, int type, int lengte, int status)
         {
             this.TramID = tramID;
             this.TramNr = tramNr;
             this.LijnID = lijnID;
-            this.TypeEnum = type;
+            this.TypeEnum = (Type)type;
             this.Lengte = lengte;
-            this.StatusEnum = status;
+            this.StatusEnum = (Status)status;
         }
     }
 }
