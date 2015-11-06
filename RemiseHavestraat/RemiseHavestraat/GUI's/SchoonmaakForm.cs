@@ -19,7 +19,8 @@ namespace RemiseHavestraat
 
         private void btnSchoonmaakLijstOpvragen_Click(object sender, EventArgs e)
         {
-
+            Remise.Instance.SchoonmaakBeurtenOphalen();
+            foreach (SchoonmaakBeurt beurt in Remise.Instance);
         }
 
         private void btnAftekenen_Click(object sender, EventArgs e)
