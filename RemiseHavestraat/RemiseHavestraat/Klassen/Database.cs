@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -257,7 +258,8 @@ namespace RemiseHavestraat
             {
                 OpenVerbinding();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT \"ID\", \"Nummer\", \"Lijn_ID\", \"Type\", \"Lengte\", \"Status\" FROM \"Tram\"";
+                //cmd.CommandText = "SELECT \"ID\", \"Nummer\", \"Lijn_ID\", \"Type\", \"Lengte\", \"Status\" FROM \"Tram\"";
+                cmd.CommandText = "SELECT * FROM \"Tram\"";
                 OracleDataReader reader = cmd.ExecuteReader();
                 int id;
                 int nummer;
@@ -270,12 +272,13 @@ namespace RemiseHavestraat
 
                 while (reader.Read())
                 {
-                    id = (int)reader["ID"];
-                    nummer = (int)reader["Nummer"];
-                    lijnId = (int)reader["Lijn_ID"];
-                    type = (string)reader["Type"];
-                    lengte = (int)reader["Lengte"];
-                    status = (string)reader["Status"];
+
+                    id = Convert.ToInt32(reader["id"]);
+                    nummer = Convert.ToInt32(reader["nummer"]);
+                    if( Int32.TryParse(reader["lijn_id"].ToString(),out lijnId) == false) lijnId = -1;
+                    type = reader["type"].ToString();
+                    lengte = Convert.ToInt32(reader["lengte"]);
+                    status = reader["status"].ToString();
                     int typeInt;
                     switch (type)
                     {
@@ -417,9 +420,9 @@ namespace RemiseHavestraat
 
                 while (reader.Read())
                 {
-                    id = (int)reader["ID"];
-                    remiseid = (int)reader["Remise_ID"];
-                    nummer = (int)reader["Nummer"];
+                    id = Convert.ToInt32(reader["id"]);
+                    remiseid = Convert.ToInt32(reader["remise_id"]);
+                    nummer = Convert.ToInt32(reader["nummer"]);
                     alleSporen.Add(new Spoor(id, remiseid, nummer));
                 }            
                 return alleSporen;
@@ -537,6 +540,93 @@ namespace RemiseHavestraat
             return true;
         }
             
+        #endregion
+
+
+
+
+        #region Stored procedures
+
+        public bool PlaatsTram(int tramNr, int spoorNr, int segmentNr)
+        {
+            cmd = new OracleCommand("PLAATSTRAM",conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("p_tramNr", OracleType.Number).Value = tramNr;
+            cmd.Parameters.Add("p_spoorNr", OracleType.Number).Value = spoorNr;
+            cmd.Parameters.Add("p_segmentNr", OracleType.Number).Value = segmentNr;
+
+            cmd.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+            cmd.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmd))
+            {
+                cmd.ExecuteNonQuery();
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+
+            //RETURN VALUE
+            if (cmd.Parameters["p_geslaagd_out"].Value.Equals(1))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
+        #region METHODES GIJS
+
+        public List<Segment> HaalSegmentenOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM \"Segment\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int spoorID;
+                int nummer;
+                int tramID;
+                int blokkade;
+
+                List<Segment> alleSegmenten = new List<Segment>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    nummer = Convert.ToInt32(reader["nummer"]);
+                    if( Int32.TryParse(reader["tram_id"].ToString(),out tramID) == false) tramID = -1;
+                    blokkade = Convert.ToInt32(reader["blokkade"]);
+                    
+                    alleSegmenten.Add(new Segment(spoorID,nummer,tramID,blokkade));
+                  
+                }
+                return alleSegmenten;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        #endregion
+
+
+
         #endregion
     }
 }

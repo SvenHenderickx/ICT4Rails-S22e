@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace RemiseHavestraat
 {
@@ -61,6 +64,10 @@ namespace RemiseHavestraat
             sporen = new List<Spoor>();
             trams = new List<Tram>();
             reserveringen = new List<Reservering>();
+
+            TramsOphalen();
+            SegmentenOphalen();
+            SporenOphalen();
         }
 
         public static Remise Instance
@@ -182,7 +189,16 @@ namespace RemiseHavestraat
 
         public bool SegmentenOphalen()
         {
-            return false;
+            List<Segment> tempSegmenten = db.HaalSegmentenOp();
+            if (tempSegmenten == null)
+            {
+                return false;
+            }
+            else
+            {
+                segmenten = tempSegmenten;
+                return true;
+            }
         }
 
         public bool SchoonmaakBeurtenOphalen()
@@ -274,5 +290,109 @@ namespace RemiseHavestraat
             return false;
         }
         #endregion
+
+
+
+        #region methodes GIJS
+
+        /// <summary>
+        /// Deze methode gaat na of een tram voorkomt in de lijst trams
+        /// </summary>
+        /// <param name="tramNr">Nummer van de tram</param>
+        /// <returns>True wanneer de tram voorkomt anders false</returns>
+        public bool BestaatTram(int tramNr)
+        {
+            if (Trams.Find(x => x.TramNr == tramNr) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Deze methode gaat na of een segment voorkomt in de lijst segmenten
+        /// </summary>
+        /// <param name="spoorNr">Nummer van het spoor</param>
+        /// <param name="segmentNr">Nummer van het segment</param>
+        /// <returns>true als segment voorkomt anders false</returns>
+        public bool BestaatSegment(int spoorNr, int segmentNr)
+        {
+            int spoorID = 0;
+            foreach (var s in Sporen)
+            {
+                if (s.Nummer == spoorNr) spoorID = s.ID;
+            }
+
+            if (spoorID == 0)
+            {
+                return false;
+            }
+
+            if (segmenten.Find(x => x.SpoorID == spoorID && x.Nummer == segmentNr) == null)
+            {
+                return false;
+            }
+
+            foreach (var s in segmenten)
+            {
+                if (s.SpoorID == spoorID) ;
+            }
+            
+            return true;
+        }
+
+
+        public void PlaatsTram(int tramNr, int spoorNr, int segmentNr)
+        {
+            db.PlaatsTram(tramNr, spoorNr, segmentNr);
+        }
+
+        /// <summary>
+        /// Geeft het tramnummer van een tram die op een segment staat
+        /// </summary>
+        /// <param name="SegmentID">Het id van een segment</param>
+        /// <returns>Tramnummer</returns>
+        public List<Segment> GeefSegmentenMetTram()
+        {
+            List<Segment> segmentenMetTram = new List<Segment>();
+            foreach (var s in segmenten)
+            {
+                if (s.Tram_ID != -1)
+                {
+                    segmentenMetTram.Add(s);
+                }
+                
+            }
+            return segmentenMetTram;
+        }
+
+        public int geefTramNr(int tramID)
+        {
+            foreach (var t in Trams)
+            {
+                if (t.TramID == tramID)
+                {
+                    return t.TramNr;
+                }
+            }
+            return 0;
+        }
+
+        public int geefSpoorNr(int spoorID)
+        {
+            foreach (var s in Sporen)
+            {
+                if (s.ID == spoorID)
+                {
+                    return s.Nummer;
+                }
+            }
+            return 0;
+        }
+
+
+        #endregion
+
+
     }
 }

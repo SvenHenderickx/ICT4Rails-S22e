@@ -19,6 +19,7 @@ namespace RemiseHavestraat
             InitializeComponent();
             Remise.Instance.MedewerkersOphalen();
             Remise.Instance.TramsOphalen();
+            UpdateRemiseOverzicht();
         }
 
 
@@ -30,6 +31,8 @@ namespace RemiseHavestraat
             {
                 f.ShowDialog();
             }
+
+            UpdateRemiseOverzicht();
         }
 
 
@@ -133,15 +136,12 @@ namespace RemiseHavestraat
         /// </summary>
         private void UpdateRemiseOverzicht()
         {
-            foreach (var v in Remise.Instance.Segmenten)
+            List<Segment> SegmentenMetTram = Remise.Instance.GeefSegmentenMetTram();
+            foreach (var s in SegmentenMetTram)
             {
-
-                Tram tram = Remise.Instance.Trams.Find(x => x.TramID == v.Tram_ID);
-                Spoor spoor = Remise.Instance.Sporen.Find(x => x.ID == v.SpoorID);
-
-                int tramNr = tram.TramNr;
-                int spoorNr = spoor.Nummer;
-                int segmentNr = v.Nummer;
+                int tramNr = Remise.Instance.geefTramNr(s.Tram_ID);
+                int spoorNr = Remise.Instance.geefSpoorNr(s.SpoorID);
+                int segmentNr = s.Nummer;
 
                 TextBox tb = GeefRemiseTB(spoorNr, segmentNr);
                 tb.Text = tramNr.ToString();

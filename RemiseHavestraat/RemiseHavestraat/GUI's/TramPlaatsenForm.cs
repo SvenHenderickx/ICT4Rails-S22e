@@ -19,22 +19,45 @@ namespace RemiseHavestraat
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
-            string tramnummer;
-            int spoornummer;
-            int segmentnummer;
+            int tramNr;
+            int spoorNr;
+            int segmentNr;
 
-            try
+
+            if (Int32.TryParse(tbTramnummer.Text, out tramNr) == false)
             {
-                 tramnummer = tbTramnummer.Text;
-                 spoornummer = Convert.ToInt32(tbSpoornummer.Text);
-                 segmentnummer = Convert.ToInt32(tbSegmentnummer.Text);
+                MessageBox.Show("Ongeldige invoer tramnummer");
             }
-            catch (Exception)
+
+            if (Int32.TryParse(tbSpoornummer.Text, out spoorNr) == false)
             {
-                MessageBox.Show("Ongeldige invoer");
+                MessageBox.Show("Ongeldige invoer spoornummer");
+            }
+
+            if (Int32.TryParse(tbSegmentnummer.Text, out segmentNr) == false)
+            {
+                MessageBox.Show("Ongeldige invoer segmentnummer");
             }
            
 
+            //Bekijken of tram bestaat
+
+            if (Remise.Instance.BestaatTram(tramNr) == false)
+            {
+                MessageBox.Show("Tramnummer betaat niet");
+                return;
+            }
+
+            //Bekijken of segment bestaat
+            if (Remise.Instance.BestaatSegment(spoorNr, segmentNr) == false)
+            {
+                MessageBox.Show("Segment betaat niet");
+                return;
+                
+            }
+
+            //Tram plaatsen
+            Remise.Instance.PlaatsTram(tramNr,spoorNr,segmentNr);
 
         }
 
