@@ -11,13 +11,15 @@ namespace RemiseHavestraat
         public int Nummer { get; private set; }
         public int Tram_ID { get; set; }
         public int Blokkade { get; set; }
+        public int Beschikbaar { get; set; }
 
-        public Segment(int spoorID, int nummer, int tram_ID, int blokkade)
+        public Segment(int spoorID, int nummer, int tram_ID, int blokkade, int beschikbaar)
         {
             this.SpoorID = spoorID;
             this.Nummer = nummer;
             this.Tram_ID = tram_ID;
             this.Blokkade = blokkade;
+            this.Beschikbaar = beschikbaar;
         }
     }
 }

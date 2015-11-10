@@ -495,6 +495,7 @@ namespace RemiseHavestraat
             return true;
         }
 
+        /*
         public bool VerwijderTramSegment(int tramnummer)
         {
             try
@@ -517,6 +518,7 @@ namespace RemiseHavestraat
             }
             return true;
         }
+          */
         public bool UpdateSpoor(int spoornummer)
         {
             try
@@ -549,28 +551,29 @@ namespace RemiseHavestraat
 
         public bool PlaatsTram(int tramNr, int spoorNr, int segmentNr)
         {
-            cmd = new OracleCommand("PLAATSTRAM",conn);
-            cmd.CommandType = CommandType.StoredProcedure;
+            var cmds = new OracleCommand("PLAATSTRAM",conn);
+            cmds.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.Add("p_tramNr", OracleType.Number).Value = tramNr;
-            cmd.Parameters.Add("p_spoorNr", OracleType.Number).Value = spoorNr;
-            cmd.Parameters.Add("p_segmentNr", OracleType.Number).Value = segmentNr;
+            cmds.Parameters.Add("p_tramNr", OracleType.Number).Value = tramNr;
+            cmds.Parameters.Add("p_spoorNr", OracleType.Number).Value = spoorNr;
+            cmds.Parameters.Add("p_segmentNr", OracleType.Number).Value = segmentNr;
 
-            cmd.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
-            cmd.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
+            cmds.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+            cmds.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
 
             OpenVerbinding();
 
-            using (var da = new OracleDataAdapter(cmd))
+            using (var da = new OracleDataAdapter(cmds))
             {
-                cmd.ExecuteNonQuery();
+                cmds.ExecuteNonQuery();
             }
 
             //VERBINDING SLUITEN
             conn.Close();
+            cmds.Dispose();
 
             //RETURN VALUE
-            if (cmd.Parameters["p_geslaagd_out"].Value.Equals(1))
+            if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
             {
                 return true;
             }
@@ -580,6 +583,93 @@ namespace RemiseHavestraat
             }
 
         }
+
+        public bool BlokkeerSegment(int spoorNr, int segmentNr)
+        {
+           var cmds = new OracleCommand("BLOKKEERSEGMENT", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+
+            
+            cmds.Parameters.Add("p_spoorNr", OracleType.Number).Value = spoorNr;
+            cmds.Parameters.Add("p_segmentNr", OracleType.Number).Value = segmentNr;
+
+            cmds.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+            cmds.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                cmds.ExecuteNonQuery();
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+
+            //RETURN VALUE
+            if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool VerwijderTram(int tramNr)
+        {
+            var cmds = new OracleCommand("VERWIJDERTRAM", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+
+            cmds.Parameters.Add("p_tramNr", OracleType.Number).Value = tramNr;
+            cmds.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+            cmds.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
+
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                cmds.ExecuteNonQuery();
+            }
+
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+
+            //RETURN VALUE
+            if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public void ResetOverzicht()
+        {
+           var cmds = new OracleCommand("RESETOVERZICHT", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                cmds.ExecuteNonQuery();
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+        }
+
 
 
         #region METHODES GIJS
@@ -597,6 +687,7 @@ namespace RemiseHavestraat
                 int nummer;
                 int tramID;
                 int blokkade;
+                int beschikbaar;
 
                 List<Segment> alleSegmenten = new List<Segment>();
 
@@ -606,8 +697,9 @@ namespace RemiseHavestraat
                     nummer = Convert.ToInt32(reader["nummer"]);
                     if( Int32.TryParse(reader["tram_id"].ToString(),out tramID) == false) tramID = -1;
                     blokkade = Convert.ToInt32(reader["blokkade"]);
+                    beschikbaar = Convert.ToInt32(reader["beschikbaar"]);
                     
-                    alleSegmenten.Add(new Segment(spoorID,nummer,tramID,blokkade));
+                    alleSegmenten.Add(new Segment(spoorID,nummer,tramID,blokkade,beschikbaar));
                   
                 }
                 return alleSegmenten;

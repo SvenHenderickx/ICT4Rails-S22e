@@ -12,6 +12,10 @@ namespace RemiseHavestraat
 {
     public partial class SpoorBlokkadeForm : Form
     {
+        public int SpoorNr;
+        public int SegmentNr;
+        public bool Uitvoeren = false;
+
         public SpoorBlokkadeForm()
         {
             InitializeComponent();
@@ -24,6 +28,7 @@ namespace RemiseHavestraat
 
         private void btnToggle_Click(object sender, EventArgs e)
         {
+            /*
             int segment = 0;
             int spoor = 0;
             if (Int32.TryParse(tbSpoornummer.Text, out spoor) && Int32.TryParse(tbSegmentnummer.Text, out segment))
@@ -43,6 +48,29 @@ namespace RemiseHavestraat
             {
                 MessageBox.Show("Voer AUB overal geldige data in.");
             }
+              */
+
+            if (Int32.TryParse(tbSpoornummer.Text, out SpoorNr) == false)
+            {
+                MessageBox.Show("Ongeldige invoer in spoor nummer");
+                return;
+            }
+            if (Int32.TryParse(tbSegmentnummer.Text, out SegmentNr) == false)
+            {
+                MessageBox.Show("Ongeldige invoer in segment nummer");
+                return;
+            }
+
+            //Bekijken of segment bestaat
+            if (Remise.Instance.BestaatSegment(SpoorNr, SegmentNr) == false)
+            {
+                MessageBox.Show("Segment betaat niet");
+                return;
+            }
+
+            Uitvoeren = true;
+            Close();
+
         }
     }
 }

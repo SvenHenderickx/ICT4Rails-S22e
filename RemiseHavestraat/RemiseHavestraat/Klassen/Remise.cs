@@ -262,14 +262,7 @@ namespace RemiseHavestraat
             return false;
         }
 
-        public bool TramVerwijderenSegment(int tramnummer)
-        {
-            if (db.VerwijderTramSegment(tramnummer))
-            {
-                return true;
-            }
-            return false;
-        }
+      
 
         public bool SpoorUpdate(int spoornummer)
         {
@@ -294,6 +287,15 @@ namespace RemiseHavestraat
 
 
         #region methodes GIJS
+
+        public bool TramVerwijderenSegment(int tramnummer)
+        {
+            if (db.VerwijderTram(tramnummer))
+            {
+                return true;
+            }
+            return false;
+        }
 
         /// <summary>
         /// Deze methode gaat na of een tram voorkomt in de lijst trams
@@ -342,43 +344,48 @@ namespace RemiseHavestraat
         }
 
 
-        public void PlaatsTram(int tramNr, int spoorNr, int segmentNr)
+        public bool PlaatsTram(int tramNr, int spoorNr, int segmentNr)
         {
-            db.PlaatsTram(tramNr, spoorNr, segmentNr);
+           return db.PlaatsTram(tramNr, spoorNr, segmentNr);
         }
 
         /// <summary>
         /// Geeft het tramnummer van een tram die op een segment staat
         /// </summary>
-        /// <param name="SegmentID">Het id van een segment</param>
+        /// <param name="spoorNr">Het id van een segment</param>
         /// <returns>Tramnummer</returns>
-        public List<Segment> GeefSegmentenMetTram()
+        public List<Segment> GeefSegmentenVanSpoor(int spoorNr)
         {
-            List<Segment> segmentenMetTram = new List<Segment>();
+            List<Segment> segmentenVanSpoor = new List<Segment>();
             foreach (var s in segmenten)
             {
-                if (s.Tram_ID != -1)
+                if (s.Nummer == spoorNr)
                 {
-                    segmentenMetTram.Add(s);
+                    segmentenVanSpoor.Add(s);
                 }
                 
             }
-            return segmentenMetTram;
+            return segmentenVanSpoor;
         }
 
-        public int geefTramNr(int tramID)
+        public List<Segment> GeefSegmenten()
+        {
+            return segmenten;
+        }
+
+        public string GeefTramNr(int tramID)
         {
             foreach (var t in Trams)
             {
                 if (t.TramID == tramID)
                 {
-                    return t.TramNr;
+                    return t.TramNr.ToString();
                 }
             }
-            return 0;
+            return "";
         }
 
-        public int geefSpoorNr(int spoorID)
+        public int GeefSpoorNr(int spoorID)
         {
             foreach (var s in Sporen)
             {
@@ -390,6 +397,22 @@ namespace RemiseHavestraat
             return 0;
         }
 
+        public bool BlokkeerSegment(int spoorNr, int segmentNr)
+        {
+           return db.BlokkeerSegment(spoorNr, segmentNr);
+        }
+
+
+        public void RefreshSegmenten()
+        {
+            segmenten = db.HaalSegmentenOp();
+        }
+
+        public void ResetOverzicht()
+        {
+            db.ResetOverzicht();
+            RefreshSegmenten();
+        }
 
         #endregion
 

@@ -12,13 +12,9 @@ namespace RemiseHavestraat
 {
     public partial class BeheerForm : Form
     {
-
-        
         public BeheerForm()
         {
             InitializeComponent();
-            Remise.Instance.MedewerkersOphalen();
-            Remise.Instance.TramsOphalen();
             UpdateRemiseOverzicht();
         }
 
@@ -30,9 +26,16 @@ namespace RemiseHavestraat
             using (var f = new TramPlaatsenForm())
             {
                 f.ShowDialog();
+                if (f.Uitvoeren)
+                {
+                    if (Remise.Instance.PlaatsTram(f.TramNr, f.SpoorNr, f.SegmentNr) == false)
+                    {
+                        MessageBox.Show("Niet gelukt");
+                        return;
+                    }
+                    UpdateRemiseOverzicht();
+                }
             }
-
-            UpdateRemiseOverzicht();
         }
 
 
@@ -41,6 +44,15 @@ namespace RemiseHavestraat
             using (var f = new TramVerwijderenForm())
             {
                 f.ShowDialog();
+                if (f.Uitvoeren)
+                {
+                    if (Remise.Instance.TramVerwijderenSegment(f.TramNr) == false)
+                    {
+                        MessageBox.Show("Niet gelukt");
+                        return;
+                    }
+                    UpdateRemiseOverzicht();
+                }
             }
         }
 
@@ -73,6 +85,16 @@ namespace RemiseHavestraat
             using (var f = new SpoorBlokkadeForm())
             {
                 f.ShowDialog();
+
+                if (f.Uitvoeren)
+                {
+                    if (Remise.Instance.SpoorBlokkeren(f.SpoorNr, f.SegmentNr) == false)
+                    {
+                        MessageBox.Show("Niet gelukt");
+                        return;
+                    }
+                    UpdateRemiseOverzicht();
+                }
             }
         }
 
@@ -136,15 +158,26 @@ namespace RemiseHavestraat
         /// </summary>
         private void UpdateRemiseOverzicht()
         {
-            List<Segment> SegmentenMetTram = Remise.Instance.GeefSegmentenMetTram();
-            foreach (var s in SegmentenMetTram)
+            Remise.Instance.RefreshSegmenten();
+
+            List<Segment> segmenten = Remise.Instance.GeefSegmenten();
+
+            foreach (var s in segmenten)
             {
-                int tramNr = Remise.Instance.geefTramNr(s.Tram_ID);
-                int spoorNr = Remise.Instance.geefSpoorNr(s.SpoorID);
+                string tramNr = Remise.Instance.GeefTramNr(s.Tram_ID);
+                int spoorNr = Remise.Instance.GeefSpoorNr(s.SpoorID);
                 int segmentNr = s.Nummer;
 
-                TextBox tb = GeefRemiseTB(spoorNr, segmentNr);
-                tb.Text = tramNr.ToString();
+                TextBox tb = GeefRemiseTB(spoorNr, segmentNr);                
+                tb.Text = tramNr;
+
+                if(s.Blokkade == 1) tb.BackColor = Color.DarkGray;
+                if(s.Beschikbaar == 0) tb.BackColor = Color.LightGray;
+
+                if (s.Beschikbaar == 1 && s.Blokkade == 0)
+                {
+                    tb.BackColor = Color.White;
+                }
             }
         }
 
@@ -164,5 +197,13 @@ namespace RemiseHavestraat
 
       
         #endregion
+
+        private void resetDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Remise.Instance.ResetOverzicht();
+            UpdateRemiseOverzicht();
+        }
+
+       
     }
 }

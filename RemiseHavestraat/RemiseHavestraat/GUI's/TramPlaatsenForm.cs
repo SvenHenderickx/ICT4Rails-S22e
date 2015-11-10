@@ -12,6 +12,12 @@ namespace RemiseHavestraat
 {
     public partial class TramPlaatsenForm : Form
     {
+       public int TramNr;
+       public int SpoorNr;
+       public int SegmentNr;
+
+        public bool Uitvoeren = false;
+
         public TramPlaatsenForm()
         {
             InitializeComponent();
@@ -19,22 +25,18 @@ namespace RemiseHavestraat
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
-            int tramNr;
-            int spoorNr;
-            int segmentNr;
 
-
-            if (Int32.TryParse(tbTramnummer.Text, out tramNr) == false)
+            if (Int32.TryParse(tbTramnummer.Text, out TramNr) == false)
             {
                 MessageBox.Show("Ongeldige invoer tramnummer");
             }
 
-            if (Int32.TryParse(tbSpoornummer.Text, out spoorNr) == false)
+            if (Int32.TryParse(tbSpoornummer.Text, out SpoorNr) == false)
             {
                 MessageBox.Show("Ongeldige invoer spoornummer");
             }
 
-            if (Int32.TryParse(tbSegmentnummer.Text, out segmentNr) == false)
+            if (Int32.TryParse(tbSegmentnummer.Text, out SegmentNr) == false)
             {
                 MessageBox.Show("Ongeldige invoer segmentnummer");
             }
@@ -42,24 +44,23 @@ namespace RemiseHavestraat
 
             //Bekijken of tram bestaat
 
-            if (Remise.Instance.BestaatTram(tramNr) == false)
+            if (Remise.Instance.BestaatTram(TramNr) == false)
             {
                 MessageBox.Show("Tramnummer betaat niet");
                 return;
             }
 
             //Bekijken of segment bestaat
-            if (Remise.Instance.BestaatSegment(spoorNr, segmentNr) == false)
+            if (Remise.Instance.BestaatSegment(SpoorNr, SegmentNr) == false)
             {
                 MessageBox.Show("Segment betaat niet");
                 return;
-                
             }
 
-            //Tram plaatsen
-            Remise.Instance.PlaatsTram(tramNr,spoorNr,segmentNr);
-
-        }
+            //Close form
+            Uitvoeren = true;
+            Close();
+           }
 
         private void btnTerug_Click(object sender, EventArgs e)
         {

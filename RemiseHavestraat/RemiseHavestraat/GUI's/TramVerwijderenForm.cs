@@ -12,6 +12,9 @@ namespace RemiseHavestraat
 {
     public partial class TramVerwijderenForm : Form
     {
+        public int TramNr;
+        public bool Uitvoeren;
+
         public TramVerwijderenForm()
         {
             InitializeComponent();
@@ -19,6 +22,7 @@ namespace RemiseHavestraat
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
+            /*
             int tramnummer;
 
             if (Int32.TryParse(tbTramnummer.Text, out tramnummer) == false)
@@ -32,6 +36,17 @@ namespace RemiseHavestraat
                 Remise.Instance.SegmentenOphalen();
                 tbTramnummer.Clear();
             }
+             */
+
+            if (Int32.TryParse(tbTramnummer.Text, out TramNr) == false)
+            {
+                MessageBox.Show("Ongeldige invoer");
+            }
+
+            Uitvoeren = true;
+            Close();
+            Remise.Instance.TramVerwijderenSegment(TramNr);
+
 
         }
 
