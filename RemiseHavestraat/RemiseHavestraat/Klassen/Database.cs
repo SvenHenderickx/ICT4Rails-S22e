@@ -641,6 +641,8 @@ namespace RemiseHavestraat
             conn.Close();
             cmds.Dispose();
 
+            cmds.Parameters["p_geslaagd_out"].Value.ToString();
+
             //RETURN VALUE
             if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
             {

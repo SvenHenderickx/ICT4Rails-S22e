@@ -88,7 +88,7 @@ namespace RemiseHavestraat
 
                 if (f.Uitvoeren)
                 {
-                    if (Remise.Instance.SpoorBlokkeren(f.SpoorNr, f.SegmentNr) == false)
+                    if (Remise.Instance.BlokkeerSegment(f.SpoorNr, f.SegmentNr) == false)
                     {
                         MessageBox.Show("Niet gelukt");
                         return;
