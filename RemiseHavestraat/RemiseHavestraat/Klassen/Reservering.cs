@@ -8,15 +8,13 @@ namespace RemiseHavestraat
 {
     public class Reservering
     {
-        public int ID { get; private set; }
-        public Tram tram { get; private set; }
-        public Spoor spoor { get; private set; }
+        public int TramID { get; private set; }
+        public int SpoorID { get; private set; }
 
-        public Reservering(int id, Tram tram, Spoor spoor)
-        {
-            this.ID = id;
-            this.tram = tram;
-            this.spoor = spoor;
+        public Reservering(int tramID, int spoorID)
+        {;
+            this.TramID = tramID;
+            this.SpoorID = spoorID;
         }
     }
 }

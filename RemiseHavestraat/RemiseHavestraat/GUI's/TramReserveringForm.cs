@@ -12,9 +12,48 @@ namespace RemiseHavestraat
 {
     public partial class TramReserveringForm : Form
     {
+        public int TramNr;
+        public int SpoorNr;
+        public int SegmentNr;
+
+        public bool Uitvoeren = false;
+
         public TramReserveringForm()
         {
             InitializeComponent();
+        }
+
+        private void btnBevestig_Click(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(tbTramnummer.Text, out TramNr) == false)
+            {
+                MessageBox.Show("Ongeldige invoer tramnummer");
+            }
+
+            if (Int32.TryParse(tbSpoornummer.Text, out SpoorNr) == false)
+            {
+                MessageBox.Show("Ongeldige invoer spoornummer");
+            }
+
+            //Bekijken of tram bestaat
+
+            if (Remise.Instance.BestaatTram(TramNr) == false)
+            {
+                MessageBox.Show("Tramnummer betaat niet");
+                return;
+            }
+
+            //Bekijken of spoor bestaat
+            if (Remise.Instance.BestaatSpoor(SpoorNr) == false)
+            {
+                MessageBox.Show("Segment betaat niet");
+                return;
+            }
+
+            //Close form
+            Uitvoeren = true;
+            Close();
+
         }
     }
 }

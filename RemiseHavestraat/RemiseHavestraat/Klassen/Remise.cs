@@ -287,6 +287,19 @@ namespace RemiseHavestraat
 
 
         #region methodes GIJS
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spoorNr"></param>
+        /// <returns></returns>
+        public bool BestaatSpoor(int spoorNr)
+        {
+            if (Sporen.Find(x => x.Nummer == spoorNr) == null)
+            {
+                return false;
+            }
+            return true;
+        }
 
         /// <summary>
         /// 
@@ -462,6 +475,28 @@ namespace RemiseHavestraat
         public List<Segment> HaalSegmentenRandomOp()
         {
             return db.HaalSegmentenRandomOp();
+        }
+
+        public bool HaalReserveringenOp()
+        {
+           List<Reservering> tempReserveringen = db.HaalReserveringenOp();
+
+            if (tempReserveringen == null)
+            {
+                return false;
+            }
+            else
+            {
+                reserveringen = tempReserveringen;
+                return true;
+            }
+        }
+
+
+
+        public bool MaakReservering(int tramNr, int spoorNr)
+        {
+          return db.MaakReservering(tramNr, spoorNr);
         }
 
         #endregion

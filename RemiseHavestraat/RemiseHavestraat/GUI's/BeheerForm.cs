@@ -37,7 +37,6 @@ namespace RemiseHavestraat
                         MessageBox.Show("Niet gelukt");
                         return;
                     }
-                    UpdateRemiseOverzicht();
                 }
             }
         }
@@ -65,6 +64,14 @@ namespace RemiseHavestraat
             using (var f = new TramReserveringForm())
             {
                 f.ShowDialog();
+                if (f.Uitvoeren)
+                {
+                    if (Remise.Instance.MaakReservering(f.TramNr,f.SpoorNr) == false)
+                    {
+                        MessageBox.Show("Niet gelukt");
+                        return;
+                    }
+                }
             }
         }
 
@@ -250,6 +257,11 @@ namespace RemiseHavestraat
                 timer1.Stop();
                 i = 0;
             }
+        }
+
+        private void UpdateReserveringen()
+        {
+            
         }
 
        

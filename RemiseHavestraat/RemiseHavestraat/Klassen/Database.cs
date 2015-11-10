@@ -690,6 +690,40 @@ namespace RemiseHavestraat
             cmds.Dispose();
         }
 
+         public bool MaakReservering(int tramNr,int spoorNr)
+         {
+            var cmds = new OracleCommand("MAAKRESERVERING", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+            
+            cmds.Parameters.Add("p_tramNr", OracleType.Number).Value = tramNr;
+            cmds.Parameters.Add("p_spoorNr", OracleType.Number).Value = spoorNr;
+
+            cmds.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+            cmds.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                cmds.ExecuteNonQuery();
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+
+            //RETURN VALUE
+            if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
 
         #region METHODES GIJS
 
@@ -776,10 +810,46 @@ namespace RemiseHavestraat
             }
         }
 
+
+        public List<Reservering> HaalReserveringenOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM (SELECT * FROM \"Reservering\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                int spoorID;
+                int tramID;
+
+                List<Reservering> reserveringen = new List<Reservering>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    tramID = Convert.ToInt32(reader["tram_id"]);
+
+                    reserveringen.Add(new Reservering(tramID, spoorID));
+
+                }
+                return reserveringen;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        
+
         #endregion
-
-
-
         #endregion
     }
+
 }
+
