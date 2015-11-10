@@ -288,6 +288,11 @@ namespace RemiseHavestraat
 
         #region methodes GIJS
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tramnummer"></param>
+        /// <returns></returns>
         public bool TramVerwijderenSegment(int tramnummer)
         {
             if (db.VerwijderTram(tramnummer))
@@ -343,7 +348,13 @@ namespace RemiseHavestraat
             return true;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tramNr"></param>
+        /// <param name="spoorNr"></param>
+        /// <param name="segmentNr"></param>
+        /// <returns></returns>
         public bool PlaatsTram(int tramNr, int spoorNr, int segmentNr)
         {
            return db.PlaatsTram(tramNr, spoorNr, segmentNr);
@@ -368,11 +379,20 @@ namespace RemiseHavestraat
             return segmentenVanSpoor;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<Segment> GeefSegmenten()
         {
             return segmenten;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tramID"></param>
+        /// <returns></returns>
         public string GeefTramNr(int tramID)
         {
             foreach (var t in Trams)
@@ -385,6 +405,11 @@ namespace RemiseHavestraat
             return "";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spoorID"></param>
+        /// <returns></returns>
         public int GeefSpoorNr(int spoorID)
         {
             foreach (var s in Sporen)
@@ -397,21 +422,46 @@ namespace RemiseHavestraat
             return 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spoorNr"></param>
+        /// <param name="segmentNr"></param>
+        /// <returns></returns>
         public bool BlokkeerSegment(int spoorNr, int segmentNr)
         {
            return db.BlokkeerSegment(spoorNr, segmentNr);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void RefreshSegmenten()
         {
             segmenten = db.HaalSegmentenOp();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void ResetOverzicht()
         {
             db.ResetOverzicht();
             RefreshSegmenten();
+        }
+
+        public void Simulatie()
+        {
+            db.Simulatie();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Segment> HaalSegmentenRandomOp()
+        {
+            return db.HaalSegmentenRandomOp();
         }
 
         #endregion

@@ -673,6 +673,23 @@ namespace RemiseHavestraat
         }
 
 
+        public void Simulatie()
+        {
+            var cmds = new OracleCommand("SIMULATIE", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                cmds.ExecuteNonQuery();
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+        }
+
 
         #region METHODES GIJS
 
@@ -703,6 +720,48 @@ namespace RemiseHavestraat
                     
                     alleSegmenten.Add(new Segment(spoorID,nummer,tramID,blokkade,beschikbaar));
                   
+                }
+                return alleSegmenten;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        public List<Segment> HaalSegmentenRandomOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM (SELECT * FROM \"Segment\" ORDER BY \"Nummer\", dbms_random.value)";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int spoorID;
+                int nummer;
+                int tramID;
+                int blokkade;
+                int beschikbaar;
+
+                List<Segment> alleSegmenten = new List<Segment>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    nummer = Convert.ToInt32(reader["nummer"]);
+                    if (Int32.TryParse(reader["tram_id"].ToString(), out tramID) == false) tramID = -1;
+                    blokkade = Convert.ToInt32(reader["blokkade"]);
+                    beschikbaar = Convert.ToInt32(reader["beschikbaar"]);
+
+                    alleSegmenten.Add(new Segment(spoorID, nummer, tramID, blokkade, beschikbaar));
+
                 }
                 return alleSegmenten;
             }
