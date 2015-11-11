@@ -12,20 +12,26 @@ namespace RemiseHavestraat
 {
     public partial class ReparatieForm : Form
     {
-        private List<Beurt> serviceBeurten; 
+        private List<Beurt> serviceBeurten;
+        private List<Medewerker> technici;
+        
+
 
         public ReparatieForm()
         {
-            InitializeComponent();
-            Remise.Instance.MedewerkersOphalen("Technicus");
+           InitializeComponent();
+            technici = Remise.Instance.TechniciOphalen();
+            cbMedewerker.DataSource = technici;
+
         }
 
         private void btnReparatieLijstOpvragen_Click(object sender, EventArgs e)
         {
+            
             lbReparatie.Items.Clear();
             serviceBeurten = Remise.Instance.ServiceBeurtenLijstOphalen();
 
-            if (serviceBeurten == null)
+            if (serviceBeurten.Count == 0)
             {
                 MessageBox.Show("Er zijn geen servicebeurten");
                 return;
@@ -36,97 +42,38 @@ namespace RemiseHavestraat
                 lbReparatie.Items.Add(s.ToString());
             }
 
-            VerversServicebeurten(Remise.Instance.Beurten);
         }
 
         private void btnAftekenenReparatie_Click(object sender, EventArgs e)
         {
-            if (lbReparatie.SelectedItem != null)
-            {
-                DateTime eind = dtpEindR.Value;
-                foreach (Beurt beurt in Remise.Instance.Beurten)
-                {
-                    if (beurt.ToString() == lbReparatie.SelectedItem.ToString())
-                    {
-                        Remise.Instance.SchoonmaakBeurtAftekenen(beurt, eind);
-                    }
+            int i = lbReparatie.SelectedIndex;
 
-                }
-            }
-            else
+            if (i == -1)
             {
-                MessageBox.Show("Selecteer een servicebeurt om af te tekenen.");
+                MessageBox.Show("Kies een servicebeurt");
+                return;
+            }
+
+            Beurt b = serviceBeurten[i];
+
+
+            if (Remise.Instance.VerwijderBeurt(b.ID) == true)
+            {
+                MessageBox.Show("Servicebeurt is afgetekend");
+                serviceBeurten = Remise.Instance.ServiceBeurtenLijstOphalen();
+
+                foreach (var s in serviceBeurten)
+                {
+                    lbReparatie.Items.Add(s.ToString());
+                }
             }
         }
 
         private void btnTakenToevoegenReparatie_Click(object sender, EventArgs e)
         {
-            Tram tram = null;
-            List<int> medewerkersid = new List<int>();
-            int tramnummer;
-            int medewerkerid1 = 0;
-            int medewerkerid2 = 0;
-            int medewerkerid3 = 0;
-            int medewerkerid4 = 0;
-            int medewerkerid5 = 0;
-            int type = 0;
-            int prioriteit = 0;
-            string beschrijving = tbBeschrijving.Text;
-            DateTime datumbegin = dtpBeginR.Value;
-            if (string.IsNullOrEmpty(tbTreinNummerSchoonmaak.Text) || string.IsNullOrEmpty(tbMedewerker1.Text) || string.IsNullOrEmpty(tbBeschrijving.Text))
-            {
-                MessageBox.Show("Voer AUB alle benodigde data in.");
-            }
-            else
-            {
-                if (rbGroot.Checked) type = 1;
-                if (rbKlein.Checked) type = 0;
-                if (rbNietBelangrijk.Checked) prioriteit = 0;
-                if (rbNormaal.Checked) prioriteit = 1;
-                if (rbSpoed.Checked) prioriteit = 2;
-                if (rbGroot.Checked) prioriteit = 3;
-                if (Int32.TryParse(tbTreinNummerSchoonmaak.Text, out tramnummer) || Int32.TryParse(tbMedewerker1.Text, out medewerkerid1))
-                {
-                    medewerkersid.Add(medewerkerid1);
-                    if (Int32.TryParse(tbMedewerker2.Text, out medewerkerid2))
-                    {
-                        medewerkersid.Add(medewerkerid2);
-                        if (Int32.TryParse(tbMedewerker3.Text, out medewerkerid3))
-                        {
-                            medewerkersid.Add(medewerkerid3);
-                            if (Int32.TryParse(tbMedewerker4.Text, out medewerkerid4))
-                            {
-                                medewerkersid.Add(medewerkerid4);
-                                if (Int32.TryParse(tbMedewerker5.Text, out medewerkerid5))
-                                {
-                                    medewerkersid.Add(medewerkerid5);
-                                }
-                            }
-                        }
-                    }
-                    tram = Remise.Instance.GeefTram(tramnummer);
-                    List<Medewerker> medewerkers = Remise.Instance.MedewerkersZoeken(medewerkersid);
-                    bool resultaat = Remise.Instance.VoegServiceBeurtToe(tram, medewerkers, type, prioriteit, beschrijving, datumbegin);
-                    if (resultaat == false)
-                    {
-                        MessageBox.Show("Er ging iets mis, er is geen nieuwe taak toegevoegd.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Voer AUB nummers in, waar om nummer word gevraagd.");
-                }
-            }
         }
 
-        public void VerversServicebeurten(List<Beurt> beurten)
-        {
-            if (beurten == null) return;
-            lbReparatie.Items.Clear();
-            foreach (Beurt b in beurten)
-            {
-                lbReparatie.Items.Add(b.ToString());
-            }
-        }
+ 
+
     }
 }

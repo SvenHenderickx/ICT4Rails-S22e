@@ -8,6 +8,7 @@ namespace RemiseHavestraat
 {
     public class Beurt
     {
+        public int ID { get; private set; }
         public DateTime DatumTijdBegin { get; private set; }
         public DateTime DatumTijdEind { get; set; }
         public string Beschrijving { get; private set; }
@@ -16,20 +17,37 @@ namespace RemiseHavestraat
         public List<Medewerker> Medewerkers { get; set; }
         public int TramID { get; private set; }
 
-        public Beurt(DateTime datumtijdbegin, DateTime datumtijdEind, string beschrijving, int tramID, EnumTypeBeurt type)
+        public Beurt(int id,DateTime datumtijdbegin, DateTime datumtijdEind, string beschrijving, int tramID, EnumTypeBeurt type)
         {
+            this.ID = id;
             this.DatumTijdBegin = datumtijdbegin;
-            this.DatumTijdBegin = datumtijdEind;
+            this.DatumTijdEind = datumtijdEind;
             this.Beschrijving = beschrijving;
             this.TramID = tramID;
             this.Type = type;
         }
 
-        /*
+       
         public override string ToString()
         {
-            return DatumTijdBegin.ToString() + " - " + PrioriteitBeurt + " - " + BeurtSoort + ": " + Beschrijving;
+            int tramNr = Convert.ToInt32(Remise.Instance.GeefTramNr(TramID));
+
+            string type = "";
+            if (Type == EnumTypeBeurt.GroteSchoonmaak || Type == EnumTypeBeurt.GroteService)
+                type = "Groot";
+            else if (Type == EnumTypeBeurt.KleineSchoonmaak || Type == EnumTypeBeurt.KleineService)
+                type = "Klein";
+
+            if (DatumTijdEind.ToString(("d-M-y")) == "1-1-1")
+            {
+                return tramNr + " - " + type + " - " + DatumTijdBegin.ToString("dd-MM-yyyy") + " - " + "Geen tijdsindicatie" + " - " + Beschrijving;
+            }
+            else
+            {
+                return tramNr + " - " + type + " - " + DatumTijdBegin.ToString("dd-MM-yyyy") + " - " + DatumTijdEind.ToString("dd-MM-yyyy") + " - " + Beschrijving;
+            }
+
         }
-         * */
+         
     }
 }

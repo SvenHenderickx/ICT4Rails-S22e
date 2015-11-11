@@ -27,7 +27,7 @@ namespace RemiseHavestraat
         }
         #endregion
 
-        #region Methodes
+       
         public bool OpenVerbinding()
         {
             try
@@ -44,6 +44,8 @@ namespace RemiseHavestraat
             }
         }
 
+
+        #region  methodes lezen uit database
         public Account LogIn(string gebruikersNaam, string wachtWoord)
         {
             try
@@ -97,7 +99,6 @@ namespace RemiseHavestraat
 
         public List<Medewerker> HaalOpMedewerkers()
         {
-            
             try
             {
                 OpenVerbinding();
@@ -146,60 +147,9 @@ namespace RemiseHavestraat
             }
         }
 
-        public List<Medewerker> HaalOpMedewerkers(string medewerkerfunctie)
-        {
-
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT \"Naam\", \"Functie\" FROM \"Medewerker\" WHERE \"Functie\" = '" + medewerkerfunctie + "'";
-                OracleDataReader reader = cmd.ExecuteReader();
-                string naam;
-                string functie;
-                List<Medewerker> alleMedewerkers = new List<Medewerker>();
-
-                while (reader.Read())
-                {
-                    naam = (string)reader["Naam"];
-                    functie = (string)reader["Functie"];
-                    if (functie == "Schoonmaker")
-                    {
-                        alleMedewerkers.Add(new Medewerker(naam, 0));
-                    }
-                    if (functie == "Technicus")
-                    {
-                        alleMedewerkers.Add(new Medewerker(naam, 1));
-                    }
-                    if (functie == "Beheerder")
-                    {
-                        alleMedewerkers.Add(new Medewerker(naam, 3));
-                    }
-                    if (functie == "Bestuurder")
-                    {
-                        alleMedewerkers.Add(new Medewerker(naam, 4));
-                    }
-                    if (functie == "WagenparkBeheerder")
-                    {
-                        alleMedewerkers.Add(new Medewerker(naam, 2));
-                    }
-                }
-                return alleMedewerkers;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
 
         public List<Medewerker> ZoekMedewerkers(List<int> medewerkersids)
         {
-
             try
             {
                 OpenVerbinding();
@@ -253,7 +203,6 @@ namespace RemiseHavestraat
 
         public List<Tram> HaalOpTrams()
         {
-
             try
             {
                 OpenVerbinding();
@@ -327,6 +276,7 @@ namespace RemiseHavestraat
                 conn.Close();
             }
         }
+
 
         public List<Tram> InfoSpoor(int spoor)
         {
@@ -405,7 +355,6 @@ namespace RemiseHavestraat
 
         public List<Spoor> HaalOpSporen()
         {
-
             try
             {
                 OpenVerbinding();
@@ -438,8 +387,6 @@ namespace RemiseHavestraat
             }
         }
 
-
-
         public bool UpdateTramStatus(int tramnummer, string tramstatus)
         {
             try
@@ -463,30 +410,7 @@ namespace RemiseHavestraat
             return true;
         }
 
-        /*
-        public bool VerwijderTramSegment(int tramnummer)
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "DELETE FROM \"Segment\" WHERE \"Tram_ID\" = '" + tramnummer + "'";
-                OracleDataReader reader = cmd.ExecuteReader();
-            }
 
-
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return true;
-        }
-          */
         public bool UpdateSpoor(int spoornummer)
         {
             try
@@ -509,10 +433,181 @@ namespace RemiseHavestraat
             }
             return true;
         }
+
+
+        public List<Segment> HaalSegmentenOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM \"Segment\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int spoorID;
+                int nummer;
+                int tramID;
+                int blokkade;
+                int beschikbaar;
+
+                List<Segment> alleSegmenten = new List<Segment>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    nummer = Convert.ToInt32(reader["nummer"]);
+                    if (Int32.TryParse(reader["tram_id"].ToString(), out tramID) == false) tramID = -1;
+                    blokkade = Convert.ToInt32(reader["blokkade"]);
+                    beschikbaar = Convert.ToInt32(reader["beschikbaar"]);
+
+                    alleSegmenten.Add(new Segment(spoorID, nummer, tramID, blokkade, beschikbaar));
+
+                }
+                return alleSegmenten;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        public List<Segment> HaalSegmentenRandomOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM (SELECT * FROM \"Segment\" ORDER BY \"Nummer\", dbms_random.value)";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int spoorID;
+                int nummer;
+                int tramID;
+                int blokkade;
+                int beschikbaar;
+
+                List<Segment> alleSegmenten = new List<Segment>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    nummer = Convert.ToInt32(reader["nummer"]);
+                    if (Int32.TryParse(reader["tram_id"].ToString(), out tramID) == false) tramID = -1;
+                    blokkade = Convert.ToInt32(reader["blokkade"]);
+                    beschikbaar = Convert.ToInt32(reader["beschikbaar"]);
+
+                    alleSegmenten.Add(new Segment(spoorID, nummer, tramID, blokkade, beschikbaar));
+
+                }
+                return alleSegmenten;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        public List<Reservering> HaalReserveringenOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM \"Reservering\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                int spoorID;
+                int tramID;
+
+                List<Reservering> reserveringen = new List<Reservering>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    tramID = Convert.ToInt32(reader["tram_id"]);
+
+                    reserveringen.Add(new Reservering(tramID, spoorID));
+
+                }
+                return reserveringen;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        public List<Beurt> HaalBeurtenOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM  \"Servicebeurt\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                int id;
+                DateTime datumBegin;
+                DateTime datumEind;
+                string beschrijving;
+                string type;
+                int tramID;
+                EnumTypeBeurt enumType;
+
+                List<Beurt> beurten = new List<Beurt>();
+
+                while (reader.Read())
+                {
+                    id = Convert.ToInt32(reader["id"]);
+                    datumBegin = Convert.ToDateTime(reader["datum_begin"]);
+                    datumEind = Convert.ToDateTime(reader["datum_eind"]);
+                    beschrijving = reader["beschrijving"].ToString();
+                    type = reader["type"].ToString();
+                    tramID = Convert.ToInt32(reader["tram_id"]);
+
+                    if (type == "KLEINE SCHOONMAAK") enumType = EnumTypeBeurt.KleineSchoonmaak;
+                    else if (type == "GROTE SCHOONMAAK") enumType = EnumTypeBeurt.GroteSchoonmaak;
+                    else if (type == "KLEINE SERVICE") enumType = EnumTypeBeurt.KleineService;
+                    else if (type == "GROTE SERVICE") enumType = EnumTypeBeurt.GroteService;
+                    else return null;
+
+                    beurten.Add(new Beurt(id, datumBegin, datumEind, beschrijving, tramID, enumType));
+
+                }
+                return beurten;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
             
         #endregion
-
-
 
 
         #region Stored procedures
@@ -731,179 +826,50 @@ namespace RemiseHavestraat
          }
 
 
-        #region METHODES GIJS
+         public bool VerwijderServicebeurt(int beurtID)
+         {
+             var cmds = new OracleCommand("VERWIJDERBEURT", conn);
+             cmds.CommandType = CommandType.StoredProcedure;
 
-        public List<Segment> HaalSegmentenOp()
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM \"Segment\"";
-                OracleDataReader reader = cmd.ExecuteReader();
-                int id;
-                int spoorID;
-                int nummer;
-                int tramID;
-                int blokkade;
-                int beschikbaar;
+             cmds.Parameters.Add("p_id", OracleType.Number).Value = beurtID;
 
-                List<Segment> alleSegmenten = new List<Segment>();
+             cmds.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+             cmds.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
 
-                while (reader.Read())
-                {
-                    spoorID = Convert.ToInt32(reader["spoor_id"]);
-                    nummer = Convert.ToInt32(reader["nummer"]);
-                    if( Int32.TryParse(reader["tram_id"].ToString(),out tramID) == false) tramID = -1;
-                    blokkade = Convert.ToInt32(reader["blokkade"]);
-                    beschikbaar = Convert.ToInt32(reader["beschikbaar"]);
-                    
-                    alleSegmenten.Add(new Segment(spoorID,nummer,tramID,blokkade,beschikbaar));
-                  
-                }
-                return alleSegmenten;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
+             OpenVerbinding();
 
+             using (var da = new OracleDataAdapter(cmds))
+             {
+                 try
+                 {
+                     cmds.ExecuteNonQuery();
 
-        public List<Segment> HaalSegmentenRandomOp()
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM (SELECT * FROM \"Segment\" ORDER BY \"Nummer\", dbms_random.value)";
-                OracleDataReader reader = cmd.ExecuteReader();
-                int id;
-                int spoorID;
-                int nummer;
-                int tramID;
-                int blokkade;
-                int beschikbaar;
+                 }
+                 catch (Exception e)
+                 {
+                     
+                     Console.WriteLine(e);
+                 }
+                 
+             }
 
-                List<Segment> alleSegmenten = new List<Segment>();
+             //VERBINDING SLUITEN
+             conn.Close();
+             cmds.Dispose();
 
-                while (reader.Read())
-                {
-                    spoorID = Convert.ToInt32(reader["spoor_id"]);
-                    nummer = Convert.ToInt32(reader["nummer"]);
-                    if (Int32.TryParse(reader["tram_id"].ToString(), out tramID) == false) tramID = -1;
-                    blokkade = Convert.ToInt32(reader["blokkade"]);
-                    beschikbaar = Convert.ToInt32(reader["beschikbaar"]);
-
-                    alleSegmenten.Add(new Segment(spoorID, nummer, tramID, blokkade, beschikbaar));
-
-                }
-                return alleSegmenten;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-
-        public List<Reservering> HaalReserveringenOp()
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM \"Reservering\"";
-                OracleDataReader reader = cmd.ExecuteReader();
-
-                int spoorID;
-                int tramID;
-
-                List<Reservering> reserveringen = new List<Reservering>();
-
-                while (reader.Read())
-                {
-                    spoorID = Convert.ToInt32(reader["spoor_id"]);
-                    tramID = Convert.ToInt32(reader["tram_id"]);
-
-                    reserveringen.Add(new Reservering(tramID, spoorID));
-
-                }
-                return reserveringen;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-
-        public List<Beurt> HaalBeurtenOp()
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM  \"Servicebeurt\"";
-                OracleDataReader reader = cmd.ExecuteReader();
-
-                DateTime datumBegin;
-                DateTime datumEind;
-                string beschrijving;
-                string type;
-                int tramID;
-                EnumTypeBeurt enumType;
-
-                List<Beurt> beurten = new List<Beurt>();
-
-                while (reader.Read())
-                {
-                    datumBegin =  Convert.ToDateTime(reader["datum_begin"]);
-                    datumEind = Convert.ToDateTime(reader["datum_eind"]);
-                    beschrijving = reader["beschrijving"].ToString();
-                    type = reader["type"].ToString();
-                    tramID = Convert.ToInt32(reader["tram_id"]);
-
-                    if(type == "KLEINE SCHOONMAAK") enumType = EnumTypeBeurt.KleineSchoonmaak;
-                    else if (type == "GROTE SCHOONMAAK") enumType = EnumTypeBeurt.GroteSchoonmaak;
-                    else if (type == "KLEINE SERVICE") enumType = EnumTypeBeurt.KleineService;
-                    else if (type == "GROTE SERVICE") enumType = EnumTypeBeurt.GroteService;
-                    else return null;
-
-                    beurten.Add(new Beurt(datumBegin,datumEind,beschrijving,tramID,enumType));
-
-                }
-                return beurten;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-        
+             //RETURN VALUE
+             if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
+             {
+                 return true;
+             }
+             else
+             {
+                 return false;
+             }
+         }
 
         #endregion
-        #endregion
+
     }
 
 }

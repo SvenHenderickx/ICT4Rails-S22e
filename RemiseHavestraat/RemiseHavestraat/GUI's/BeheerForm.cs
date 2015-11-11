@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RemiseHavestraat.GUI_s;
 
 namespace RemiseHavestraat
 {
@@ -19,6 +20,7 @@ namespace RemiseHavestraat
         {
             indexSimulatie = 0;
             InitializeComponent();
+
             UpdateRemiseOverzicht();
             UpdateReserveringen();
         }
@@ -224,7 +226,6 @@ namespace RemiseHavestraat
         }
 
       
-        #endregion
 
         private void resetDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -232,6 +233,8 @@ namespace RemiseHavestraat
             Remise.Instance.ResetOverzicht();
             UpdateRemiseOverzicht();
         }
+
+        #endregion
 
         private void timerSimulatie_Tick(object sender, EventArgs e)
         {
@@ -258,6 +261,7 @@ namespace RemiseHavestraat
             {
                 timerSimulatie.Stop();
                 indexSimulatie = 0;
+                MessageBox.Show("Alle trams zijn geplaatst");
             }
         }
 

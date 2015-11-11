@@ -1,4 +1,4 @@
-﻿namespace RemiseHavestraat
+﻿namespace RemiseHavestraat.GUI_s
 {
     partial class SchoonmaakForm
     {
@@ -29,339 +29,171 @@
         private void InitializeComponent()
         {
             this.lbSchoonmaak = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbMedewerker = new System.Windows.Forms.ComboBox();
+            this.btnVoegToe = new System.Windows.Forms.Button();
             this.btnSchoonmaakLijstOpvragen = new System.Windows.Forms.Button();
-            this.btnAftekenen = new System.Windows.Forms.Button();
-            this.btnTakenToevoegen = new System.Windows.Forms.Button();
-            this.lblTramNummerSchoonmaak = new System.Windows.Forms.Label();
-            this.tbTreinNummerSchoonmaak = new System.Windows.Forms.TextBox();
-            this.lblMedewerkersS = new System.Windows.Forms.Label();
-            this.tbMedewerkerS1 = new System.Windows.Forms.TextBox();
-            this.lblBeschrijving = new System.Windows.Forms.Label();
-            this.gbTaak = new System.Windows.Forms.GroupBox();
-            this.tbMedewerkerS5 = new System.Windows.Forms.TextBox();
-            this.tbMedewerkerS4 = new System.Windows.Forms.TextBox();
-            this.tbMedewerkerS3 = new System.Windows.Forms.TextBox();
-            this.tbMedewerkerS2 = new System.Windows.Forms.TextBox();
+            this.btnTijdsindicatie = new System.Windows.Forms.Button();
             this.lblDatumEind = new System.Windows.Forms.Label();
-            this.dtpEind = new System.Windows.Forms.DateTimePicker();
-            this.lblDatumBegin = new System.Windows.Forms.Label();
-            this.dtpBegin = new System.Windows.Forms.DateTimePicker();
-            this.lblType = new System.Windows.Forms.Label();
-            this.tbType = new System.Windows.Forms.TextBox();
-            this.lblPrioriteit = new System.Windows.Forms.Label();
-            this.tbPrioriteitS = new System.Windows.Forms.TextBox();
-            this.tbBeschrijving = new System.Windows.Forms.TextBox();
-            this.lblPrioriteit1 = new System.Windows.Forms.Label();
-            this.lblPrioriteit2 = new System.Windows.Forms.Label();
-            this.lblPrioriteit3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.gbTaak.SuspendLayout();
+            this.btnAftekenen = new System.Windows.Forms.Button();
+            this.dtpEindR = new System.Windows.Forms.DateTimePicker();
+            this.lbMedewerkers = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbSchoonmaak
             // 
             this.lbSchoonmaak.FormattingEnabled = true;
-            this.lbSchoonmaak.Location = new System.Drawing.Point(12, 16);
+            this.lbSchoonmaak.ItemHeight = 20;
+            this.lbSchoonmaak.Location = new System.Drawing.Point(13, 78);
+            this.lbSchoonmaak.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lbSchoonmaak.Name = "lbSchoonmaak";
-            this.lbSchoonmaak.Size = new System.Drawing.Size(313, 316);
-            this.lbSchoonmaak.TabIndex = 0;
+            this.lbSchoonmaak.Size = new System.Drawing.Size(729, 464);
+            this.lbSchoonmaak.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1383, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 20);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Medewerker";
+            // 
+            // cbMedewerker
+            // 
+            this.cbMedewerker.FormattingEnabled = true;
+            this.cbMedewerker.Location = new System.Drawing.Point(1197, 78);
+            this.cbMedewerker.Name = "cbMedewerker";
+            this.cbMedewerker.Size = new System.Drawing.Size(180, 28);
+            this.cbMedewerker.TabIndex = 44;
+            // 
+            // btnVoegToe
+            // 
+            this.btnVoegToe.Location = new System.Drawing.Point(1007, 78);
+            this.btnVoegToe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVoegToe.Name = "btnVoegToe";
+            this.btnVoegToe.Size = new System.Drawing.Size(183, 54);
+            this.btnVoegToe.TabIndex = 43;
+            this.btnVoegToe.Text = "Voeg toe";
+            this.btnVoegToe.UseVisualStyleBackColor = true;
             // 
             // btnSchoonmaakLijstOpvragen
             // 
-            this.btnSchoonmaakLijstOpvragen.Location = new System.Drawing.Point(137, 187);
+            this.btnSchoonmaakLijstOpvragen.Location = new System.Drawing.Point(1007, 248);
+            this.btnSchoonmaakLijstOpvragen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSchoonmaakLijstOpvragen.Name = "btnSchoonmaakLijstOpvragen";
-            this.btnSchoonmaakLijstOpvragen.Size = new System.Drawing.Size(123, 35);
-            this.btnSchoonmaakLijstOpvragen.TabIndex = 1;
+            this.btnSchoonmaakLijstOpvragen.Size = new System.Drawing.Size(183, 54);
+            this.btnSchoonmaakLijstOpvragen.TabIndex = 6;
             this.btnSchoonmaakLijstOpvragen.Text = "Schoonmaaklijst opvragen";
             this.btnSchoonmaakLijstOpvragen.UseVisualStyleBackColor = true;
             this.btnSchoonmaakLijstOpvragen.Click += new System.EventHandler(this.btnSchoonmaakLijstOpvragen_Click);
             // 
-            // btnAftekenen
+            // btnTijdsindicatie
             // 
-            this.btnAftekenen.Location = new System.Drawing.Point(137, 231);
-            this.btnAftekenen.Name = "btnAftekenen";
-            this.btnAftekenen.Size = new System.Drawing.Size(123, 35);
-            this.btnAftekenen.TabIndex = 2;
-            this.btnAftekenen.Text = "Aftekenen";
-            this.btnAftekenen.UseVisualStyleBackColor = true;
-            this.btnAftekenen.Click += new System.EventHandler(this.btnAftekenen_Click);
-            // 
-            // btnTakenToevoegen
-            // 
-            this.btnTakenToevoegen.Location = new System.Drawing.Point(137, 276);
-            this.btnTakenToevoegen.Name = "btnTakenToevoegen";
-            this.btnTakenToevoegen.Size = new System.Drawing.Size(123, 35);
-            this.btnTakenToevoegen.TabIndex = 4;
-            this.btnTakenToevoegen.Text = "Taak toevoegen";
-            this.btnTakenToevoegen.UseVisualStyleBackColor = true;
-            this.btnTakenToevoegen.Click += new System.EventHandler(this.btnTakenToevoegen_Click);
-            // 
-            // lblTramNummerSchoonmaak
-            // 
-            this.lblTramNummerSchoonmaak.AutoSize = true;
-            this.lblTramNummerSchoonmaak.Location = new System.Drawing.Point(13, 23);
-            this.lblTramNummerSchoonmaak.Name = "lblTramNummerSchoonmaak";
-            this.lblTramNummerSchoonmaak.Size = new System.Drawing.Size(71, 13);
-            this.lblTramNummerSchoonmaak.TabIndex = 13;
-            this.lblTramNummerSchoonmaak.Tag = "";
-            this.lblTramNummerSchoonmaak.Text = "Tramnummer:";
-            // 
-            // tbTreinNummerSchoonmaak
-            // 
-            this.tbTreinNummerSchoonmaak.Location = new System.Drawing.Point(9, 39);
-            this.tbTreinNummerSchoonmaak.Name = "tbTreinNummerSchoonmaak";
-            this.tbTreinNummerSchoonmaak.Size = new System.Drawing.Size(122, 20);
-            this.tbTreinNummerSchoonmaak.TabIndex = 12;
-            // 
-            // lblMedewerkersS
-            // 
-            this.lblMedewerkersS.AutoSize = true;
-            this.lblMedewerkersS.Location = new System.Drawing.Point(10, 171);
-            this.lblMedewerkersS.Name = "lblMedewerkersS";
-            this.lblMedewerkersS.Size = new System.Drawing.Size(74, 13);
-            this.lblMedewerkersS.TabIndex = 14;
-            this.lblMedewerkersS.Text = "Medewerkers:";
-            // 
-            // tbMedewerkerS1
-            // 
-            this.tbMedewerkerS1.Location = new System.Drawing.Point(9, 187);
-            this.tbMedewerkerS1.Name = "tbMedewerkerS1";
-            this.tbMedewerkerS1.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS1.TabIndex = 15;
-            // 
-            // lblBeschrijving
-            // 
-            this.lblBeschrijving.AutoSize = true;
-            this.lblBeschrijving.Location = new System.Drawing.Point(10, 62);
-            this.lblBeschrijving.Name = "lblBeschrijving";
-            this.lblBeschrijving.Size = new System.Drawing.Size(67, 13);
-            this.lblBeschrijving.TabIndex = 18;
-            this.lblBeschrijving.Text = "Beschrijving:";
-            // 
-            // gbTaak
-            // 
-            this.gbTaak.Controls.Add(this.label5);
-            this.gbTaak.Controls.Add(this.label6);
-            this.gbTaak.Controls.Add(this.lblPrioriteit3);
-            this.gbTaak.Controls.Add(this.lblPrioriteit2);
-            this.gbTaak.Controls.Add(this.lblPrioriteit1);
-            this.gbTaak.Controls.Add(this.tbMedewerkerS5);
-            this.gbTaak.Controls.Add(this.tbMedewerkerS4);
-            this.gbTaak.Controls.Add(this.tbMedewerkerS3);
-            this.gbTaak.Controls.Add(this.tbMedewerkerS2);
-            this.gbTaak.Controls.Add(this.lblDatumEind);
-            this.gbTaak.Controls.Add(this.btnAftekenen);
-            this.gbTaak.Controls.Add(this.dtpEind);
-            this.gbTaak.Controls.Add(this.btnSchoonmaakLijstOpvragen);
-            this.gbTaak.Controls.Add(this.lblDatumBegin);
-            this.gbTaak.Controls.Add(this.dtpBegin);
-            this.gbTaak.Controls.Add(this.lblType);
-            this.gbTaak.Controls.Add(this.tbType);
-            this.gbTaak.Controls.Add(this.lblPrioriteit);
-            this.gbTaak.Controls.Add(this.tbPrioriteitS);
-            this.gbTaak.Controls.Add(this.tbBeschrijving);
-            this.gbTaak.Controls.Add(this.btnTakenToevoegen);
-            this.gbTaak.Controls.Add(this.lblBeschrijving);
-            this.gbTaak.Controls.Add(this.lblTramNummerSchoonmaak);
-            this.gbTaak.Controls.Add(this.tbTreinNummerSchoonmaak);
-            this.gbTaak.Controls.Add(this.lblMedewerkersS);
-            this.gbTaak.Controls.Add(this.tbMedewerkerS1);
-            this.gbTaak.Location = new System.Drawing.Point(332, 12);
-            this.gbTaak.Name = "gbTaak";
-            this.gbTaak.Size = new System.Drawing.Size(272, 322);
-            this.gbTaak.TabIndex = 19;
-            this.gbTaak.TabStop = false;
-            this.gbTaak.Text = "Schoonmaak";
-            // 
-            // tbMedewerkerS5
-            // 
-            this.tbMedewerkerS5.Location = new System.Drawing.Point(9, 291);
-            this.tbMedewerkerS5.Name = "tbMedewerkerS5";
-            this.tbMedewerkerS5.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS5.TabIndex = 31;
-            // 
-            // tbMedewerkerS4
-            // 
-            this.tbMedewerkerS4.Location = new System.Drawing.Point(9, 265);
-            this.tbMedewerkerS4.Name = "tbMedewerkerS4";
-            this.tbMedewerkerS4.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS4.TabIndex = 30;
-            // 
-            // tbMedewerkerS3
-            // 
-            this.tbMedewerkerS3.Location = new System.Drawing.Point(9, 239);
-            this.tbMedewerkerS3.Name = "tbMedewerkerS3";
-            this.tbMedewerkerS3.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS3.TabIndex = 29;
-            // 
-            // tbMedewerkerS2
-            // 
-            this.tbMedewerkerS2.Location = new System.Drawing.Point(9, 213);
-            this.tbMedewerkerS2.Name = "tbMedewerkerS2";
-            this.tbMedewerkerS2.Size = new System.Drawing.Size(122, 20);
-            this.tbMedewerkerS2.TabIndex = 28;
+            this.btnTijdsindicatie.Location = new System.Drawing.Point(1007, 153);
+            this.btnTijdsindicatie.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnTijdsindicatie.Name = "btnTijdsindicatie";
+            this.btnTijdsindicatie.Size = new System.Drawing.Size(183, 54);
+            this.btnTijdsindicatie.TabIndex = 42;
+            this.btnTijdsindicatie.Text = "Tijdsindicatie geven";
+            this.btnTijdsindicatie.UseVisualStyleBackColor = true;
             // 
             // lblDatumEind
             // 
             this.lblDatumEind.AutoSize = true;
-            this.lblDatumEind.Location = new System.Drawing.Point(141, 62);
+            this.lblDatumEind.Location = new System.Drawing.Point(1392, 165);
+            this.lblDatumEind.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDatumEind.Name = "lblDatumEind";
-            this.lblDatumEind.Size = new System.Drawing.Size(64, 13);
+            this.lblDatumEind.Size = new System.Drawing.Size(99, 20);
             this.lblDatumEind.TabIndex = 27;
-            this.lblDatumEind.Text = "Datum eind:";
+            this.lblDatumEind.Text = "Tijdsindicatie";
             // 
-            // dtpEind
+            // btnAftekenen
             // 
-            this.dtpEind.Location = new System.Drawing.Point(139, 78);
-            this.dtpEind.Name = "dtpEind";
-            this.dtpEind.Size = new System.Drawing.Size(121, 20);
-            this.dtpEind.TabIndex = 26;
+            this.btnAftekenen.Location = new System.Drawing.Point(1007, 332);
+            this.btnAftekenen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAftekenen.Name = "btnAftekenen";
+            this.btnAftekenen.Size = new System.Drawing.Size(183, 54);
+            this.btnAftekenen.TabIndex = 7;
+            this.btnAftekenen.Text = "Aftekenen";
+            this.btnAftekenen.UseVisualStyleBackColor = true;
+            this.btnAftekenen.Click += new System.EventHandler(this.btnAftekenen_Click);
             // 
-            // lblDatumBegin
+            // dtpEindR
             // 
-            this.lblDatumBegin.AutoSize = true;
-            this.lblDatumBegin.Location = new System.Drawing.Point(141, 23);
-            this.lblDatumBegin.Name = "lblDatumBegin";
-            this.lblDatumBegin.Size = new System.Drawing.Size(70, 13);
-            this.lblDatumBegin.TabIndex = 25;
-            this.lblDatumBegin.Text = "Datum begin:";
+            this.dtpEindR.Location = new System.Drawing.Point(1198, 165);
+            this.dtpEindR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpEindR.Name = "dtpEindR";
+            this.dtpEindR.Size = new System.Drawing.Size(180, 26);
+            this.dtpEindR.TabIndex = 26;
             // 
-            // dtpBegin
+            // lbMedewerkers
             // 
-            this.dtpBegin.Location = new System.Drawing.Point(139, 39);
-            this.dtpBegin.Name = "dtpBegin";
-            this.dtpBegin.Size = new System.Drawing.Size(121, 20);
-            this.dtpBegin.TabIndex = 24;
+            this.lbMedewerkers.FormattingEnabled = true;
+            this.lbMedewerkers.ItemHeight = 20;
+            this.lbMedewerkers.Location = new System.Drawing.Point(779, 78);
+            this.lbMedewerkers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lbMedewerkers.Name = "lbMedewerkers";
+            this.lbMedewerkers.Size = new System.Drawing.Size(220, 464);
+            this.lbMedewerkers.TabIndex = 24;
             // 
-            // lblType
+            // label2
             // 
-            this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(141, 107);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(34, 13);
-            this.lblType.TabIndex = 23;
-            this.lblType.Text = "Type:";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 20);
+            this.label2.TabIndex = 46;
+            this.label2.Text = "Schoonmaken";
             // 
-            // tbType
+            // label3
             // 
-            this.tbType.Location = new System.Drawing.Point(139, 126);
-            this.tbType.Name = "tbType";
-            this.tbType.Size = new System.Drawing.Size(36, 20);
-            this.tbType.TabIndex = 22;
-            // 
-            // lblPrioriteit
-            // 
-            this.lblPrioriteit.AutoSize = true;
-            this.lblPrioriteit.Location = new System.Drawing.Point(9, 107);
-            this.lblPrioriteit.Name = "lblPrioriteit";
-            this.lblPrioriteit.Size = new System.Drawing.Size(47, 13);
-            this.lblPrioriteit.TabIndex = 21;
-            this.lblPrioriteit.Text = "Prioriteit:";
-            // 
-            // tbPrioriteitS
-            // 
-            this.tbPrioriteitS.Location = new System.Drawing.Point(9, 126);
-            this.tbPrioriteitS.Name = "tbPrioriteitS";
-            this.tbPrioriteitS.Size = new System.Drawing.Size(47, 20);
-            this.tbPrioriteitS.TabIndex = 20;
-            // 
-            // tbBeschrijving
-            // 
-            this.tbBeschrijving.Location = new System.Drawing.Point(9, 78);
-            this.tbBeschrijving.Name = "tbBeschrijving";
-            this.tbBeschrijving.Size = new System.Drawing.Size(122, 20);
-            this.tbBeschrijving.TabIndex = 19;
-            // 
-            // lblPrioriteit1
-            // 
-            this.lblPrioriteit1.AutoSize = true;
-            this.lblPrioriteit1.Location = new System.Drawing.Point(62, 107);
-            this.lblPrioriteit1.Name = "lblPrioriteit1";
-            this.lblPrioriteit1.Size = new System.Drawing.Size(78, 13);
-            this.lblPrioriteit1.TabIndex = 32;
-            this.lblPrioriteit1.Text = "1: Onbelangrijk";
-            // 
-            // lblPrioriteit2
-            // 
-            this.lblPrioriteit2.AutoSize = true;
-            this.lblPrioriteit2.Location = new System.Drawing.Point(62, 126);
-            this.lblPrioriteit2.Name = "lblPrioriteit2";
-            this.lblPrioriteit2.Size = new System.Drawing.Size(43, 13);
-            this.lblPrioriteit2.TabIndex = 33;
-            this.lblPrioriteit2.Text = "2: Laag";
-            // 
-            // lblPrioriteit3
-            // 
-            this.lblPrioriteit3.AutoSize = true;
-            this.lblPrioriteit3.Location = new System.Drawing.Point(62, 145);
-            this.lblPrioriteit3.Name = "lblPrioriteit3";
-            this.lblPrioriteit3.Size = new System.Drawing.Size(45, 13);
-            this.lblPrioriteit3.TabIndex = 34;
-            this.lblPrioriteit3.Text = "3: Hoog";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(181, 126);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "2: Groot";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(181, 107);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "1: Klein";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(775, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 20);
+            this.label3.TabIndex = 47;
+            this.label3.Text = "Medewerkers";
             // 
             // SchoonmaakForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 346);
-            this.Controls.Add(this.gbTaak);
+            this.ClientSize = new System.Drawing.Size(1629, 560);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnSchoonmaakLijstOpvragen);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpEindR);
             this.Controls.Add(this.lbSchoonmaak);
+            this.Controls.Add(this.cbMedewerker);
+            this.Controls.Add(this.lbMedewerkers);
+            this.Controls.Add(this.btnVoegToe);
+            this.Controls.Add(this.btnTijdsindicatie);
+            this.Controls.Add(this.lblDatumEind);
+            this.Controls.Add(this.btnAftekenen);
             this.Name = "SchoonmaakForm";
             this.Text = "SchoonmaakForm";
-            this.gbTaak.ResumeLayout(false);
-            this.gbTaak.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ListBox lbSchoonmaak;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbMedewerker;
+        private System.Windows.Forms.Button btnVoegToe;
         private System.Windows.Forms.Button btnSchoonmaakLijstOpvragen;
-        private System.Windows.Forms.Button btnAftekenen;
-        private System.Windows.Forms.Button btnTakenToevoegen;
-        private System.Windows.Forms.Label lblTramNummerSchoonmaak;
-        private System.Windows.Forms.TextBox tbTreinNummerSchoonmaak;
-        private System.Windows.Forms.Label lblMedewerkersS;
-        private System.Windows.Forms.TextBox tbMedewerkerS1;
-        private System.Windows.Forms.Label lblBeschrijving;
-        private System.Windows.Forms.GroupBox gbTaak;
-        private System.Windows.Forms.Label lblType;
-        private System.Windows.Forms.TextBox tbType;
-        private System.Windows.Forms.Label lblPrioriteit;
-        private System.Windows.Forms.TextBox tbPrioriteitS;
-        private System.Windows.Forms.TextBox tbBeschrijving;
-        private System.Windows.Forms.DateTimePicker dtpBegin;
+        private System.Windows.Forms.Button btnTijdsindicatie;
         private System.Windows.Forms.Label lblDatumEind;
-        private System.Windows.Forms.DateTimePicker dtpEind;
-        private System.Windows.Forms.Label lblDatumBegin;
-        private System.Windows.Forms.TextBox tbMedewerkerS5;
-        private System.Windows.Forms.TextBox tbMedewerkerS4;
-        private System.Windows.Forms.TextBox tbMedewerkerS3;
-        private System.Windows.Forms.TextBox tbMedewerkerS2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblPrioriteit3;
-        private System.Windows.Forms.Label lblPrioriteit2;
-        private System.Windows.Forms.Label lblPrioriteit1;
+        private System.Windows.Forms.Button btnAftekenen;
+        private System.Windows.Forms.DateTimePicker dtpEindR;
+        private System.Windows.Forms.ListBox lbMedewerkers;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

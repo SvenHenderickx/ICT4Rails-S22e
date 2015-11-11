@@ -70,6 +70,7 @@ namespace RemiseHavestraat
             SporenOphalen();
             HaalReserveringenOp();
             BeurtenOphalen();
+            MedewerkersOphalen();
         }
 
         public static Remise Instance
@@ -125,20 +126,6 @@ namespace RemiseHavestraat
             }
         }
 
-        //Deze methode haalt specifieke medewerkers op van de database en zet ze in de lijst
-        public bool MedewerkersOphalen(string functie)
-        {
-            List<Medewerker> tempMedewerkers = db.HaalOpMedewerkers(functie);
-            if (tempMedewerkers == null)
-            {
-                return false;
-            }
-            else
-            {
-                medewerkers = tempMedewerkers;
-                return true;
-            }
-        }
 
         //Deze methode haalt specifieke medewerkers op van de database en zet ze in de lijst
         public List<Medewerker> MedewerkersZoeken(List<int> medewerkerids)
@@ -203,48 +190,6 @@ namespace RemiseHavestraat
             }
         }
 
-        public bool LijnenOphalen()
-        {
-            return false;
-        }
-
-        public bool SegmentUpdate(Tram tram, Segment segment)
-        {
-            return false;
-        }
-
-        public bool VoegLijnToe(Tram tram, List<Medewerker> medewerkers, DateTime vertrek, DateTime aankomst)
-        {
-            return false;
-        }
-
-        public bool VoegReserveringToe(Tram tram, Spoor spoor)
-        {
-            return false;
-        }
-
-        public bool VoegSchoonmaakBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
-        {
-            return false;
-        }
-
-        public bool VoegServiceBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
-        {
-            return false;
-        }
-
-        public bool SchoonmaakBeurtAftekenen(Beurt beurt, DateTime datumTijdEind)
-        {
-            //invoeren schoonmaakbeurt
-            return false;
-        }
-
-        public bool ServiceBeurtAftekenen(Beurt beurt, DateTime datumTijdEind)
-        {
-            //invoeren servicebeurt
-            return false;
-        }
-
         public bool StatusUpdate(int tramnummer, string tramstatus)
         {
             if (db.UpdateTramStatus(tramnummer, tramstatus))
@@ -253,7 +198,6 @@ namespace RemiseHavestraat
             }
             return false;
         }
-
       
 
         public bool SpoorUpdate(int spoornummer)
@@ -264,6 +208,7 @@ namespace RemiseHavestraat
             }
             return false;
         }
+
         public List<Tram> SpoorInfo(int spoor)
         {
             List<Tram> temptram = db.InfoSpoor(spoor);
@@ -556,6 +501,46 @@ namespace RemiseHavestraat
                 beurten = tempBeurten;
                 return true;
             }
+        }
+
+        public List<Medewerker> TechniciOphalen()
+        {
+            if (medewerkers == null) return null;
+
+            List<Medewerker> technici = new List<Medewerker>();
+
+            foreach (var m in medewerkers)
+            {
+                if (m.Rol == EnumMedewerkerRol.Technicus)
+                {
+                    technici.Add(m);
+                }
+            }
+
+            return technici;
+        }
+
+        public List<Medewerker> SchoonmakersOphalen()
+        {
+            if (medewerkers == null) return null;
+
+            List<Medewerker> schoonmakers = new List<Medewerker>();
+
+            foreach (var m in medewerkers)
+            {
+                if (m.Rol == EnumMedewerkerRol.Schoonmaker)
+                {
+                    schoonmakers.Add(m);
+                }
+            }
+
+            return schoonmakers;
+        }
+
+
+        public bool VerwijderBeurt(int beurtID)
+        {
+           return db.VerwijderServicebeurt(beurtID);
         }
 
         #endregion
