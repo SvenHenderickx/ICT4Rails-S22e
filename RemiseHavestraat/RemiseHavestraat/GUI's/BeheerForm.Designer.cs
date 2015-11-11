@@ -368,33 +368,33 @@
             // blokerenToolStripMenuItem1
             // 
             this.blokerenToolStripMenuItem1.Name = "blokerenToolStripMenuItem1";
-<<<<<<< HEAD
+
             this.blokerenToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
-=======
+
             this.blokerenToolStripMenuItem1.Size = new System.Drawing.Size(162, 30);
->>>>>>> origin/master
+
             this.blokerenToolStripMenuItem1.Text = "blokkeren";
             this.blokerenToolStripMenuItem1.Click += new System.EventHandler(this.blokerenToolStripMenuItem1_Click);
             // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-<<<<<<< HEAD
+
             this.updateToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-=======
+
             this.updateToolStripMenuItem.Size = new System.Drawing.Size(162, 30);
->>>>>>> origin/master
+
             this.updateToolStripMenuItem.Text = "update";
             this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // infoSpoorToolStripMenuItem1
             // 
             this.infoSpoorToolStripMenuItem1.Name = "infoSpoorToolStripMenuItem1";
-<<<<<<< HEAD
+
             this.infoSpoorToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
-=======
+
             this.infoSpoorToolStripMenuItem1.Size = new System.Drawing.Size(162, 30);
->>>>>>> origin/master
+
             this.infoSpoorToolStripMenuItem1.Text = "info";
             this.infoSpoorToolStripMenuItem1.Click += new System.EventHandler(this.infoSpoorToolStripMenuItem1_Click);
             // 
