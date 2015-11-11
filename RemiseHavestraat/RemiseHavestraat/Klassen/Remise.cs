@@ -68,6 +68,8 @@ namespace RemiseHavestraat
             TramsOphalen();
             SegmentenOphalen();
             SporenOphalen();
+            HaalReserveringenOp();
+            BeurtenOphalen();
         }
 
         public static Remise Instance
@@ -201,24 +203,6 @@ namespace RemiseHavestraat
             }
         }
 
-        public bool SchoonmaakBeurtenOphalen()
-        {
-            return false;
-        }
-
-        public bool ServiceBeurtenOphalen()
-        {
-            List<Beurt> tempBeurten = db.HaalOpServiceBeurten();
-            if (tempBeurten == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
         public bool LijnenOphalen()
         {
             return false;
@@ -239,16 +223,6 @@ namespace RemiseHavestraat
             return false;
         }
 
-        /// <summary>
-        /// Deze methode voegt een nieuwe schoonmaak beurt toe in de database
-        /// </summary>
-        /// <param name="tram"></param>
-        /// <param name="medewerkers"></param>
-        /// <param name="type"></param>
-        /// <param name="prioriteit"></param>
-        /// <param name="beschrijving"></param>
-        /// <param name="datumTijdBegin"></param>
-        /// <returns>bool geeft succes aan.</returns>
         public bool VoegSchoonmaakBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
         {
             return false;
@@ -256,9 +230,7 @@ namespace RemiseHavestraat
 
         public bool VoegServiceBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
         {
-
-            return db.VoegServiceBeurtToe(tram, medewerkers, type, prioriteit, beschrijving, datumTijdBegin);
-
+            return false;
         }
 
         public bool SchoonmaakBeurtAftekenen(Beurt beurt, DateTime datumTijdEind)
@@ -381,7 +353,6 @@ namespace RemiseHavestraat
             return true;
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -413,7 +384,6 @@ namespace RemiseHavestraat
             return segmentenVanSpoor;
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -423,13 +393,11 @@ namespace RemiseHavestraat
             return segmenten;
         }
 
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tramID"></param>
         /// <returns></returns>
-
         public string GeefTramNr(int tramID)
         {
             foreach (var t in Trams)
@@ -456,9 +424,8 @@ namespace RemiseHavestraat
                     return s.Nummer;
                 }
             }
-            return 0;
+            return -1;
         }
-
 
         /// <summary>
         /// 
@@ -466,32 +433,26 @@ namespace RemiseHavestraat
         /// <param name="spoorNr"></param>
         /// <param name="segmentNr"></param>
         /// <returns></returns>
-
         public bool BlokkeerSegment(int spoorNr, int segmentNr)
         {
            return db.BlokkeerSegment(spoorNr, segmentNr);
         }
 
-
         /// <summary>
         /// 
         /// </summary>
-
         public void RefreshSegmenten()
         {
             segmenten = db.HaalSegmentenOp();
         }
 
-
         /// <summary>
         /// 
         /// </summary>
-
         public void ResetOverzicht()
         {
             db.ResetOverzicht();
             RefreshSegmenten();
-
         }
 
         public void Simulatie()
@@ -530,17 +491,73 @@ namespace RemiseHavestraat
           return db.MaakReservering(tramNr, spoorNr);
         }
 
-        public Tram GeefTramDoorId(int id)
+        public bool BestaatReservering(int tramNr, int spoorNr)
         {
-            foreach (Tram t in trams)
+            Tram t = Trams.Find(x => x.TramNr == tramNr); // vind tram
+            Spoor s = Sporen.Find(x => x.Nummer == spoorNr); // vind spoor
+
+            if (reserveringen.Find(x => x.TramID == t.TramID && x.SpoorID == s.ID) == null)
             {
-                if (t.TramID == id)
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool NieuweBeurt(DateTime datumtijdBegin, DateTime datumtijdEind,string beschrijving, Tram tram, EnumTypeBeurt type)
+        {
+           return db.NieuweBeurt(tram.TramID, datumtijdBegin, datumtijdEind, beschrijving, type);
+        }
+
+        public List<Beurt> SchoonmaakBeurtenLijstOphalen()
+        {
+            List<Beurt> schoonmaken = new List<Beurt>();
+            if (beurten == null) return null;
+            foreach (var b in beurten)
+            {
+                if (b.Type == EnumTypeBeurt.GroteSchoonmaak || b.Type == EnumTypeBeurt.KleineSchoonmaak)
                 {
-                    return t;
+                    schoonmaken.Add(b);
                 }
             }
-            return null;
+
+            return schoonmaken;
         }
+
+
+        public List<Beurt> ServiceBeurtenLijstOphalen()
+        {
+            if (Beurten == null) return null;
+            List<Beurt> serviceBeurten = new List<Beurt>();
+
+            foreach (var b in beurten)
+            {
+                if (b.Type == EnumTypeBeurt.KleineService || b.Type == EnumTypeBeurt.GroteService)
+                {
+                    serviceBeurten.Add(b);
+                }
+            }
+
+            return serviceBeurten;
+        }
+
+        public bool BeurtenOphalen()
+        {
+            List<Beurt> tempBeurten = db.HaalBeurtenOp();
+
+            if (tempBeurten == null)
+            {
+                return false;
+            }
+            else
+            {
+                beurten = tempBeurten;
+                return true;
+            }
+        }
+
         #endregion
 
 

@@ -14,6 +14,11 @@ namespace RemiseHavestraat
     {
         private string invoer ;
 
+        public int TramNr;
+        public int SpoorNr;
+        public Beurt Schoonmaak;
+        public Beurt Reparatie;
+
         public TouchscreenForm()
         {
             InitializeComponent();
@@ -99,29 +104,30 @@ namespace RemiseHavestraat
 
         private void btnBevestig_Click(object sender, EventArgs e)
         {
-            bool serviceNodig = (cbDefectNodig.Checked == true) ? true : false;
-            bool schoonmaakNodig = (cbSchoonmaaknodig.Checked == true) ? true : false;
-            string tramnr = tbTramnummer.Text;
+            bool serviceNodig = (cbDefectNodig.Checked);
+            bool schoonmaakNodig = (cbSchoonmaaknodig.Checked);
+
 
             string omschrijvingDefect = tbDefect.Text;
             string omschrijvingSchoonmaak = tbSchoonmaak.Text;
 
             int tramNr = 100;
             Tram tram = Remise.Instance.GeefTram(tramNr);
+
             if (serviceNodig)
             {
-                //nieuwe service aanmaken
-                Beurt serviceBeurt = new Beurt(new DateTime(1, 1, 1, 1, 1, 1), omschrijvingSchoonmaak, tram, SoortBeurt.Servicebeurt);
-
                 // schoonmaak toevoegen
+                Remise.Instance.NieuweBeurt(new DateTime(1, 1, 1, 1, 1, 1), new DateTime(1, 1, 1, 1, 1, 1), omschrijvingSchoonmaak, tram,
+                    EnumTypeBeurt.KleineSchoonmaak);
 
                 // nog implementeren
             }
 
             if (schoonmaakNodig)
             {
-                //nieuwe service aanmaken
-                Beurt schoonmaakBeurt = new Beurt(new DateTime(1, 1, 1, 1, 1, 1), omschrijvingDefect, tram, SoortBeurt.Schoonmaakbeurt);
+                //Reparatie toevoegen
+                Remise.Instance.NieuweBeurt(new DateTime(1, 1, 1, 1, 1, 1), new DateTime(1, 1, 1, 1, 1, 1), omschrijvingDefect, tram,
+                   EnumTypeBeurt.KleineService);
 
                 // onderhoudsbeurt toevoegen
 

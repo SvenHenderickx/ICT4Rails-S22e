@@ -20,7 +20,7 @@ namespace RemiseHavestraat
 
         private void btnSchoonmaakLijstOpvragen_Click(object sender, EventArgs e)
         {
-            Remise.Instance.SchoonmaakBeurtenOphalen();
+            Remise.Instance.SchoonmaakBeurtenLijstOphalen();
             foreach (Beurt beurt in Remise.Instance.Beurten)
             {
                 lbSchoonmaak.Items.Add(beurt.ToString());

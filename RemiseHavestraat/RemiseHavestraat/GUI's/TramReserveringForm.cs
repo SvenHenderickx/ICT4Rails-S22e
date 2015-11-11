@@ -50,6 +50,13 @@ namespace RemiseHavestraat
                 return;
             }
 
+            //Bekijken of reservering al bestaat
+            if (Remise.Instance.BestaatReservering(TramNr, SpoorNr) == false)
+            {
+                MessageBox.Show("Reservering betaat al");
+                return;
+            }
+
             //Close form
             Uitvoeren = true;
             Close();

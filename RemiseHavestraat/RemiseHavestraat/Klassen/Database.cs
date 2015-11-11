@@ -438,39 +438,7 @@ namespace RemiseHavestraat
             }
         }
 
-        public List<Beurt> HaalOpSchoonmaakBeurten()
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT \"ID\", \"Remise_ID\", \"Nummer\" FROM \"Spoor\" WHERE Type = 'KLEINE SCHOONMAAK' OR TYPE = 'GROTE SCHOONMAAK'";
-                OracleDataReader reader = cmd.ExecuteReader();
-                int id;
-                int remiseid;
-                int nummer;
 
-                List<Beurt> alleSchoonmaakBeurten = new List<Beurt>();
-
-                while (reader.Read())
-                {
-                    id = (int)reader["ID"];
-                    remiseid = (int)reader["Remise_ID"];
-                    nummer = (int)reader["Nummer"];
-                    
-                }
-                return alleSchoonmaakBeurten;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
 
         public bool UpdateTramStatus(int tramnummer, string tramstatus)
         {
@@ -540,106 +508,6 @@ namespace RemiseHavestraat
                 conn.Close();
             }
             return true;
-        }
-
-        public List<Beurt> HaalOpServiceBeurten()
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT \"Tram_ID\", \"Datum_Begin\", \"Datum_Eind\", \"Beschrijving\", \"Type\" FROM \"Servicebeurt\" WHERE Type = 'KLEINE SERVICE' OR TYPE = 'GROTE SERVICE'";
-                OracleDataReader reader = cmd.ExecuteReader();
-                int tramId;
-                DateTime datumBegin;
-                string beschrijving;
-                string type;
-
-                List<Beurt> alleServiceBeurten = new List<Beurt>();
-
-                while (reader.Read())
-                {
-                    tramId = Convert.ToInt32(reader["Tram_ID"]);
-                    datumBegin = Convert.ToDateTime(reader["Datum_Begin"]);
-                    beschrijving = Convert.ToString(reader["Beschrijving"]);
-                    type = Convert.ToString(reader["Type"]);
-                    if (type == "KLEINE SCHOONMAAK")
-                    {
-                        alleServiceBeurten.Add(new Beurt(datumBegin, beschrijving, Remise.Instance.GeefTramDoorId(tramId), (SoortBeurt)0));
-                    }
-                    else
-                    {
-                        alleServiceBeurten.Add(new Beurt(datumBegin, beschrijving, Remise.Instance.GeefTramDoorId(tramId), (SoortBeurt)1));
-                    }
-                }
-                return alleServiceBeurten;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        public int hoogsteIdService()
-        {
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT \"ID\" FROM \"Servicebeurt\"";
-                OracleDataReader reader = cmd.ExecuteReader();
-                int id = 0;
-                int highestId = -1;
-
-                while (reader.Read())
-                {
-                    id = Convert.ToInt32(reader["ID"]);
-                    if(id > highestId)
-                    {
-                        highestId = id;
-                    }
-                }
-                return highestId;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return -1;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        public bool VoegServiceBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
-        {
-            int newId = hoogsteIdService();
-            string typeString = "";
-            if(type == 0) typeString = "KLEINE SERVICE";
-            if(type == 1) typeString = "GROTE SERVICE";
-            try
-            {
-                OpenVerbinding();
-                cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO \"Servicebeurt\" (\"ID\", \"Tram_ID\", \"Datum_begin\", \"Beschrijving\", \"Type\") VALUES ('" + newId + "', '" + tram.TramID + "', '" + datumTijdBegin + "', '" + beschrijving + "', '" + typeString + "'";
-                cmd.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return false;
         }
             
         #endregion
@@ -772,7 +640,6 @@ namespace RemiseHavestraat
             cmds.Dispose();
         }
 
-        
 
         public void Simulatie()
         {
@@ -824,6 +691,44 @@ namespace RemiseHavestraat
             }
 
         }
+
+
+         public bool NieuweBeurt(int tramID, DateTime datumtijdBegin, DateTime datumtijdEind, string beschrijving, EnumTypeBeurt typeBeurt)
+         {
+             var cmds = new OracleCommand("MAAKRESERVERING", conn);
+             cmds.CommandType = CommandType.StoredProcedure;
+
+             cmds.Parameters.Add("p_tramID", OracleType.Number).Value = tramID;
+             cmds.Parameters.Add("p_datum_begin", OracleType.DateTime).Value = datumtijdBegin;
+             cmds.Parameters.Add("p_datum_eind", OracleType.DateTime).Value = datumtijdEind;
+             cmds.Parameters.Add("p_beschrijving", OracleType.VarChar).Value = beschrijving;
+             cmds.Parameters.Add("p_type_beurt", OracleType.VarChar).Value = datumtijdBegin;
+
+             cmds.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+             cmds.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
+
+             OpenVerbinding();
+
+             using (var da = new OracleDataAdapter(cmds))
+             {
+                 cmds.ExecuteNonQuery();
+             }
+
+             //VERBINDING SLUITEN
+             conn.Close();
+             cmds.Dispose();
+
+             //RETURN VALUE
+             if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
+             {
+                 return true;
+             }
+             else
+             {
+                 return false;
+             }
+
+         }
 
 
         #region METHODES GIJS
@@ -918,7 +823,7 @@ namespace RemiseHavestraat
             {
                 OpenVerbinding();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM (SELECT * FROM \"Reservering\"";
+                cmd.CommandText = "SELECT * FROM \"Reservering\"";
                 OracleDataReader reader = cmd.ExecuteReader();
 
                 int spoorID;
@@ -935,6 +840,55 @@ namespace RemiseHavestraat
 
                 }
                 return reserveringen;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        public List<Beurt> HaalBeurtenOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM  \"Servicebeurt\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                DateTime datumBegin;
+                DateTime datumEind;
+                string beschrijving;
+                string type;
+                int tramID;
+                EnumTypeBeurt enumType;
+
+                List<Beurt> beurten = new List<Beurt>();
+
+                while (reader.Read())
+                {
+                    datumBegin =  Convert.ToDateTime(reader["datum_begin"]);
+                    datumEind = Convert.ToDateTime(reader["datum_eind"]);
+                    beschrijving = reader["beschrijving"].ToString();
+                    type = reader["type"].ToString();
+                    tramID = Convert.ToInt32(reader["tram_id"]);
+
+                    if(type == "KLEINE SCHOONMAAK") enumType = EnumTypeBeurt.KleineSchoonmaak;
+                    else if (type == "GROTE SCHOONMAAK") enumType = EnumTypeBeurt.GroteSchoonmaak;
+                    else if (type == "KLEINE SERVICE") enumType = EnumTypeBeurt.KleineService;
+                    else if (type == "GROTE SERVICE") enumType = EnumTypeBeurt.GroteService;
+                    else return null;
+
+                    beurten.Add(new Beurt(datumBegin,datumEind,beschrijving,tramID,enumType));
+
+                }
+                return beurten;
             }
             catch (Exception e)
             {

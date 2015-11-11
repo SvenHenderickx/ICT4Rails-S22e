@@ -12,14 +12,15 @@ namespace RemiseHavestraat
 {
     public partial class BeheerForm : Form
     {
-        private List<Segment> segmentenRandom;
-        private int i;
+        private List<Segment> segmentenSimulatie;
+        private int indexSimulatie;
 
         public BeheerForm()
         {
-            i = 0;
+            indexSimulatie = 0;
             InitializeComponent();
             UpdateRemiseOverzicht();
+            UpdateReserveringen();
         }
 
 
@@ -68,9 +69,10 @@ namespace RemiseHavestraat
                 {
                     if (Remise.Instance.MaakReservering(f.TramNr,f.SpoorNr) == false)
                     {
-                        MessageBox.Show("Niet gelukt");
+                        MessageBox.Show("Het reserveren is niet gelukt");
                         return;
                     }
+                    UpdateReserveringen();
                 }
             }
         }
@@ -168,10 +170,10 @@ namespace RemiseHavestraat
             //Simulatie uitvoeren
             Remise.Instance.Simulatie();
 
-            segmentenRandom = Remise.Instance.HaalSegmentenRandomOp();
+            segmentenSimulatie = Remise.Instance.HaalSegmentenRandomOp();
 
             //Timer starten om trams in textboxen te plaatsen
-            timer1.Start();
+            timerSimulatie.Start();
         }
 
         #endregion;
@@ -226,13 +228,14 @@ namespace RemiseHavestraat
 
         private void resetDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            timerSimulatie.Stop();
             Remise.Instance.ResetOverzicht();
             UpdateRemiseOverzicht();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timerSimulatie_Tick(object sender, EventArgs e)
         {
-            Segment s = segmentenRandom[i];
+            Segment s = segmentenSimulatie[indexSimulatie];
             
                 string tramNr = Remise.Instance.GeefTramNr(s.Tram_ID);
                 int spoorNr = Remise.Instance.GeefSpoorNr(s.SpoorID);
@@ -249,19 +252,25 @@ namespace RemiseHavestraat
                     tb.BackColor = Color.White;
                 }
 
-            i++;
+            indexSimulatie++;
 
-            if (i == segmentenRandom.Count)
+            if (indexSimulatie == segmentenSimulatie.Count)
             {
-
-                timer1.Stop();
-                i = 0;
+                timerSimulatie.Stop();
+                indexSimulatie = 0;
             }
         }
 
         private void UpdateReserveringen()
         {
-            
+            List<Reservering> reserveringen = Remise.Instance.Reserveringen;
+            lbReserveringen.Items.Clear();
+
+            foreach (var r in reserveringen)
+            {
+                lbReserveringen.Items.Add(r.ToString());
+            }
+
         }
 
        

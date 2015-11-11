@@ -13,8 +13,16 @@ namespace RemiseHavestraat
 
         public Reservering(int tramID, int spoorID)
         {;
-            this.TramID = tramID;
-            this.SpoorID = spoorID;
+            TramID = tramID;
+            SpoorID = spoorID;
+
+        }
+
+        public override string ToString()
+        {
+           int TramNr = Convert.ToInt32(Remise.Instance.GeefTramNr(TramID));
+           int SpoorNr = Remise.Instance.GeefSpoorNr(SpoorID);
+           return "Tram " + TramNr + " - " + "Spoor " + SpoorNr;
         }
     }
 }

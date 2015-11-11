@@ -12,6 +12,8 @@ namespace RemiseHavestraat
 {
     public partial class ReparatieForm : Form
     {
+        private List<Beurt> serviceBeurten; 
+
         public ReparatieForm()
         {
             InitializeComponent();
@@ -20,7 +22,20 @@ namespace RemiseHavestraat
 
         private void btnReparatieLijstOpvragen_Click(object sender, EventArgs e)
         {
-            Remise.Instance.ServiceBeurtenOphalen();
+            lbReparatie.Items.Clear();
+            serviceBeurten = Remise.Instance.ServiceBeurtenLijstOphalen();
+
+            if (serviceBeurten == null)
+            {
+                MessageBox.Show("Er zijn geen servicebeurten");
+                return;
+            }
+
+            foreach (var s in serviceBeurten)
+            {
+                lbReparatie.Items.Add(s.ToString());
+            }
+
             VerversServicebeurten(Remise.Instance.Beurten);
         }
 
