@@ -45,9 +45,6 @@ namespace RemiseHavestraat
 
             Uitvoeren = true;
             Close();
-            Remise.Instance.TramVerwijderenSegment(TramNr);
-
-
         }
 
         private void btnTerug_Click(object sender, EventArgs e)

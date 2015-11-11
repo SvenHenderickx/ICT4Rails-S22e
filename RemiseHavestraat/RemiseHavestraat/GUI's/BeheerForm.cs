@@ -12,8 +12,12 @@ namespace RemiseHavestraat
 {
     public partial class BeheerForm : Form
     {
+        private List<Segment> segmentenRandom;
+        private int i;
+
         public BeheerForm()
         {
+            i = 0;
             InitializeComponent();
             UpdateRemiseOverzicht();
         }
@@ -33,7 +37,6 @@ namespace RemiseHavestraat
                         MessageBox.Show("Niet gelukt");
                         return;
                     }
-                    UpdateRemiseOverzicht();
                 }
             }
         }
@@ -61,6 +64,14 @@ namespace RemiseHavestraat
             using (var f = new TramReserveringForm())
             {
                 f.ShowDialog();
+                if (f.Uitvoeren)
+                {
+                    if (Remise.Instance.MaakReservering(f.TramNr,f.SpoorNr) == false)
+                    {
+                        MessageBox.Show("Niet gelukt");
+                        return;
+                    }
+                }
             }
         }
 
@@ -88,7 +99,7 @@ namespace RemiseHavestraat
 
                 if (f.Uitvoeren)
                 {
-                    if (Remise.Instance.SpoorBlokkeren(f.SpoorNr, f.SegmentNr) == false)
+                    if (Remise.Instance.BlokkeerSegment(f.SpoorNr, f.SegmentNr) == false)
                     {
                         MessageBox.Show("Niet gelukt");
                         return;
@@ -143,9 +154,24 @@ namespace RemiseHavestraat
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void testdataSimulatieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Helaas, dit komt in de volgende update.");
+            Remise.Instance.ResetOverzicht();
+            UpdateRemiseOverzicht();
+
+            //Simulatie uitvoeren
+            Remise.Instance.Simulatie();
+
+            segmentenRandom = Remise.Instance.HaalSegmentenRandomOp();
+
+            //Timer starten om trams in textboxen te plaatsen
+            timer1.Start();
         }
 
         #endregion;
@@ -172,9 +198,9 @@ namespace RemiseHavestraat
                 tb.Text = tramNr;
 
                 if(s.Blokkade == 1) tb.BackColor = Color.DarkGray;
-                if(s.Beschikbaar == 0) tb.BackColor = Color.LightGray;
+                if (s.Beschikbaar == 0 && s.Tram_ID == -1) tb.BackColor = Color.LightGray;
 
-                if (s.Beschikbaar == 1 && s.Blokkade == 0)
+                if (s.Beschikbaar == 1 && s.Blokkade == 0 || s.Beschikbaar == 0 && s.Tram_ID != -1)
                 {
                     tb.BackColor = Color.White;
                 }
@@ -202,6 +228,40 @@ namespace RemiseHavestraat
         {
             Remise.Instance.ResetOverzicht();
             UpdateRemiseOverzicht();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Segment s = segmentenRandom[i];
+            
+                string tramNr = Remise.Instance.GeefTramNr(s.Tram_ID);
+                int spoorNr = Remise.Instance.GeefSpoorNr(s.SpoorID);
+                int segmentNr = s.Nummer;
+
+                TextBox tb = GeefRemiseTB(spoorNr, segmentNr);
+                tb.Text = tramNr;
+
+                if (s.Blokkade == 1) tb.BackColor = Color.DarkGray;
+                if (s.Beschikbaar == 0 && s.Tram_ID == -1) tb.BackColor = Color.LightGray;
+
+                if (s.Beschikbaar == 1 && s.Blokkade == 0 || s.Beschikbaar == 0 && s.Tram_ID != -1)
+                {
+                    tb.BackColor = Color.White;
+                }
+
+            i++;
+
+            if (i == segmentenRandom.Count)
+            {
+
+                timer1.Stop();
+                i = 0;
+            }
+        }
+
+        private void UpdateReserveringen()
+        {
+            
         }
 
        

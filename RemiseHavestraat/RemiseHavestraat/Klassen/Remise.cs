@@ -208,6 +208,7 @@ namespace RemiseHavestraat
 
         public bool ServiceBeurtenOphalen()
         {
+<<<<<<< HEAD
             List<Beurt> tempBeurten = db.HaalOpServiceBeurten();
             if (tempBeurten == null)
             {
@@ -217,6 +218,9 @@ namespace RemiseHavestraat
             {
                 return true;
             }
+=======
+            return false;
+>>>>>>> origin/master
         }
 
         public bool LijnenOphalen()
@@ -239,6 +243,7 @@ namespace RemiseHavestraat
             return false;
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Deze methode voegt een nieuwe schoonmaak beurt toe in de database
         /// </summary>
@@ -249,6 +254,8 @@ namespace RemiseHavestraat
         /// <param name="beschrijving"></param>
         /// <param name="datumTijdBegin"></param>
         /// <returns>bool geeft succes aan.</returns>
+=======
+>>>>>>> origin/master
         public bool VoegSchoonmaakBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
         {
             return false;
@@ -256,8 +263,12 @@ namespace RemiseHavestraat
 
         public bool VoegServiceBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
         {
+<<<<<<< HEAD
             return db.VoegServiceBeurtToe(tram, medewerkers, type, prioriteit, beschrijving, datumTijdBegin);
 
+=======
+            return false;
+>>>>>>> origin/master
         }
 
         public bool SchoonmaakBeurtAftekenen(Beurt beurt, DateTime datumTijdEind)
@@ -306,7 +317,25 @@ namespace RemiseHavestraat
 
 
         #region methodes GIJS
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spoorNr"></param>
+        /// <returns></returns>
+        public bool BestaatSpoor(int spoorNr)
+        {
+            if (Sporen.Find(x => x.Nummer == spoorNr) == null)
+            {
+                return false;
+            }
+            return true;
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tramnummer"></param>
+        /// <returns></returns>
         public bool TramVerwijderenSegment(int tramnummer)
         {
             if (db.VerwijderTram(tramnummer))
@@ -362,7 +391,17 @@ namespace RemiseHavestraat
             return true;
         }
 
+<<<<<<< HEAD
 
+=======
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tramNr"></param>
+        /// <param name="spoorNr"></param>
+        /// <param name="segmentNr"></param>
+        /// <returns></returns>
+>>>>>>> origin/master
         public bool PlaatsTram(int tramNr, int spoorNr, int segmentNr)
         {
            return db.PlaatsTram(tramNr, spoorNr, segmentNr);
@@ -387,11 +426,26 @@ namespace RemiseHavestraat
             return segmentenVanSpoor;
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+>>>>>>> origin/master
         public List<Segment> GeefSegmenten()
         {
             return segmenten;
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tramID"></param>
+        /// <returns></returns>
+>>>>>>> origin/master
         public string GeefTramNr(int tramID)
         {
             foreach (var t in Trams)
@@ -404,6 +458,11 @@ namespace RemiseHavestraat
             return "";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spoorID"></param>
+        /// <returns></returns>
         public int GeefSpoorNr(int spoorID)
         {
             foreach (var s in Sporen)
@@ -416,21 +475,81 @@ namespace RemiseHavestraat
             return 0;
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="spoorNr"></param>
+        /// <param name="segmentNr"></param>
+        /// <returns></returns>
+>>>>>>> origin/master
         public bool BlokkeerSegment(int spoorNr, int segmentNr)
         {
            return db.BlokkeerSegment(spoorNr, segmentNr);
         }
 
+<<<<<<< HEAD
 
+=======
+        /// <summary>
+        /// 
+        /// </summary>
+>>>>>>> origin/master
         public void RefreshSegmenten()
         {
             segmenten = db.HaalSegmentenOp();
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// 
+        /// </summary>
+>>>>>>> origin/master
         public void ResetOverzicht()
         {
             db.ResetOverzicht();
             RefreshSegmenten();
+<<<<<<< HEAD
+=======
+        }
+
+        public void Simulatie()
+        {
+            db.Simulatie();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Segment> HaalSegmentenRandomOp()
+        {
+            return db.HaalSegmentenRandomOp();
+        }
+
+        public bool HaalReserveringenOp()
+        {
+           List<Reservering> tempReserveringen = db.HaalReserveringenOp();
+
+            if (tempReserveringen == null)
+            {
+                return false;
+            }
+            else
+            {
+                reserveringen = tempReserveringen;
+                return true;
+            }
+        }
+
+
+
+        public bool MaakReservering(int tramNr, int spoorNr)
+        {
+          return db.MaakReservering(tramNr, spoorNr);
+>>>>>>> origin/master
         }
 
         public Tram GeefTramDoorId(int id)

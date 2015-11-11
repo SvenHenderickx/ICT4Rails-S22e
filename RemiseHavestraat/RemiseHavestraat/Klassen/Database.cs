@@ -741,6 +741,8 @@ namespace RemiseHavestraat
             conn.Close();
             cmds.Dispose();
 
+            cmds.Parameters["p_geslaagd_out"].Value.ToString();
+
             //RETURN VALUE
             if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
             {
@@ -771,6 +773,57 @@ namespace RemiseHavestraat
         }
 
         
+
+        public void Simulatie()
+        {
+            var cmds = new OracleCommand("SIMULATIE", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                cmds.ExecuteNonQuery();
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+        }
+
+         public bool MaakReservering(int tramNr,int spoorNr)
+         {
+            var cmds = new OracleCommand("MAAKRESERVERING", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+            
+            cmds.Parameters.Add("p_tramNr", OracleType.Number).Value = tramNr;
+            cmds.Parameters.Add("p_spoorNr", OracleType.Number).Value = spoorNr;
+
+            cmds.Parameters.Add("p_geslaagd_out", OracleType.Number, 1);
+            cmds.Parameters["p_geslaagd_out"].Direction = ParameterDirection.Output;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                cmds.ExecuteNonQuery();
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+
+            //RETURN VALUE
+            if (cmds.Parameters["p_geslaagd_out"].Value.ToString() == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
 
 
         #region METHODES GIJS
@@ -816,10 +869,88 @@ namespace RemiseHavestraat
             }
         }
 
+
+        public List<Segment> HaalSegmentenRandomOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM (SELECT * FROM \"Segment\" ORDER BY \"Nummer\", dbms_random.value)";
+                OracleDataReader reader = cmd.ExecuteReader();
+                int id;
+                int spoorID;
+                int nummer;
+                int tramID;
+                int blokkade;
+                int beschikbaar;
+
+                List<Segment> alleSegmenten = new List<Segment>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    nummer = Convert.ToInt32(reader["nummer"]);
+                    if (Int32.TryParse(reader["tram_id"].ToString(), out tramID) == false) tramID = -1;
+                    blokkade = Convert.ToInt32(reader["blokkade"]);
+                    beschikbaar = Convert.ToInt32(reader["beschikbaar"]);
+
+                    alleSegmenten.Add(new Segment(spoorID, nummer, tramID, blokkade, beschikbaar));
+
+                }
+                return alleSegmenten;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+
+        public List<Reservering> HaalReserveringenOp()
+        {
+            try
+            {
+                OpenVerbinding();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM (SELECT * FROM \"Reservering\"";
+                OracleDataReader reader = cmd.ExecuteReader();
+
+                int spoorID;
+                int tramID;
+
+                List<Reservering> reserveringen = new List<Reservering>();
+
+                while (reader.Read())
+                {
+                    spoorID = Convert.ToInt32(reader["spoor_id"]);
+                    tramID = Convert.ToInt32(reader["tram_id"]);
+
+                    reserveringen.Add(new Reservering(tramID, spoorID));
+
+                }
+                return reserveringen;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        
+
         #endregion
-
-
-
         #endregion
     }
+
 }
+
