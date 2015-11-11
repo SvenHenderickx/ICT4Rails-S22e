@@ -208,7 +208,15 @@ namespace RemiseHavestraat
 
         public bool ServiceBeurtenOphalen()
         {
-            return false;
+            List<Beurt> tempBeurten = db.HaalOpServiceBeurten();
+            if (tempBeurten == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool LijnenOphalen()
@@ -231,6 +239,16 @@ namespace RemiseHavestraat
             return false;
         }
 
+        /// <summary>
+        /// Deze methode voegt een nieuwe schoonmaak beurt toe in de database
+        /// </summary>
+        /// <param name="tram"></param>
+        /// <param name="medewerkers"></param>
+        /// <param name="type"></param>
+        /// <param name="prioriteit"></param>
+        /// <param name="beschrijving"></param>
+        /// <param name="datumTijdBegin"></param>
+        /// <returns>bool geeft succes aan.</returns>
         public bool VoegSchoonmaakBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
         {
             return false;
@@ -238,7 +256,8 @@ namespace RemiseHavestraat
 
         public bool VoegServiceBeurtToe(Tram tram, List<Medewerker> medewerkers, int type, int prioriteit, string beschrijving, DateTime datumTijdBegin)
         {
-            return false;
+            return db.VoegServiceBeurtToe(tram, medewerkers, type, prioriteit, beschrijving, datumTijdBegin);
+
         }
 
         public bool SchoonmaakBeurtAftekenen(Beurt beurt, DateTime datumTijdEind)
@@ -414,6 +433,17 @@ namespace RemiseHavestraat
             RefreshSegmenten();
         }
 
+        public Tram GeefTramDoorId(int id)
+        {
+            foreach (Tram t in trams)
+            {
+                if (t.TramID == id)
+                {
+                    return t;
+                }
+            }
+            return null;
+        }
         #endregion
 
 

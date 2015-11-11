@@ -8,7 +8,9 @@ namespace RemiseHavestraat
 {
     public enum EnumTypeBeurt
     {
-        klein,
-        groot
+        KleineService,
+        GroteService,
+        KleineSchoonmaak,
+        GroteSchoonmaak
     }
 }
