@@ -190,9 +190,9 @@ namespace RemiseHavestraat
             }
         }
 
-        public bool StatusUpdate(int tramnummer, string tramstatus)
+        public bool StatusUpdate(int tramID, string tramstatus)
         {
-            if (db.UpdateTramStatus(tramnummer, tramstatus))
+            if (db.UpdateTramStatus(tramID, tramstatus))
             {
                 return true;
             }
@@ -224,6 +224,7 @@ namespace RemiseHavestraat
 
 
         #region methodes GIJS
+
         /// <summary>
         /// 
         /// </summary>
@@ -429,8 +430,6 @@ namespace RemiseHavestraat
             }
         }
 
-
-
         public bool MaakReservering(int tramNr, int spoorNr)
         {
           return db.MaakReservering(tramNr, spoorNr);
@@ -542,6 +541,13 @@ namespace RemiseHavestraat
         {
            return db.VerwijderServicebeurt(beurtID);
         }
+
+        public int GeefChauffeurSpoor(int tramNr)
+        {
+            return db.GeefChauffeurSpoor(tramNr);
+        }
+        
+
 
         #endregion
 

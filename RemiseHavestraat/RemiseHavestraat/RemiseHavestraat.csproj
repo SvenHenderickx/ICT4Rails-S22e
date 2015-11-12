@@ -98,6 +98,7 @@
     <Compile Include="Klassen\EnumTypeBeurt.cs" />
     <Compile Include="Klassen\Medewerker.cs" />
     <Compile Include="Klassen\Program.cs" />
+    <Compile Include="Klassen\StatusEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Klassen\Remise.cs" />
     <Compile Include="Klassen\Reservering.cs" />

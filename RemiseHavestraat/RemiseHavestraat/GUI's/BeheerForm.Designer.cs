@@ -324,35 +324,35 @@
             // tramPlaatsenToolStripMenuItem
             // 
             this.tramPlaatsenToolStripMenuItem.Name = "tramPlaatsenToolStripMenuItem";
-            this.tramPlaatsenToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.tramPlaatsenToolStripMenuItem.Size = new System.Drawing.Size(198, 30);
             this.tramPlaatsenToolStripMenuItem.Text = "Plaatsen";
             this.tramPlaatsenToolStripMenuItem.Click += new System.EventHandler(this.tramPlaatsenToolStripMenuItem_Click);
             // 
             // tramVerwijderenToolStripMenuItem
             // 
             this.tramVerwijderenToolStripMenuItem.Name = "tramVerwijderenToolStripMenuItem";
-            this.tramVerwijderenToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.tramVerwijderenToolStripMenuItem.Size = new System.Drawing.Size(198, 30);
             this.tramVerwijderenToolStripMenuItem.Text = "Verwijderen";
             this.tramVerwijderenToolStripMenuItem.Click += new System.EventHandler(this.tramVerwijderenToolStripMenuItem_Click);
             // 
             // reserverenToolStripMenuItem
             // 
             this.reserverenToolStripMenuItem.Name = "reserverenToolStripMenuItem";
-            this.reserverenToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.reserverenToolStripMenuItem.Size = new System.Drawing.Size(198, 30);
             this.reserverenToolStripMenuItem.Text = "Reserveren";
             this.reserverenToolStripMenuItem.Click += new System.EventHandler(this.reserverenToolStripMenuItem_Click);
             // 
             // statusToolStripMenuItem
             // 
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
-            this.statusToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.statusToolStripMenuItem.Size = new System.Drawing.Size(198, 30);
             this.statusToolStripMenuItem.Text = "Status";
             this.statusToolStripMenuItem.Click += new System.EventHandler(this.statusToolStripMenuItem_Click);
             // 
             // infoTramToolStripMenuItem
             // 
             this.infoTramToolStripMenuItem.Name = "infoTramToolStripMenuItem";
-            this.infoTramToolStripMenuItem.Size = new System.Drawing.Size(176, 30);
+            this.infoTramToolStripMenuItem.Size = new System.Drawing.Size(198, 30);
             this.infoTramToolStripMenuItem.Text = "Info";
             this.infoTramToolStripMenuItem.Click += new System.EventHandler(this.infoTramToolStripMenuItem_Click);
             // 

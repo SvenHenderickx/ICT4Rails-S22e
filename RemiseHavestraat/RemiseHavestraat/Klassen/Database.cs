@@ -387,13 +387,13 @@ namespace RemiseHavestraat
             }
         }
 
-        public bool UpdateTramStatus(int tramnummer, string tramstatus)
+        public bool UpdateTramStatus(int tramID, string tramstatus)
         {
             try
                 {
                     OpenVerbinding();
                     cmd.Connection = conn;
-                    cmd.CommandText  = "UPDATE \"Tram\" SET \"Status\" = '" + tramstatus + "' WHERE \"ID\" = '" + tramnummer + "'";
+                    cmd.CommandText  = "UPDATE \"Tram\" SET \"Status\" = '" + tramstatus + "' WHERE \"ID\" = '" + tramID + "'";
                     OracleDataReader reader = cmd.ExecuteReader();
                 }
                     
@@ -611,6 +611,42 @@ namespace RemiseHavestraat
 
 
         #region Stored procedures
+
+        public int GeefChauffeurSpoor(int tramNr)
+        {
+            var cmds = new OracleCommand("GEEFSPOORCHAUFFEUR", conn);
+            cmds.CommandType = CommandType.StoredProcedure;
+
+            cmds.Parameters.Add("p_tramNr", OracleType.Number).Value = tramNr;
+
+            cmds.Parameters.Add("p_spoorNr_out", OracleType.Number, 1);
+            cmds.Parameters["p_spoorNr_out"].Direction = ParameterDirection.Output;
+
+            OpenVerbinding();
+
+            using (var da = new OracleDataAdapter(cmds))
+            {
+                try
+                {
+                    cmds.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    
+                  Console.WriteLine(e);  
+                }
+            }
+
+            //VERBINDING SLUITEN
+            conn.Close();
+            cmds.Dispose();
+
+            //RETURN VALUE
+
+            return  Convert.ToInt32(cmds.Parameters["p_spoorNr_out"].Value);
+            
+
+        }
 
         public bool PlaatsTram(int tramNr, int spoorNr, int segmentNr)
         {

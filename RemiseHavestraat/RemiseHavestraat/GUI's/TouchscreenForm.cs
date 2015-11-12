@@ -14,10 +14,9 @@ namespace RemiseHavestraat
     {
         private string invoer ;
 
-        public int TramNr;
-        public int SpoorNr;
-        public Beurt Schoonmaak;
-        public Beurt Reparatie;
+
+        private Beurt Schoonmaak;
+        private Beurt Reparatie;
 
         public TouchscreenForm()
         {
@@ -107,13 +106,23 @@ namespace RemiseHavestraat
             bool serviceNodig = (cbDefectNodig.Checked);
             bool schoonmaakNodig = (cbSchoonmaaknodig.Checked);
 
-
             string omschrijvingDefect = tbDefect.Text;
             string omschrijvingSchoonmaak = tbSchoonmaak.Text;
 
-            int tramNr = 100;
-            Tram tram = Remise.Instance.GeefTram(tramNr);
+            int tramNr = Convert.ToInt32(invoer);
 
+            //controleren of de tram bestaat
+            if (Remise.Instance.BestaatTram(Convert.ToInt32(invoer)) == false)
+            {
+                MessageBox.Show("De ingevoerde tram bestaat niet");
+                return;
+            }
+
+            tbGanaarspoor.Text = Remise.Instance.GeefChauffeurSpoor(tramNr).ToString();
+
+
+
+            /*
             if (serviceNodig)
             {
                 // schoonmaak toevoegen
@@ -133,6 +142,8 @@ namespace RemiseHavestraat
 
                 // nog implementeren
             }
+             * */
+
 
         }
          #endregion

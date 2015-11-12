@@ -29,16 +29,19 @@ namespace RemiseHavestraat
             if (Int32.TryParse(tbTramnummer.Text, out TramNr) == false)
             {
                 MessageBox.Show("Ongeldige invoer tramnummer");
+                return;
             }
 
             if (Int32.TryParse(tbSpoornummer.Text, out SpoorNr) == false)
             {
                 MessageBox.Show("Ongeldige invoer spoornummer");
+                return;
             }
 
             if (Int32.TryParse(tbSegmentnummer.Text, out SegmentNr) == false)
             {
                 MessageBox.Show("Ongeldige invoer segmentnummer");
+                return;
             }
            
 

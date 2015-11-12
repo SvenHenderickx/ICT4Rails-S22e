@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RemiseHavestraat.Klassen;
 
 namespace RemiseHavestraat
 {
     public class Tram
     {
         public enum Type { Combino, Dubbelkop, Opleidingstrams, ElfG, TwaalfG };
-        public enum Status { Defect, Schoonmaak, Dienst, Remise };
+        
 
 
         public int TramID { get; private set; }
@@ -17,7 +18,7 @@ namespace RemiseHavestraat
         public int LijnID { get; private set; }
         public Type TypeEnum { get; private set; }
         public int Lengte { get; private set; }
-        public Status StatusEnum { get; set; }
+        public StatusEnum StatusEnum { get; set; }
 
         public Tram(int tramID, int tramNr, int lijnID, int type, int lengte, int status)
         {
@@ -26,7 +27,7 @@ namespace RemiseHavestraat
             this.LijnID = lijnID;
             this.TypeEnum = (Type)type;
             this.Lengte = lengte;
-            this.StatusEnum = (Status)status;
+            this.StatusEnum = (StatusEnum)status;
         }
 
         public override string ToString()

@@ -43,33 +43,37 @@
             "Schoonmaak",
             "Dienst",
             "Remise"});
-            this.cbbTramStatus.Location = new System.Drawing.Point(12, 12);
+            this.cbbTramStatus.Location = new System.Drawing.Point(18, 18);
+            this.cbbTramStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbbTramStatus.Name = "cbbTramStatus";
-            this.cbbTramStatus.Size = new System.Drawing.Size(162, 21);
+            this.cbbTramStatus.Size = new System.Drawing.Size(241, 28);
             this.cbbTramStatus.TabIndex = 0;
             this.cbbTramStatus.Text = "Voer status tram in";
             // 
             // lblTramnummer
             // 
             this.lblTramnummer.AutoSize = true;
-            this.lblTramnummer.Location = new System.Drawing.Point(13, 53);
+            this.lblTramnummer.Location = new System.Drawing.Point(20, 82);
+            this.lblTramnummer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTramnummer.Name = "lblTramnummer";
-            this.lblTramnummer.Size = new System.Drawing.Size(68, 13);
+            this.lblTramnummer.Size = new System.Drawing.Size(103, 20);
             this.lblTramnummer.TabIndex = 1;
             this.lblTramnummer.Text = "Tramnummer";
             // 
             // tbTramnummer
             // 
-            this.tbTramnummer.Location = new System.Drawing.Point(13, 70);
+            this.tbTramnummer.Location = new System.Drawing.Point(20, 108);
+            this.tbTramnummer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbTramnummer.Name = "tbTramnummer";
-            this.tbTramnummer.Size = new System.Drawing.Size(64, 20);
+            this.tbTramnummer.Size = new System.Drawing.Size(94, 26);
             this.tbTramnummer.TabIndex = 2;
             // 
             // btnBevestig
             // 
-            this.btnBevestig.Location = new System.Drawing.Point(13, 119);
+            this.btnBevestig.Location = new System.Drawing.Point(20, 183);
+            this.btnBevestig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBevestig.Name = "btnBevestig";
-            this.btnBevestig.Size = new System.Drawing.Size(75, 23);
+            this.btnBevestig.Size = new System.Drawing.Size(112, 35);
             this.btnBevestig.TabIndex = 3;
             this.btnBevestig.Text = "Bevestig";
             this.btnBevestig.UseVisualStyleBackColor = true;
@@ -77,9 +81,10 @@
             // 
             // btnTerug
             // 
-            this.btnTerug.Location = new System.Drawing.Point(99, 119);
+            this.btnTerug.Location = new System.Drawing.Point(148, 183);
+            this.btnTerug.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnTerug.Name = "btnTerug";
-            this.btnTerug.Size = new System.Drawing.Size(75, 23);
+            this.btnTerug.Size = new System.Drawing.Size(112, 35);
             this.btnTerug.TabIndex = 4;
             this.btnTerug.Text = "Terug";
             this.btnTerug.UseVisualStyleBackColor = true;
@@ -87,14 +92,15 @@
             // 
             // TramStatusForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(190, 154);
+            this.ClientSize = new System.Drawing.Size(473, 237);
             this.Controls.Add(this.btnTerug);
             this.Controls.Add(this.btnBevestig);
             this.Controls.Add(this.tbTramnummer);
             this.Controls.Add(this.lblTramnummer);
             this.Controls.Add(this.cbbTramStatus);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "TramStatusForm";
             this.Text = "Status";
             this.ResumeLayout(false);

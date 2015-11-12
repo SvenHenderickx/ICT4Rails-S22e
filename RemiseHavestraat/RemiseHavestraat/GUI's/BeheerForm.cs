@@ -37,9 +37,10 @@ namespace RemiseHavestraat
                 {
                     if (Remise.Instance.PlaatsTram(f.TramNr, f.SpoorNr, f.SegmentNr) == false)
                     {
-                        MessageBox.Show("Niet gelukt");
+                        MessageBox.Show("Het plaatsen van de tram is mislukt");
                         return;
                     }
+                    UpdateRemiseOverzicht();
                 }
             }
         }
@@ -54,7 +55,7 @@ namespace RemiseHavestraat
                 {
                     if (Remise.Instance.TramVerwijderenSegment(f.TramNr) == false)
                     {
-                        MessageBox.Show("Niet gelukt");
+                        MessageBox.Show("Het verwijderen van de tram is mislukt");
                         return;
                     }
                     UpdateRemiseOverzicht();
@@ -84,6 +85,15 @@ namespace RemiseHavestraat
             using (var f = new TramStatusForm())
             {
                 f.ShowDialog();
+                if (f.Uitvoeren)
+                {
+                    if (Remise.Instance.StatusUpdate(f.TramID,f.Status.ToString()) == false)
+                    {
+                        MessageBox.Show("Het veranderen van de status is niet gelukt");
+                        return;
+                    }
+                    Remise.Instance.TramsOphalen();
+                }
             }
         }
 
@@ -148,6 +158,7 @@ namespace RemiseHavestraat
             {
                 f.ShowDialog();
             }
+            UpdateRemiseOverzicht();
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -201,7 +212,7 @@ namespace RemiseHavestraat
                 TextBox tb = GeefRemiseTB(spoorNr, segmentNr);                
                 tb.Text = tramNr;
 
-                if(s.Blokkade == 1) tb.BackColor = Color.DarkGray;
+                if(s.Blokkade == 1) tb.BackColor = Color.Red;
                 if (s.Beschikbaar == 0 && s.Tram_ID == -1) tb.BackColor = Color.LightGray;
 
                 if (s.Beschikbaar == 1 && s.Blokkade == 0 || s.Beschikbaar == 0 && s.Tram_ID != -1)
@@ -248,7 +259,7 @@ namespace RemiseHavestraat
                 tb.Text = tramNr;
 
                 if (s.Blokkade == 1) tb.BackColor = Color.DarkGray;
-                if (s.Beschikbaar == 0 && s.Tram_ID == -1) tb.BackColor = Color.LightGray;
+                if (s.Beschikbaar == 0 && s.Tram_ID == -1) tb.BackColor = Color.Red;
 
                 if (s.Beschikbaar == 1 && s.Blokkade == 0 || s.Beschikbaar == 0 && s.Tram_ID != -1)
                 {
@@ -276,7 +287,5 @@ namespace RemiseHavestraat
             }
 
         }
-
-       
     }
 }
