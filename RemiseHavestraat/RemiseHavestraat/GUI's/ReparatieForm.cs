@@ -37,6 +37,7 @@ namespace RemiseHavestraat
                 return;
             }
 
+            lbReparatie.Items.Clear();
             foreach (var s in serviceBeurten)
             {
                 lbReparatie.Items.Add(s.ToString());

@@ -27,6 +27,8 @@ namespace RemiseHavestraat.GUI_s
             lbSchoonmaak.Items.Clear();
             schoonmaakBeurten = Remise.Instance.SchoonmaakBeurtenLijstOphalen();
 
+            lbSchoonmaak.Items.Clear();
+
             if (schoonmaakBeurten.Count == 0)
             {
                 MessageBox.Show("Er zijn geen servicebeurten");
